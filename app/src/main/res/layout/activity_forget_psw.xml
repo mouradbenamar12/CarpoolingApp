@@ -56,7 +56,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
         android:background="@drawable/animation_btn2"
-        android:text="Reset Password"
+        android:text="@string/reset_password"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold|italic"
