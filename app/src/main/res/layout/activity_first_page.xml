@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dfgdfg"
+    tools:context="com.example.mourad.navigationandroid.FirstPage"
+    tools:layout_editor_absoluteX="16dp"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/animation_btn"
+        android:onClick="btnLogin"
+        android:text="@string/loginFirstPage"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_SignUp"
+        android:layout_width="145dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="27dp"
+        android:background="@drawable/animation_btn2"
+        android:onClick="btnSignUp"
+        android:text="@string/sing_up_First_page"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
+        app:layout_constraintEnd_toStartOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_gmail"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/gmail"
+        android:onClick="btnGmail"
+        app:layout_constraintBottom_toTopOf="@+id/btn_fb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_fb"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/fb"
+        android:onClick="btnFb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+

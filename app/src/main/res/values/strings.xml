@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">NavigationAndroid</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="services">Services</string>
+    <string name="my_ways">My ways</string>
+    <string name="my_account">My account</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="about">About</string>
+    <string name="settings">Settings</string>
+    <string name="About">Abouuuuuuuuuuuuuuuut</string>
+    <string name="Home">Hommmmme</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="pass">Pasword</string>
+    <string name="email">Email</string>
+    <string name="mail">E_mail</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="full_name">Full Name</string>
+    <string name="todo">TODO</string>
+    <string name="phone">Phone</string>
+    <string name="home2">Home</string>
+    <string name="title_activity_home2">home2Activity</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="sing_up_now">Sing Up now</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="signup_now">Signup Now</string>
+    <string name="don_t_have_an_acount">Don\'t have an acount?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_up_now">Sign Up Now</string>
+    <string name="signup">SignUp</string>
+    <string name="login1">Login</string>
+    <string name="loginFirstPage">Login</string>
+    <string name="sing_up_First_page">Sing Up</string>
+</resources>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.mourad.navigationandroid.SignUp"
+    tools:layout_editor_absoluteY="25dp">
+
+    <Button
+        android:id="@+id/btn_login2"
+        android:layout_width="60dp"
+        android:layout_height="19dp"
+        android:layout_marginBottom="47dp"
+        android:layout_marginEnd="105dp"
+        android:background="@android:color/transparent"
+        android:onClick="btnLogin"
+        android:text="@string/login"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:layout_marginStart="36dp"
+        android:text="@string/already_have_an_account"
+        android:textColor="#FF2F2D2D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/conf_pass_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/pass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass_icon"
+        app:srcCompat="@drawable/pass_icon" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="293dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/user_input"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/full_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toEndOf="@+id/log_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="293dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/user_input"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/msg_icon"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <EditText
+        android:id="@+id/etd_phone"
+        android:layout_width="293dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="43dp"
+        android:background="@drawable/user_input"
+        android:gravity="center"
+        android:hint="@string/phone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toEndOf="@+id/tele_icon"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+    <EditText
+        android:id="@+id/et_psw"
+        android:layout_width="293dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/user_input"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pass_icon"
+        app:layout_constraintTop_toBottomOf="@+id/etd_phone" />
+
+    <EditText
+        android:id="@+id/et_conf_psw"
+        android:layout_width="293dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/user_input"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/conf_pass_icon"
+        app:layout_constraintTop_toBottomOf="@+id/et_psw" />
+
+    <ImageView
+        android:id="@+id/log_icon"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="381dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_icon"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/pass_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
+        android:contentDescription="@string/pass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tele_icon"
+        app:srcCompat="@drawable/pass_icon" />
+
+    <ImageView
+        android:id="@+id/msg_icon"
+        android:layout_width="40dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="21dp"
+        android:contentDescription="@string/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        app:srcCompat="@drawable/email" />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/animation_btn2"
+        android:gravity="center_vertical|center"
+        android:text="@string/signup"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_conf_psw" />
+
+    <ImageView
+        android:id="@+id/tele_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="33dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/msg_icon"
+        app:srcCompat="@drawable/tele" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="38dp"
+        android:text="@string/sign_up_now"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/et_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+
