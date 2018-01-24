@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NavigationAndroid.iml" filepath="$PROJECT_DIR$/NavigationAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PipYalla.iml" filepath="$PROJECT_DIR$/PipYalla.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
