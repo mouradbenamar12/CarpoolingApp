@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "470325762215",
+    "firebase_url": "https://pipyalla-744bd.firebaseio.com",
+    "project_id": "pipyalla-744bd",
+    "storage_bucket": "pipyalla-744bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470325762215:android:6f3dfb1a0fcc8579",
+        "android_client_info": {
+          "package_name": "com.example.mourad.navigationandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470325762215-tbj3k79msfd1f0965cbm4e1gvmk236an.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mourad.navigationandroid",
+            "certificate_hash": "0f9fd699d33e4146fddab1e747cfbe5e2d89d072"
+          }
+        },
+        {
+          "client_id": "470325762215-21c83sao38g781uuijdq0gt8knm2r0ls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASG-XxjBgtmxRGj9mmgBFRBqrffY-PCqM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470325762215-21c83sao38g781uuijdq0gt8knm2r0ls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
