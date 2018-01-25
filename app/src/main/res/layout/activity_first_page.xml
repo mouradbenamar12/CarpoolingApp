@@ -20,7 +20,8 @@
         android:text="@string/loginFirstPage"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="32dp" />
 
 
     <Button
@@ -36,7 +37,9 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
         app:layout_constraintEnd_toStartOf="@+id/btn_login"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="15dp" />
 
     <Button
         android:id="@+id/btn_gmail"
@@ -47,18 +50,17 @@
         android:layout_marginStart="30dp"
         android:background="@drawable/gmail"
         android:onClick="btnGmail"
-        app:layout_constraintBottom_toTopOf="@+id/btn_fb"
+        app:layout_constraintBottom_toTopOf="@+id/fb_login_bn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_fb"
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_bn"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:background="@drawable/fb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
