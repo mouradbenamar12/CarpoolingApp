@@ -43,8 +43,8 @@
 
     <Button
         android:id="@+id/btn_gmail"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="293dp"
+        android:layout_height="26dp"
         android:layout_marginBottom="6dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
@@ -56,14 +56,16 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_bn"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_width="293dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </android.support.constraint.ConstraintLayout>
 

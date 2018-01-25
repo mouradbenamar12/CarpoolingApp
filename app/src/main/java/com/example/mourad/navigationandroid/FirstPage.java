@@ -14,9 +14,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -24,11 +26,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -54,7 +58,6 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -70,22 +73,26 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
                 .build();
         //Facebook:
         FacebookSdk.sdkInitialize(getApplicationContext());
-        loginButton = (LoginButton) findViewById(R.id.fb_login_bn);
+        loginButton = findViewById(R.id.fb_login_bn);
+        loginButton.setReadPermissions("email", "public_profile");
         callbackManager = CallbackManager.Factory.create();
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(),"Login Successful"+loginResult.getAccessToken().getUserId(),Toast.LENGTH_LONG).show();
+                handleFacebookAccessToken(loginResult.getAccessToken());
 
             }
 
             @Override
             public void onCancel() {
+
                 Toast.makeText(getApplicationContext(),"Login Canceled",Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(FacebookException error) {
+
 
             }
         });
@@ -96,8 +103,10 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user!=null){
-                    Log.d("Auth: ",user.getEmail());
-                    Toast.makeText(getApplicationContext(),user.getDisplayName(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),user.getEmail(),Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"user null",Toast.LENGTH_LONG).show();
+
                 }
             }
         };
@@ -107,6 +116,7 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
     public void onStart(){
         super.onStart();
         mAuth.addAuthStateListener(mAuthListner);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
     public void onStop(){
         super.onStop();
@@ -114,12 +124,11 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
     public void btnSignUp(View view){
-
+        FirebaseAuth.getInstance().signOut();
         Intent myIntent=new Intent(this,SignUp.class);
         startActivity(myIntent);
     }
     public void btnLogin(View view){
-
         Intent myIntent=new Intent(this,Login.class);
         startActivity(myIntent);
     }
@@ -162,6 +171,31 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",Toast.LENGTH_SHORT).show();
                         }
+                    }
+                });
+    }
+    // Facebook Auth :
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(getApplicationContext(),"Login Successful "+user.getDisplayName(),Toast.LENGTH_LONG).show();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
                     }
                 });
     }
