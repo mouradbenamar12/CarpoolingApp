@@ -84,8 +84,9 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
                     FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
-                    User user = new User(Users.push().getKey(),fullname,email,phone,password);
-                    Users.child(Users.push().getKey()).setValue(user);
+                    String id = Users.push().getKey();
+                    User user = new User(id,fullname,email,phone,password);
+                    Users.child(id).setValue(user);
                 }
             }
         });

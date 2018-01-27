@@ -75,7 +75,7 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
         //Facebook:
         FacebookSdk.sdkInitialize(getApplicationContext());
         loginButton = findViewById(R.id.fb_login_bn);
-        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.setReadPermissions("Email", "public_profile");
         callbackManager = CallbackManager.Factory.create();
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
