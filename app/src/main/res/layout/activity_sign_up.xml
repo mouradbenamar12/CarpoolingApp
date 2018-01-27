@@ -47,7 +47,7 @@
         app:srcCompat="@drawable/pass_icon" />
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/et_FullName"
         android:layout_width="293dp"
         android:layout_height="70dp"
         android:layout_marginEnd="80dp"
@@ -76,10 +76,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/msg_icon"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_FullName" />
 
     <EditText
-        android:id="@+id/etd_phone"
+        android:id="@+id/et_phone"
         android:layout_width="293dp"
         android:layout_height="70dp"
         android:layout_marginEnd="43dp"
@@ -105,10 +105,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pass_icon"
-        app:layout_constraintTop_toBottomOf="@+id/etd_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
     <EditText
-        android:id="@+id/et_conf_psw"
+        android:id="@+id/et_confPsw"
         android:layout_width="293dp"
         android:layout_height="70dp"
         android:layout_marginEnd="24dp"
@@ -153,11 +153,11 @@
         android:layout_marginTop="21dp"
         android:contentDescription="@string/email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        app:layout_constraintTop_toBottomOf="@+id/et_FullName"
         app:srcCompat="@drawable/email" />
 
     <Button
-        android:id="@+id/btn_signUp"
+        android:id="@+id/buSignUpNow"
         android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_marginEnd="53dp"
@@ -171,7 +171,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_conf_psw" />
+        app:layout_constraintTop_toBottomOf="@+id/et_confPsw" />
 
     <ImageView
         android:id="@+id/tele_icon"
@@ -195,7 +195,7 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/et_name"
+        app:layout_constraintBottom_toTopOf="@+id/et_FullName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
