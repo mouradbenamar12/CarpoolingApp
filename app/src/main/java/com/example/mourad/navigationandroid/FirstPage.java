@@ -56,6 +56,7 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseAuth.getInstance().signOut();
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -124,7 +125,6 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
     public void btnSignUp(View view){
-        FirebaseAuth.getInstance().signOut();
         Intent myIntent=new Intent(this,SignUp.class);
         startActivity(myIntent);
     }

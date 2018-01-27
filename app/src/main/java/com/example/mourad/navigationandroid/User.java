@@ -14,13 +14,12 @@ public class User {
 
     }
 
-    public User(String id,String fullNAme, String email, String phone, String password, String confPassword) {
+    public User(String id,String fullNAme, String email, String phone, String password) {
         this.id=id;
         this.fullNAme = fullNAme;
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.confPassword = confPassword;
     }
 
     public String getFullNAme() {
@@ -34,9 +33,6 @@ public class User {
     }
     public String getPassword() {
         return password;
-    }
-    public String getConfPassword() {
-        return confPassword;
     }
     public String getId(){
         return id;
