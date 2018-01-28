@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
@@ -26,6 +27,8 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button buttonLogin;
     private EditText editTextEmail, editTextPsw;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +42,12 @@ public class Login extends AppCompatActivity {
         buttonLogin =(Button)findViewById(R.id.btnSignIn);
         editTextEmail=(EditText)findViewById(R.id.et_email);
         editTextPsw=(EditText)findViewById(R.id.etPsw);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 userLogin();
             }
         });
@@ -77,9 +82,12 @@ public class Login extends AppCompatActivity {
             return;
         }
 
+
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(),"BRAVO ! Home",Toast.LENGTH_LONG).show();
 

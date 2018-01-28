@@ -4,26 +4,32 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
+
     private EditText editTextFullName,editTextEmail,editTextPhone,editTextPsw,editTextConPsw;
     private Button buttonSignUp;
     private FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener mAuthListner;
+    private FirebaseAuth.AuthStateListener mAuthListner;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +45,14 @@ public class SignUp extends AppCompatActivity {
         editTextPsw=(EditText)findViewById(R.id.etPsw);
         editTextConPsw=(EditText)findViewById(R.id.et_confPsw);
         buttonSignUp=(Button)findViewById(R.id.buSignUpNow);
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
 
         mAuth = FirebaseAuth.getInstance();
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextPhone.getText().toString(),editTextFullName.getText().toString());
+                adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextPhone.getText().toString(),editTextFullName.getText().toString(),editTextConPsw.getText().toString());
             }
 
             });
@@ -70,19 +77,77 @@ public class SignUp extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
     }
-    public void adduser(final String email, final String password, final String phone, final String fullname){
+    public void adduser(final String email, final String password, final String phone, final String fullname, final String confPassword){
 
+        if (fullname.isEmpty()) {
+            editTextFullName.setError("Full Name is required");
+            editTextFullName.requestFocus();
+            return;
+        }
+
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter a valid email");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (phone.isEmpty()) {
+            editTextPhone.setError("Phone is required");
+            editTextPhone.requestFocus();
+            return;
+        }
+
+        if (!Patterns.PHONE.matcher(phone).matches()) {
+            editTextPhone.setError("Please enter a valid phone");
+            editTextPhone.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            editTextPsw.setError("Password is required");
+            editTextPsw.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6) {
+            editTextPsw.setError("Minimum length of password should be 6");
+            editTextPsw.requestFocus();
+            return;
+        }
+        if (!confPassword.equals(password)) {
+            editTextConPsw.setError(" Your password and confirmation password not equal");
+            editTextConPsw.requestFocus();
+            return;
+        }
+        if (confPassword.isEmpty()) {
+            editTextConPsw.setError("Confirm your password is required");
+            editTextConPsw.requestFocus();
+            return;
+        }
+
+
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if (!task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Authentication failed."+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                }else{
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "You are already registered", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else{
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
                     FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
                     String id = Users.push().getKey();
-                    User user = new User(id,fullname,email,phone,password);
+                    User user = new User(id,fullname,email,phone,password,confPassword);
                     Users.child(id).setValue(user);
                 }
             }

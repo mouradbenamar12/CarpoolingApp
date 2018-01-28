@@ -14,16 +14,21 @@ public class User {
 
     }
 
-    public User(String id, String fullName, String email, String phone, String password) {
+    public User(String id, String fullName, String email, String phone, String password,String confPassword) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.confPassword=confPassword;
     }
 
     public String getId() {
         return id;
+    }
+
+    public String getConfPassword() {
+        return confPassword;
     }
 
     public String getFullName() {

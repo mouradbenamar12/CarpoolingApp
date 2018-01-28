@@ -21,7 +21,8 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="105dp" />
 
     <TextView
         android:id="@+id/textView10"
@@ -33,7 +34,8 @@
         android:textColor="#FF2F2D2D"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="36dp" />
 
     <ImageView
         android:id="@+id/conf_pass_icon"
@@ -44,7 +46,8 @@
         android:contentDescription="@string/pass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass_icon"
-        app:srcCompat="@drawable/pass_icon" />
+        app:srcCompat="@drawable/pass_icon"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:id="@+id/et_FullName"
@@ -61,7 +64,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toEndOf="@+id/log_icon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="80dp" />
 
     <EditText
         android:id="@+id/et_email"
@@ -76,7 +81,9 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/msg_icon"
-        app:layout_constraintTop_toBottomOf="@+id/et_FullName" />
+        app:layout_constraintTop_toBottomOf="@+id/et_FullName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="28dp" />
 
     <EditText
         android:id="@+id/et_phone"
@@ -90,7 +97,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toEndOf="@+id/tele_icon"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        android:layout_marginRight="43dp" />
 
     <EditText
         android:id="@+id/etPsw"
@@ -105,7 +113,9 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/pass_icon"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/et_phone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="43dp" />
 
     <EditText
         android:id="@+id/et_confPsw"
@@ -119,7 +129,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/conf_pass_icon"
-        app:layout_constraintTop_toBottomOf="@+id/etPsw" />
+        app:layout_constraintTop_toBottomOf="@+id/etPsw"
+        android:layout_marginRight="24dp" />
 
     <ImageView
         android:id="@+id/log_icon"
@@ -132,7 +143,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_icon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:layout_marginLeft="10dp" />
 
     <ImageView
         android:id="@+id/pass_icon"
@@ -143,7 +155,8 @@
         android:contentDescription="@string/pass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tele_icon"
-        app:srcCompat="@drawable/pass_icon" />
+        app:srcCompat="@drawable/pass_icon"
+        android:layout_marginLeft="16dp" />
 
     <ImageView
         android:id="@+id/msg_icon"
@@ -154,7 +167,8 @@
         android:contentDescription="@string/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_FullName"
-        app:srcCompat="@drawable/email" />
+        app:srcCompat="@drawable/email"
+        android:layout_marginLeft="10dp" />
 
     <Button
         android:id="@+id/buSignUpNow"
@@ -182,7 +196,8 @@
         android:contentDescription="@string/todo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/msg_icon"
-        app:srcCompat="@drawable/tele" />
+        app:srcCompat="@drawable/tele"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -197,7 +212,22 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/et_FullName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="60dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
 

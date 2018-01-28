@@ -22,7 +22,8 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginRight="4dp" />
 
     <ImageView
         android:id="@+id/logo"
@@ -37,7 +38,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:layout_marginLeft="41dp"
+        android:layout_marginRight="223dp" />
 
     <EditText
         android:id="@+id/et_email"
@@ -56,7 +59,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/log_icon"
         app:layout_constraintStart_toStartOf="@+id/etPsw"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        android:layout_marginRight="16dp" />
 
     <EditText
         android:id="@+id/etPsw"
@@ -71,7 +75,8 @@
         android:paddingRight="30dp"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email"
+        android:layout_marginRight="16dp" />
 
     <Button
         android:id="@+id/btnSignIn"
@@ -101,7 +106,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:srcCompat="@drawable/user_icon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:layout_marginLeft="29dp" />
 
     <Button
         android:id="@+id/forget_psw"
@@ -120,7 +126,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
-        tools:targetApi="jelly_bean_mr2" />
+        tools:targetApi="jelly_bean_mr2"
+        android:layout_marginLeft="45dp" />
 
     <Button
         android:id="@+id/signUp"
@@ -139,7 +146,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        tools:targetApi="kitkat_watch" />
+        tools:targetApi="kitkat_watch"
+        android:layout_marginRight="20dp" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -153,6 +161,23 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log_icon"
-        app:srcCompat="@drawable/pass_icon" />
+        app:srcCompat="@drawable/pass_icon"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
