@@ -43,4 +43,5 @@
     <string name="sing_up_First_page">Sing Up</string>
     <string name="reset_password">Reset Password</string>
     <string name="facebook_app_id">180851565981014</string>
+    <string name="email_or_username">Email or Username</string>
 </resources>

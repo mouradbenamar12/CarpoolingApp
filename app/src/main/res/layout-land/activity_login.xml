@@ -25,7 +25,7 @@
         tools:ignore="ContentDescription" />
 
     <EditText
-        android:id="@+id/et_full_name"
+        android:id="@+id/et_email"
         android:layout_width="275dp"
         android:layout_height="65dp"
         android:layout_marginEnd="236dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
-        android:id="@+id/et_psw"
+        android:id="@+id/etPsw"
         android:layout_width="275dp"
         android:layout_height="65dp"
         android:layout_marginEnd="236dp"
@@ -51,10 +51,10 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_full_name" />
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btnSignIn"
         android:layout_width="315dp"
         android:layout_height="61dp"
         android:layout_marginBottom="136dp"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_psw"
+        app:layout_constraintTop_toBottomOf="@+id/etPsw"
         app:layout_constraintVertical_bias="0.016" />
 
     <ImageView
@@ -75,7 +75,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="29dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toStartOf="@+id/et_full_name"
+        app:layout_constraintEnd_toStartOf="@+id/et_email"
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
@@ -97,7 +97,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
         app:layout_constraintVertical_bias="0.446"
         tools:targetApi="jelly_bean_mr2" />
 
@@ -126,7 +126,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:contentDescription="@string/pass"
-        app:layout_constraintEnd_toStartOf="@+id/et_psw"
+        app:layout_constraintEnd_toStartOf="@+id/etPsw"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log_icon"

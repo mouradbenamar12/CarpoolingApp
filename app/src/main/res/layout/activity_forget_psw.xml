@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <EditText
-        android:id="@+id/et_psw"
+        android:id="@+id/etPsw"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginBottom="20dp"
@@ -77,7 +77,7 @@
         app:srcCompat="@drawable/email" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/loginForgetPage"
         android:layout_width="0dp"
         android:layout_height="19dp"
         android:layout_marginBottom="302dp"
@@ -129,8 +129,8 @@
         android:text="@string/already_have_an_account"
         android:textColor="#FF2F2D2D"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_login"
-        app:layout_constraintEnd_toStartOf="@+id/btn_login"
+        app:layout_constraintBaseline_toBaselineOf="@+id/loginForgetPage"
+        app:layout_constraintEnd_toStartOf="@+id/loginForgetPage"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,12 +1,9 @@
 package com.example.mourad.navigationandroid;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -39,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         editTextFullName=(EditText)findViewById(R.id.et_FullName);
         editTextEmail=(EditText)findViewById(R.id.et_email);
         editTextPhone=(EditText)findViewById(R.id.et_phone);
-        editTextPsw=(EditText)findViewById(R.id.et_psw);
+        editTextPsw=(EditText)findViewById(R.id.etPsw);
         editTextConPsw=(EditText)findViewById(R.id.et_confPsw);
         buttonSignUp=(Button)findViewById(R.id.buSignUpNow);
 
