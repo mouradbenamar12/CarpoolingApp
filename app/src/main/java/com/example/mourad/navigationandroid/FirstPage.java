@@ -167,6 +167,9 @@ public class FirstPage extends AppCompatActivity implements GoogleApiClient.OnCo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+                        Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",Toast.LENGTH_SHORT).show();
