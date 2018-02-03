@@ -7,43 +7,60 @@ public class User {
         String fullName;
         String email;
         String phone;
-        String password;
-        String confPassword;
+        String photoUrl;
 
     public User(){
 
     }
 
-    public User(String id, String fullName, String email, String phone, String password,String confPassword) {
+    public User(String id, String fullName, String email, String phone,String photoUrl) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.password = password;
-        this.confPassword=confPassword;
+        this.photoUrl = photoUrl;
     }
 
-    public String getId() {
+    public static void setId(String id) {
+       id = id;
+    }
+
+    public  void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public  void setEmail(String email) {
+        this.email = email;
+    }
+
+    public  void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+
+    public  void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public  String getId() {
         return id;
     }
 
-    public String getConfPassword() {
-        return confPassword;
-    }
-
-    public String getFullName() {
+    public  String getFullName() {
         return fullName;
     }
 
-    public String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public String getPhone() {
+    public  String getPhone() {
         return phone;
     }
 
-    public String getPassword() {
-        return password;
+
+
+    public  String getPhotoUrl() {
+        return photoUrl;
     }
 }

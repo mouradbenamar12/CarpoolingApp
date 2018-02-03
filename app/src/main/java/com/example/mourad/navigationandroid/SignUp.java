@@ -29,6 +29,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListner;
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,8 +146,8 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
                     FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
-                    final String id = Users.push().getKey();
-                    User user = new User(id,fullname,email,phone,password,confPassword);
+                    String id = Users.push().getKey();
+                    User user = new User(id,fullname,email,phone,null);
                     Users.child(id).setValue(user);
                 }
             }
