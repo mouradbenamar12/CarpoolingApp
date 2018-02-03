@@ -49,13 +49,12 @@
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         android:background="@drawable/gmail"
-        android:onClick="btnGmail"
-        app:layout_constraintBottom_toTopOf="@+id/fb_login_bn"
+        app:layout_constraintBottom_toTopOf="@+id/fb_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.facebook.login.widget.LoginButton
-        android:id="@+id/fb_login_bn"
+        android:id="@+id/fb_login"
         android:layout_width="293dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

@@ -1,5 +1,6 @@
 package com.example.mourad.navigationandroid;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -11,11 +12,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
+import com.bumptech.glide.Glide;
+import com.example.mourad.navigationandroid.models.Users;
+import com.example.mourad.navigationandroid.utils.Constants;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ImageView mDisplayImageView;
+    private TextView mNameTextView;
+    private TextView mEmailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +45,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -37,9 +54,36 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         SelectedScreen(R.id.nav_home);
-        
 
+        View navHeaderView = navigationView.getHeaderView(0);
+
+        mDisplayImageView = (ImageView) navHeaderView.findViewById(R.id.image_nav);
+        mNameTextView = (TextView) navHeaderView.findViewById(R.id.name_nav);
+        mEmailTextView = (TextView) navHeaderView.findViewById(R.id.email_nav);
+
+
+        FirebaseDatabase.getInstance().getReference(Constants.USER_KEY).child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue() != null) {
+                            User users = dataSnapshot.getValue(User.class);
+                            Glide.with(MainActivity.this)
+                                    .load(users.getPhotoUrl())
+                                    .into(mDisplayImageView);
+
+                            mNameTextView.setText(users.getFullName());
+                            mEmailTextView.setText(users.getEmail());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
     }
+
 
     @Override
     public void onBackPressed() {
