@@ -16,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
-import com.example.mourad.navigationandroid.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,7 +56,7 @@ public class MainActivity extends BaseActivity
         mEmailTextView = (TextView) navHeaderView.findViewById(R.id.email_nav);
 
 
-        FirebaseDatabase.getInstance().getReference(Constants.USER_KEY).child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
