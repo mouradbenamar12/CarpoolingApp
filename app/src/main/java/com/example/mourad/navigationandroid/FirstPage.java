@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-import com.example.mourad.navigationandroid.utils.Constants;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -120,14 +119,14 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                             }
                             User user = new User(
                                     FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                    account.getDisplayName() + " " + account.getFamilyName(),
+                                    account.getDisplayName(),
                                     account.getEmail(),
                                     null,
                                     photoUrl);
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference userRef = database.getReference(Constants.USER_KEY);
-                            userRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+                            DatabaseReference Users=database_user.getReference("Users");
+                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                                     .setValue(user, new DatabaseReference.CompletionListener() {
                                         @Override
                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
