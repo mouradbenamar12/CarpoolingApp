@@ -9,6 +9,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -22,18 +34,78 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Arrays;
+
 public class FirstPage extends BaseActivity implements View.OnClickListener {
     private static final String TAG = FirstPage.class.getSimpleName();
     private static final int RC_SIGN_IN = 9001; //Request code for signing in
 
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Facebook SDK init
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_first_page);
+
+        loginButton = findViewById(R.id.fb_login);
+        loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+
+                        String accessToken = loginResult.getAccessToken().getToken();
+
+                        PrefUtil prefUtil = new PrefUtil(FirstPage.this);
+                        // save accessToken to SharedPreference
+                        prefUtil.saveAccessToken(accessToken);
+                        GraphRequest request = GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(),
+                                new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(JSONObject jsonObject,
+                                                            GraphResponse response) {
+
+
+                                        // Getting FB User Data
+                                        Bundle facebookData = getFacebookData(jsonObject);
+
+
+                                    }
+                                });
+
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "id,first_name,last_name,email,gender");
+                        request.setParameters(parameters);
+                        request.executeAsync();
+                    }
+
+
+                    @Override
+                    public void onCancel () {
+                        Log.d(TAG, "Login attempt cancelled.");
+                    }
+
+                    @Override
+                    public void onError (FacebookException e){
+                        e.printStackTrace();
+                        Log.d(TAG, "Login attempt failed.");
+                        deleteAccessToken();
+                    }
+                }
+        );
 
         findViewById(R.id.btn_gmail).setOnClickListener(this);
 
@@ -52,6 +124,60 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                 }
             }
         };
+    }
+
+    private void deleteAccessToken() {
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null){
+                    //User logged out
+                    PrefUtil prefUtil = new PrefUtil(FirstPage.this);
+                    prefUtil.clearToken();
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        };
+    }
+
+    private Bundle getFacebookData(JSONObject object) {
+        Bundle bundle = new Bundle();
+
+        try {
+            String id = object.getString("id");
+            URL profile_pic;
+            try {
+                profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?type=large");
+                Log.i("profile_pic", profile_pic + "");
+                bundle.putString("profile_pic", profile_pic.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            bundle.putString("idFacebook", id);
+            if (object.has("first_name"))
+                bundle.putString("first_name", object.getString("first_name"));
+            if (object.has("last_name"))
+                bundle.putString("last_name", object.getString("last_name"));
+            if (object.has("email"))
+                bundle.putString("email", object.getString("email"));
+            if (object.has("gender"))
+                bundle.putString("gender", object.getString("gender"));
+
+            PrefUtil prefUtil = new PrefUtil(FirstPage.this);
+            prefUtil.saveFacebookUserInfo(object.getString("first_name"),
+                    object.getString("last_name"),object.getString("email"),
+                    object.getString("gender"), profile_pic.toString());
+
+        } catch (Exception e) {
+            Log.d(TAG, "BUNDLE Exception : "+e.toString());
+        }
+
+        return bundle;
     }
 
     @Override
@@ -84,6 +210,10 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //facebook requestCode:
+        if (FacebookSdk.isFacebookRequestCode(requestCode)) {
+            callbackManager.onActivityResult(requestCode,resultCode,data);
+        }
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == RC_SIGN_IN) {
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
