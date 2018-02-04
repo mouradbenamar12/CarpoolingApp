@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -19,11 +20,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
+    private static final String TAG = FirstPage.class.getSimpleName();
     private EditText editTextFullName,editTextEmail,editTextPhone,editTextPsw,editTextConPsw;
     private Button buttonSignUp;
     private FirebaseAuth mAuth;
@@ -146,9 +149,15 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
                     FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
-                    String id = Users.push().getKey();
+                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     User user = new User(id,fullname,email,phone,null);
-                    Users.child(id).setValue(user);
+                    Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                            .setValue(user, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    Log.v(TAG, "onComplete Set vaLUE");
+                                }
+                            });
                 }
             }
         });

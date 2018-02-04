@@ -64,9 +64,10 @@ public class MainActivity extends BaseActivity
                         if (dataSnapshot.getValue() != null) {
                             User users = dataSnapshot.getValue(User.class);
                             assert users != null;
+                            if(users.getPhotoUrl()!=null){
                             Glide.with(MainActivity.this)
                                     .load(users.getPhotoUrl())
-                                    .into(mDisplayImageView);
+                                    .into(mDisplayImageView);}
 
                             mNameTextView.setText(users.getFullName());
                             mEmailTextView.setText(users.getEmail());
