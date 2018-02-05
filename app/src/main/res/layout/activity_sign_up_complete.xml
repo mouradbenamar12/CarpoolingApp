@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.mourad.navigationandroid.SignUpComplete">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollIndicators="right"
+            android:scrollbarFadeDuration="3"
+            android:scrollbars="vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/profilephoto"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/imageuser"
+                android:cropToPadding="false"
+                android:onClick="editphoto"
+                app:srcCompat="@drawable/placeholder" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/manssilhouette" />
+
+            <EditText
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="Full Name" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/newmessage" />
+
+            <EditText
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="Email" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/handset" />
+
+            <EditText
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="Phone" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/lockedpadlock" />
+
+            <EditText
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="Password" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/lockedpadlock" />
+
+            <EditText
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="Confirme Password" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/birthday" />
+
+            <EditText
+                android:id="@+id/birthdayField"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:clickable="true"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/birthday"
+                android:onClick="birthdayClick" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/gender" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@drawable/user_input"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:textAlignment="center" />
+
+        </GridLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

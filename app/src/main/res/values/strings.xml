@@ -52,4 +52,6 @@
     <string name="android_studio_android_com">android.studio@android.com</string>
     <string name="imag_nav">img nav</string>
     <string name="loading">loading ...</string>
+    <string name="imageuser">imageUser</string>
+    <string name="birthday">Birthday</string>
 </resources>
