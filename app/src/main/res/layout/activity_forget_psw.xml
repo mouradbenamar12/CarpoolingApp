@@ -9,7 +9,7 @@
     tools:layout_editor_absoluteY="25dp">
 
     <EditText
-        android:id="@+id/etPsw"
+        android:id="@+id/frg_email"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginBottom="20dp"
@@ -106,7 +106,8 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/reset_psw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="60dp" />
 
     <TextView
         android:id="@+id/textView6"
@@ -119,7 +120,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/signUp"
         app:layout_constraintEnd_toStartOf="@+id/signUp"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="4dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -131,6 +133,13 @@
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/loginForgetPage"
         app:layout_constraintEnd_toStartOf="@+id/loginForgetPage"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="52dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/activity_forgot_psw">
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
-        android:id="@+id/etPsw"
+        android:id="@+id/forgot_email"
         android:layout_width="275dp"
         android:layout_height="65dp"
         android:layout_marginEnd="236dp"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPsw"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_email"
         app:layout_constraintVertical_bias="0.016" />
 
     <ImageView
@@ -126,7 +126,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:contentDescription="@string/pass"
-        app:layout_constraintEnd_toStartOf="@+id/etPsw"
+        app:layout_constraintEnd_toStartOf="@+id/forgot_email"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log_icon"
