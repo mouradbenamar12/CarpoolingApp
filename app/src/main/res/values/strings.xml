@@ -54,4 +54,8 @@
     <string name="loading">loading ...</string>
     <string name="imageuser">imageUser</string>
     <string name="birthday">Birthday</string>
+    <string name="send_email_verify">send_email_verify</string>
+    <string name="refresh">refresh</string>
+    <string name="status_of_verify_string_email">status_of_verify_string_email</string>
+    <string name="emaaaaail">emaaaaail</string>
 </resources>
