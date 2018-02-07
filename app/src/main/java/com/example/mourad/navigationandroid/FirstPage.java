@@ -27,7 +27,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +56,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Facebook SDK init
+        mAuth = FirebaseAuth.getInstance();
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_first_page);
@@ -64,31 +67,8 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        handleFacebookAccessToken(loginResult.getAccessToken());
 
-                        String accessToken = loginResult.getAccessToken().getToken();
-
-                        PrefUtil prefUtil = new PrefUtil(FirstPage.this);
-                        // save accessToken to SharedPreference
-                        prefUtil.saveAccessToken(accessToken);
-                        GraphRequest request = GraphRequest.newMeRequest(
-                                loginResult.getAccessToken(),
-                                new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(JSONObject jsonObject,
-                                                            GraphResponse response) {
-
-
-                                        // Getting FB User Data
-                                        Bundle facebookData = getFacebookData(jsonObject);
-
-
-                                    }
-                                });
-
-                        Bundle parameters = new Bundle();
-                        parameters.putString("fields", "id,first_name,last_name,email,gender");
-                        request.setParameters(parameters);
-                        request.executeAsync();
                     }
 
 
@@ -182,6 +162,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
@@ -273,6 +254,54 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                                 signOut();
                             }
                         }
+                    }
+                });
+    }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        mAuth = FirebaseAuth.getInstance();
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(getApplicationContext(), "FB_Authentication success",
+                                    Toast.LENGTH_SHORT).show();
+                            FirebaseUser account = mAuth.getCurrentUser();
+                            String photoUrl = null;
+                            if (account.getPhotoUrl() != null) {
+                                photoUrl = account.getPhotoUrl().toString();
+                            }
+                            User user = new User(
+                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
+                                    account.getDisplayName(),
+                                    account.getEmail(),
+                                    null,
+                                    photoUrl);
+
+                            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+                            DatabaseReference Users=database_user.getReference("Users");
+                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                    .setValue(user, new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                            Log.v(TAG, "onComplete Set vaLUE");
+                                        }
+                                    });
+                            startActivity(new Intent(FirstPage.this, MainActivity.class));
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "FB_Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
                     }
                 });
     }

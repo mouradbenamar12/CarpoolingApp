@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
     private Button buttonLogin;
     private EditText editTextEmail, editTextPsw;
     private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
