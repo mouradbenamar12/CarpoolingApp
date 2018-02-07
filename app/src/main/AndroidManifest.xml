@@ -28,6 +28,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ForgetPsw" />
         <activity android:name=".Login" />
+        <activity android:name=".VerifyEmail"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
