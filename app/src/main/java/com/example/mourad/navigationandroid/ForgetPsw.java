@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,9 +33,9 @@ public class ForgetPsw extends AppCompatActivity implements View.OnClickListener
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_forget_psw);
 
-        input_email = (EditText)findViewById(R.id.frg_email);
-        btnResetPass = (Button)findViewById(R.id.reset_psw);
-        activity_forgot = (RelativeLayout)findViewById(R.id.activity_forgot_psw);
+        input_email = findViewById(R.id.frg_email);
+        btnResetPass = findViewById(R.id.reset_psw);
+        activity_forgot = findViewById(R.id.activity_forgot_psw);
 
         btnResetPass.setOnClickListener(this);
 
@@ -62,6 +63,18 @@ public class ForgetPsw extends AppCompatActivity implements View.OnClickListener
     }
 
     private void resetPassword(final String email) {
+
+        if (email.isEmpty()) {
+            input_email.setError("Email is required");
+            input_email.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            input_email.setError("Please enter a valid email");
+            input_email.requestFocus();
+            return;
+        }
+
         auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override

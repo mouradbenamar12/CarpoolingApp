@@ -39,22 +39,26 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        editTextFullName=(EditText)findViewById(R.id.et_FullName);
-        editTextEmail=(EditText)findViewById(R.id.et_email);
-        editTextPhone=(EditText)findViewById(R.id.et_phone);
-        editTextPsw=(EditText)findViewById(R.id.etPsw);
-        editTextConPsw=(EditText)findViewById(R.id.et_confPsw);
-        buttonSignUp=(Button)findViewById(R.id.buSignUpNow);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        editTextFullName= findViewById(R.id.et_FullName);
+        editTextEmail= findViewById(R.id.et_email);
+        editTextPhone= findViewById(R.id.et_phone);
+        editTextPsw= findViewById(R.id.etPsw);
+        editTextConPsw= findViewById(R.id.et_confPsw);
+        buttonSignUp= findViewById(R.id.buSignUpNow);
+        progressBar =  findViewById(R.id.progressbar);
 
         mAuth = FirebaseAuth.getInstance();
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextPhone.getText().toString(),editTextFullName.getText().toString(),editTextConPsw.getText().toString());
-            }
+                adduser(editTextEmail.getText().toString()
+                        ,editTextPsw.getText().toString()
+                        ,editTextPhone.getText().toString()
+                        ,editTextFullName.getText().toString()
+                        ,editTextConPsw.getText().toString());
 
+            }
             });
         mAuthListner=new FirebaseAuth.AuthStateListener() {
             @Override
@@ -149,6 +153,9 @@ public class SignUp extends AppCompatActivity {
                     String id = Users.push().getKey();
                     User user = new User(id,fullname,email,phone,null);
                     Users.child(id).setValue(user);
+                    Intent intent = new Intent(getApplicationContext(),VerifyEmail.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

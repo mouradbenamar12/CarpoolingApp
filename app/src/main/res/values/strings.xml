@@ -51,4 +51,9 @@
     <string name="android_studio_android_com">android.studio@android.com</string>
     <string name="imag_nav">img nav</string>
     <string name="loading">loading ...</string>
+    <string name="title_activity_verify_email">VerifyEmail</string>
+    <string name="refresh">Refresh</string>
+    <string name="send_email_verify">send email verify</string>
+    <string name="emaaaaail">emaaaaail</string>
+    <string name="status_of_verify_string_email">status of verify @string/email</string>
 </resources>
