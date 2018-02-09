@@ -14,10 +14,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class VerifyEmail extends AppCompatActivity {
 
     Button btnSend,btnRefresh;
     TextView txtEmail,txtStatus,et_email,login_email;
+    Timer t;
+    boolean start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +34,9 @@ public class VerifyEmail extends AppCompatActivity {
         txtStatus = findViewById(R.id.txt_status);
         et_email = findViewById(R.id.et_email);
         login_email = findViewById(R.id.login_email);
-
+        t = new Timer();
         setInfo();
+        start=true;
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,37 +58,53 @@ public class VerifyEmail extends AppCompatActivity {
                                 }
                             }
                         });
+                if (start){
+                    start=false;
+                    t.scheduleAtFixedRate(new TimerTask() {
 
-                btnRefresh.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        FirebaseAuth.getInstance().getCurrentUser()
-                                .reload()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                        if (user.isEmailVerified()==true){
-                                            Intent intent = new Intent(getApplicationContext(),Login.class);
-                                            startActivity(intent);
-                                            finish();
-                                            Toast.makeText(getApplicationContext(),"your email "+" << "+user.getEmail()+" >> "+" is verified",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                });
-                    }
-                });
+                                              @Override
+                                              public void run() {
+                                                  refresh();
+                                              }
+
+                                          },
+                            0,
+                            3000);
+                }
+                start=false;
 
             }
         });
+
     }
 
     private void setInfo() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        txtEmail.setText(new StringBuilder("Email : ").append(user.getEmail()));
-        txtStatus.setText(new StringBuilder("Verify :").append(String.valueOf(user.isEmailVerified())));
+        if (user != null) {
+            txtEmail.setText(new StringBuilder("Email : ").append(user.getEmail()));
+        }
+        if (user != null) {
+            txtStatus.setText(new StringBuilder("Verify :").append(String.valueOf(user.isEmailVerified())));
+        }
 
+    }
+    private void refresh(){
+        FirebaseAuth.getInstance().getCurrentUser()
+                .reload()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user.isEmailVerified()){
+                            t.cancel();
+                            Toast.makeText(getApplicationContext(),"your email "+" << "+user.getEmail()+" >> "+" is verified",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(),Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                });
     }
 
 }

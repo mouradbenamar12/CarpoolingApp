@@ -84,9 +84,15 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    if(mAuth.getCurrentUser().isEmailVerified()){
                     Intent intent =new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();}
+                    else {
+                        Intent intent = new Intent(Login.this,VerifyEmail.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

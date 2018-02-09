@@ -20,7 +20,7 @@
         android:layout_marginRight="35dp"
         android:layout_toLeftOf="@+id/btn_refresh"
         android:layout_toStartOf="@+id/btn_refresh"
-        android:text="@string/send_email_verify" />
+        android:text="Send Verification" />
 
     <Button
         android:id="@+id/btn_refresh"
@@ -53,4 +53,23 @@
         android:layout_alignTop="@+id/txt_email"
         android:layout_marginTop="55dp"
         android:text="@string/status_of_verify_string_email" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp"
+        android:contextClickable="false"
+        android:elegantTextHeight="false"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Please verify your email"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>

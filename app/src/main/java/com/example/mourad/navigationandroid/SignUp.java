@@ -56,9 +56,6 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextPhone.getText().toString(),editTextFullName.getText().toString(),editTextConPsw.getText().toString());
-                Intent intent = new Intent(SignUp.this,VerifyEmail.class);
-                startActivity(intent);
-                finish();
             }
 
             });
@@ -162,6 +159,9 @@ public class SignUp extends AppCompatActivity {
                                     Log.v(TAG, "onComplete Set vaLUE");
                                 }
                             });
+                    Intent intent = new Intent(SignUp.this,VerifyEmail.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
