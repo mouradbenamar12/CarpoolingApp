@@ -29,11 +29,15 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
@@ -81,7 +85,6 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     public void onError (FacebookException e){
                         e.printStackTrace();
                         Log.d(TAG, "Login attempt failed.");
-                        deleteAccessToken();
                     }
                 }
         );
@@ -105,64 +108,11 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         };
     }
 
-    private void deleteAccessToken() {
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(
-                    AccessToken oldAccessToken,
-                    AccessToken currentAccessToken) {
 
-                if (currentAccessToken == null){
-                    //User logged out
-                    PrefUtil prefUtil = new PrefUtil(FirstPage.this);
-                    prefUtil.clearToken();
-                    LoginManager.getInstance().logOut();
-                }
-            }
-        };
-    }
-
-    private Bundle getFacebookData(JSONObject object) {
-        Bundle bundle = new Bundle();
-
-        try {
-            String id = object.getString("id");
-            URL profile_pic;
-            try {
-                profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?type=large");
-                Log.i("profile_pic", profile_pic + "");
-                bundle.putString("profile_pic", profile_pic.toString());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return null;
-            }
-
-            bundle.putString("idFacebook", id);
-            if (object.has("first_name"))
-                bundle.putString("first_name", object.getString("first_name"));
-            if (object.has("last_name"))
-                bundle.putString("last_name", object.getString("last_name"));
-            if (object.has("email"))
-                bundle.putString("email", object.getString("email"));
-            if (object.has("gender"))
-                bundle.putString("gender", object.getString("gender"));
-
-            PrefUtil prefUtil = new PrefUtil(FirstPage.this);
-            prefUtil.saveFacebookUserInfo(object.getString("first_name"),
-                    object.getString("last_name"),object.getString("email"),
-                    object.getString("gender"), profile_pic.toString());
-
-        } catch (Exception e) {
-            Log.d(TAG, "BUNDLE Exception : "+e.toString());
-        }
-
-        return bundle;
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
@@ -219,37 +169,12 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (BuildConfig.DEBUG)
-                            Log.d(TAG, "signInWithCredential:onComplete: " + task.isSuccessful());
-
                         if (task.isSuccessful()) {
-                            String photoUrl = null;
-                            if (account.getPhotoUrl() != null) {
-                                photoUrl = account.getPhotoUrl().toString();
-                            }
-                            User user = new User(
-                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                    account.getDisplayName(),
-                                    account.getEmail(),
-                                    null,
-                                    photoUrl);
+                                startActivity(new Intent(FirstPage.this, SignUpComplete.class));
 
-                            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-                            DatabaseReference Users=database_user.getReference("Users");
-                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                                    .setValue(user, new DatabaseReference.CompletionListener() {
-                                        @Override
-                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                            Log.v(TAG, "onComplete Set vaLUE");
-                                            startActivity(new Intent(FirstPage.this, MainActivity.class));
-                                        }
-                                    });
-                            if (BuildConfig.DEBUG) Log.v(TAG, "Authentification successful");
                         } else {
                             hideProgressDialog();
                             if (BuildConfig.DEBUG) {
-                                Log.w(TAG, "signInWithCredential", task.getException());
-                                Log.v(TAG, "Authentification failed");
                                 Toast.makeText(FirstPage.this, "Authentification failed", Toast.LENGTH_SHORT).show();
                                 signOut();
                             }
@@ -267,32 +192,12 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(getApplicationContext(), "FB_Authentication success",
-                                    Toast.LENGTH_SHORT).show();
-                            FirebaseUser account = mAuth.getCurrentUser();
-                            String photoUrl = null;
-                            if (account.getPhotoUrl() != null) {
-                                photoUrl = account.getPhotoUrl().toString();
-                            }
-                            User user = new User(
-                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                    account.getDisplayName(),
-                                    account.getEmail(),
-                                    null,
-                                    photoUrl);
 
-                            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-                            DatabaseReference Users=database_user.getReference("Users");
-                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                                    .setValue(user, new DatabaseReference.CompletionListener() {
-                                        @Override
-                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                            Log.v(TAG, "onComplete Set vaLUE");
-                                        }
-                                    });
-                            startActivity(new Intent(FirstPage.this, MainActivity.class));
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithCredential:success");
+                                Toast.makeText(getApplicationContext(), "FB_Authentication success",
+                                        Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(FirstPage.this, SignUpComplete.class));
 
                         } else {
                             // If sign in fails, display a message to the user.

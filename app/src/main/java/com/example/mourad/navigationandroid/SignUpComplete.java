@@ -4,13 +4,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,10 +23,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,12 +39,15 @@ import java.util.List;
 import java.util.Locale;
 
 public class SignUpComplete extends AppCompatActivity {
-    private EditText edittext;
+    private EditText birthday,fullName,Phone;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private Uri mCropImageUri;
     private ImageButton imageButton;
-
+    private Spinner spinner;
+    private Button complet;
+    private User user;
+    private Uri image;
 
 
     @Override
@@ -53,20 +57,29 @@ public class SignUpComplete extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_complete);
+        fullName=findViewById(R.id.et_fullName);
+        Phone=findViewById(R.id.et_phone);
+        birthday=findViewById(R.id.birthdayField);
+        imageButton=findViewById(R.id.profilephoto);
+        complet=findViewById(R.id.button2);
 
-            //Spinner
-        // Get reference of widgets from XML layout
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
 
+        if(_user.getPhotoUrl()!=null){
+
+        Glide.with(SignUpComplete.this).load(_user.getPhotoUrl()).into(imageButton);
+        fullName.setText(_user.getDisplayName());
+        Phone.setText(_user.getPhoneNumber());}
+
+        //Spinner
+        spinner = (Spinner) findViewById(R.id.spinner);
         // Initializing a String Array
         String[] gender = new String[]{
                 "Gender",
                 "Male",
                 "Female",
         };
-
         final List<String> genderList = new ArrayList<>(Arrays.asList(gender));
-
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this,R.layout.spinner_item,genderList){
@@ -102,7 +115,6 @@ public class SignUpComplete extends AppCompatActivity {
         };
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -111,8 +123,6 @@ public class SignUpComplete extends AppCompatActivity {
                 // First item is disable and it is used for hint
                 if(position > 0){
                     // Notify the selected item text
-                    Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();
                 }
             }
 
@@ -124,7 +134,6 @@ public class SignUpComplete extends AppCompatActivity {
 
             // Birthday Calendar
         myCalendar = Calendar.getInstance();
-        edittext= findViewById(R.id.birthdayField);
 
         date  = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -139,7 +148,7 @@ public class SignUpComplete extends AppCompatActivity {
 
         };
 
-        edittext.setOnClickListener(new View.OnClickListener() {
+        birthday.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -149,13 +158,22 @@ public class SignUpComplete extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+
+        complet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirme_Signup(fullName.getText().toString(),Phone.getText().toString(),birthday.getText().toString(),spinner.getSelectedItem().toString());
+            }
+        });
+
     }
 
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        edittext.setText(sdf.format(myCalendar.getTime()));
+        birthday.setText(sdf.format(myCalendar.getTime()));
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -181,7 +199,9 @@ public class SignUpComplete extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
-                imageButton.setImageURI(resultUri);
+                image=resultUri;
+                Glide.with(SignUpComplete.this).load(resultUri).into(imageButton);
+
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
@@ -200,8 +220,8 @@ public class SignUpComplete extends AppCompatActivity {
 
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
-                .setMinCropResultSize(800,800)
-                .setMaxCropResultSize(1000,1000)
+                .setMinCropResultSize(500,500)
+                .setMaxCropResultSize(800,800)
                 .start(this);
     }
     public void editphoto(View view){
@@ -209,4 +229,40 @@ public class SignUpComplete extends AppCompatActivity {
     }
 
 
+
+    public void confirme_Signup( String fullname_string,String phone_string,String Birthday_string,String gender  ){
+
+        if (fullname_string.isEmpty()) {
+            fullName.setError("Email is required");
+            fullName.requestFocus();
+            return;
+        }
+        if (phone_string.isEmpty()) {
+            Phone.setError("Email is required");
+            Phone.requestFocus();
+            return;
+        }
+        if (Birthday_string.isEmpty()) {
+            birthday.setError("Email is required");
+            birthday.requestFocus();
+            return;
+        }
+        if (gender.isEmpty()||spinner.getSelectedItem().toString().equals("Gender")) {
+            spinner.requestFocus();
+            return;
+        }
+        FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
+                           FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+                    DatabaseReference Users=database_user.getReference("Users");
+                    String id = _user.getUid();
+                    user = new User(id,fullname_string, _user.getEmail(),phone_string,Birthday_string,gender,image);
+                    Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                            .setValue(user, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+
+                                }
+                            });
+    }
 }

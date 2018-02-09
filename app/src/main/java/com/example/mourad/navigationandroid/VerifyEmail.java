@@ -98,7 +98,7 @@ public class VerifyEmail extends AppCompatActivity {
                         if (user != null && user.isEmailVerified()) {
                             t.cancel();
                             Toast.makeText(getApplicationContext(), "your email is verified", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            Intent intent = new Intent(getApplicationContext(), SignUpComplete.class);
                             startActivity(intent);
                             finish();
                         }
