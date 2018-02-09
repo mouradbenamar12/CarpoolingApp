@@ -81,7 +81,6 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     public void onError (FacebookException e){
                         e.printStackTrace();
                         Log.d(TAG, "Login attempt failed.");
-                        deleteAccessToken();
                     }
                 }
         );
@@ -105,64 +104,10 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         };
     }
 
-    private void deleteAccessToken() {
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(
-                    AccessToken oldAccessToken,
-                    AccessToken currentAccessToken) {
-
-                if (currentAccessToken == null){
-                    //User logged out
-                    PrefUtil prefUtil = new PrefUtil(FirstPage.this);
-                    prefUtil.clearToken();
-                    LoginManager.getInstance().logOut();
-                }
-            }
-        };
-    }
-
-    private Bundle getFacebookData(JSONObject object) {
-        Bundle bundle = new Bundle();
-
-        try {
-            String id = object.getString("id");
-            URL profile_pic;
-            try {
-                profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?type=large");
-                Log.i("profile_pic", profile_pic + "");
-                bundle.putString("profile_pic", profile_pic.toString());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                return null;
-            }
-
-            bundle.putString("idFacebook", id);
-            if (object.has("first_name"))
-                bundle.putString("first_name", object.getString("first_name"));
-            if (object.has("last_name"))
-                bundle.putString("last_name", object.getString("last_name"));
-            if (object.has("email"))
-                bundle.putString("email", object.getString("email"));
-            if (object.has("gender"))
-                bundle.putString("gender", object.getString("gender"));
-
-            PrefUtil prefUtil = new PrefUtil(FirstPage.this);
-            prefUtil.saveFacebookUserInfo(object.getString("first_name"),
-                    object.getString("last_name"),object.getString("email"),
-                    object.getString("gender"), profile_pic.toString());
-
-        } catch (Exception e) {
-            Log.d(TAG, "BUNDLE Exception : "+e.toString());
-        }
-
-        return bundle;
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
