@@ -58,4 +58,8 @@
     <string name="refresh">refresh</string>
     <string name="status_of_verify_string_email">status_of_verify_string_email</string>
     <string name="emaaaaail">emaaaaail</string>
+    <string name="send_verification">Send Verification</string>
+    <string name="please_verify_your_email">Please verify your email</string>
+    <string name="verify_your_email_address">Verify your email address</string>
+    <string name="a_verification_link_was_sent_to_abdellebay_gmail_com_when_you_first_created_this_account_please_click_on_that_link_to_verify_your_email_address_if_you_cannot_find_it_you_may_request_a_new_one_below">A verification link was sent to abdellebay@gmail.com when you first created this account. Please click on that link to verify your email address. if you cannot find it you may request a new one below</string>
 </resources>

@@ -2,6 +2,7 @@
 <RelativeLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,66 +11,69 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_refresh"
-        android:layout_alignBottom="@+id/btn_refresh"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_toLeftOf="@+id/btn_refresh"
-        android:layout_toStartOf="@+id/btn_refresh"
-        android:text="Send Verification" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/Contraint"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="true"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
 
-    <Button
-        android:id="@+id/btn_refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="146dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:text="@string/refresh" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/verify_your_email_address"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_send"
-        android:layout_alignLeft="@+id/btn_send"
-        android:layout_alignStart="@+id/btn_send"
-        android:layout_marginBottom="160dp"
-        android:text="@string/emaaaaail" />
+        <TextView
+            android:id="@+id/txt_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_send"
+            android:layout_alignLeft="@+id/btn_send"
+            android:layout_alignStart="@+id/btn_send"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btn_send"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txt_email"
-        android:layout_alignStart="@+id/txt_email"
-        android:layout_alignTop="@+id/txt_email"
-        android:layout_marginTop="55dp"
-        android:text="@string/status_of_verify_string_email" />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="49dp"
+            android:layout_marginStart="49dp"
+            android:background="@drawable/animation_btn2"
+            android:gravity="center"
+            android:text="@string/send_verification"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/txt_email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp"
-        android:contextClickable="false"
-        android:elegantTextHeight="false"
-        android:ems="10"
-        android:inputType="text|textPersonName"
-        android:selectAllOnFocus="false"
-        android:singleLine="false"
-        android:text="Please verify your email"
-        android:textAllCaps="false"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 </RelativeLayout>
