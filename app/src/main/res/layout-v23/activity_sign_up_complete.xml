@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.mourad.navigationandroid.SignUpComplete">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollIndicators="right"
+            android:scrollbarFadeDuration="3"
+            android:scrollbars="vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/profilephoto"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/imageuser"
+                android:cropToPadding="false"
+                android:onClick="editphoto"
+                app:srcCompat="@drawable/placeholder" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/manssilhouette" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+
+            <EditText
+                android:id="@+id/et_fullName"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="@string/full_name"
+                android:inputType="textPersonName" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/handset" android:layout_marginStart="10dp" android:contentDescription="@string/todo" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:hint="@string/phone"
+                android:inputType="phone" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/birthday" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+
+            <EditText
+                android:id="@+id/birthdayField"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="@string/birthday" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/gender" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="293dp"
+                android:layout_height="70dp"
+                android:background="@drawable/user_input"
+                android:gravity="center"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/animation_btn2"
+                android:text="@string/complet_signup"
+                android:textSize="18sp" />
+
+        </GridLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

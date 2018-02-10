@@ -42,9 +42,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        editTextFullName=(EditText)findViewById(R.id.et_FullName);
         editTextEmail=(EditText)findViewById(R.id.et_email);
-        editTextPhone=(EditText)findViewById(R.id.et_phone);
         editTextPsw=(EditText)findViewById(R.id.etPsw);
         editTextConPsw=(EditText)findViewById(R.id.et_confPsw);
         buttonSignUp=(Button)findViewById(R.id.buSignUpNow);
@@ -55,7 +53,7 @@ public class SignUp extends AppCompatActivity {
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextPhone.getText().toString(),editTextFullName.getText().toString(),editTextConPsw.getText().toString());
+                adduser(editTextEmail.getText().toString(),editTextPsw.getText().toString(),editTextConPsw.getText().toString());
             }
 
             });
@@ -77,17 +75,11 @@ public class SignUp extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
     }
-    public void adduser(final String email, final String password, final String phone, final String fullname, final String confPassword){
+    public void adduser(final String email, final String password, final String confPassword){
 
-        if (fullname.isEmpty()) {
-            editTextFullName.setError("Full Name is required");
-            editTextFullName.requestFocus();
-            return;
-        }
+
 
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
@@ -100,17 +92,7 @@ public class SignUp extends AppCompatActivity {
             editTextEmail.requestFocus();
             return;
         }
-        if (phone.isEmpty()) {
-            editTextPhone.setError("Phone is required");
-            editTextPhone.requestFocus();
-            return;
-        }
 
-        if (!Patterns.PHONE.matcher(phone).matches()) {
-            editTextPhone.setError("Please enter a valid phone");
-            editTextPhone.requestFocus();
-            return;
-        }
         if (password.isEmpty()) {
             editTextPsw.setError("Password is required");
             editTextPsw.requestFocus();
@@ -133,7 +115,6 @@ public class SignUp extends AppCompatActivity {
             return;
         }
 
-
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
             @Override
@@ -148,7 +129,7 @@ public class SignUp extends AppCompatActivity {
                     }
                 } else{
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
-                    FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+                   /* FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
                     String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     User user = new User(id,fullname,email,phone,null);
@@ -158,7 +139,7 @@ public class SignUp extends AppCompatActivity {
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                     Log.v(TAG, "onComplete Set vaLUE");
                                 }
-                            });
+                            });*/
                     Intent intent = new Intent(SignUp.this,VerifyEmail.class);
                     startActivity(intent);
                     finish();
