@@ -289,55 +289,56 @@ public class SignUpComplete extends AppCompatActivity {
                         }
                     });
         }
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        StorageReference riversRef = mStorageRef.child("Image/"+id);
-        riversRef.putFile(image)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        progressBar.setVisibility(View.GONE);
-                        imageStorage = taskSnapshot.getDownloadUrl().toString();
-                        Toast.makeText(getApplicationContext(), "Image is: "+imageStorage,
-                                Toast.LENGTH_SHORT).show();
+        if(image!=null) {
+            mStorageRef = FirebaseStorage.getInstance().getReference();
+            StorageReference riversRef = mStorageRef.child("Image/" + id);
+            riversRef.putFile(image)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // Get a URL to the uploaded content
+                            progressBar.setVisibility(View.GONE);
+                            imageStorage = taskSnapshot.getDownloadUrl().toString();
+                            Toast.makeText(getApplicationContext(), "Image is: " + imageStorage,
+                                    Toast.LENGTH_SHORT).show();
 
-                        FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
-                        FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-                        DatabaseReference Users=database_user.getReference("Users");
-                        String name=fullName.getText().toString();
-                        String phone=Phone.getText().toString();
-                        String Birthday=birthday.getText().toString();
-                        String gender=spinner.getSelectedItem().toString();
-                        String email= _user.getEmail();
-                        String id =_user.getUid();
-                        user = new User(id,name,email,phone,Birthday,gender,imageStorage);
-                        Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                                .setValue(user, new DatabaseReference.CompletionListener() {
-                                    @Override
-                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                        startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+                            FirebaseUser _user = FirebaseAuth.getInstance().getCurrentUser();
+                            FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+                            DatabaseReference Users = database_user.getReference("Users");
+                            String name = fullName.getText().toString();
+                            String phone = Phone.getText().toString();
+                            String Birthday = birthday.getText().toString();
+                            String gender = spinner.getSelectedItem().toString();
+                            String email = _user.getEmail();
+                            String id = _user.getUid();
+                            user = new User(id, name, email, phone, Birthday, gender, imageStorage);
+                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                    .setValue(user, new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                            startActivity(new Intent(SignUpComplete.this, MainActivity.class));
 
-                                    }
-                                });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        // ...
-                    }
-                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                progressBar.setVisibility(View.VISIBLE);
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                System.out.println("Upload is " + progress + "% done");
-                int currentprogress = (int) progress;
-                progressBar.setProgress(currentprogress);
-            }
-        });
+                                        }
+                                    });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            // ...
+                        }
+                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                    System.out.println("Upload is " + progress + "% done");
+                    int currentprogress = (int) progress;
+                    progressBar.setProgress(currentprogress);
+                }
+            });
 
-
+        }
     }
 }
