@@ -16,6 +16,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +31,7 @@ public class MainActivity extends BaseActivity
     private ImageView mDisplayImageView;
     private TextView mNameTextView;
     private TextView mEmailTextView;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        user=new User();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,28 +61,16 @@ public class MainActivity extends BaseActivity
         mEmailTextView =  navHeaderView.findViewById(R.id.email_nav);
 
 
-        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.getValue() != null) {
-                            User users = dataSnapshot.getValue(User.class);
-                            assert users != null;
-                            if(users.getPhotoUrl()!=null){
+
+                            if(user.getPhotoUrl()!=null){
                             Glide.with(MainActivity.this)
-                                    .load(users.getPhotoUrl())
+                                    .load(user.getPhotoUrl())
                                     .into(mDisplayImageView);}
 
-                            mNameTextView.setText(users.getFullName());
-                            mEmailTextView.setText(users.getEmail());
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                            mNameTextView.setText(user.getFullName());
+                            mEmailTextView.setText(user.getEmail());
 
-                    }
-                });
 
 //test
     }
