@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -59,6 +61,8 @@ public class SignUpComplete extends AppCompatActivity {
     private Uri image;
     private String imageStorage;
     private StorageReference mStorageRef;
+    private ProgressBar progressBar;
+
 
 
     @Override
@@ -73,11 +77,11 @@ public class SignUpComplete extends AppCompatActivity {
         birthday=findViewById(R.id.birthdayField);
         imageButton=findViewById(R.id.profilephoto);
         complet=findViewById(R.id.button2);
+        progressBar = (ProgressBar) findViewById(R.id.progressbarUP);
 
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
-
+        image=null;
         if(_user.getPhotoUrl()!=null){
-
         Glide.with(SignUpComplete.this).load(_user.getPhotoUrl()).into(imageButton);
         fullName.setText(_user.getDisplayName());
         Phone.setText(_user.getPhoneNumber());}
@@ -241,7 +245,7 @@ public class SignUpComplete extends AppCompatActivity {
 
 
 
-    public void confirme_Signup( String fullname_string,String phone_string,String Birthday_string,String gender  ){
+    public void confirme_Signup(String fullname_string, String phone_string, String Birthday_string, String gender){
 
         if (fullname_string.isEmpty()) {
             fullName.setError("Email is required");
@@ -262,9 +266,29 @@ public class SignUpComplete extends AppCompatActivity {
             spinner.requestFocus();
             return;
         }
+
         //Storage
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
         String id = _user.getUid();
+        if(image==null){
+            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+            DatabaseReference Users=database_user.getReference("Users");
+            String Name=fullName.getText().toString();
+            String PHone=Phone.getText().toString();
+            String BIrthday=birthday.getText().toString();
+            String Gender=spinner.getSelectedItem().toString();
+            String Email= _user.getEmail();
+            String Id =_user.getUid();
+            user = new User(Id,Name,Email,PHone,BIrthday,Gender,_user.getPhotoUrl().toString());
+            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                    .setValue(user, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+
+                        }
+                    });
+        }
         mStorageRef = FirebaseStorage.getInstance().getReference();
         StorageReference riversRef = mStorageRef.child("Image/"+id);
         riversRef.putFile(image)
@@ -272,14 +296,29 @@ public class SignUpComplete extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
-                        imageStorage=null;
-                        Toast.makeText(getApplicationContext(), "Image is: "+imageStorage,
-                                Toast.LENGTH_SHORT).show();
-                        do{
+                        progressBar.setVisibility(View.GONE);
                         imageStorage = taskSnapshot.getDownloadUrl().toString();
-                        }while(imageStorage==null);
                         Toast.makeText(getApplicationContext(), "Image is: "+imageStorage,
                                 Toast.LENGTH_SHORT).show();
+
+                        FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
+                        FirebaseDatabase database_user=FirebaseDatabase.getInstance();
+                        DatabaseReference Users=database_user.getReference("Users");
+                        String name=fullName.getText().toString();
+                        String phone=Phone.getText().toString();
+                        String Birthday=birthday.getText().toString();
+                        String gender=spinner.getSelectedItem().toString();
+                        String email= _user.getEmail();
+                        String id =_user.getUid();
+                        user = new User(id,name,email,phone,Birthday,gender,imageStorage);
+                        Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                .setValue(user, new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                        startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+
+                                    }
+                                });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -288,33 +327,17 @@ public class SignUpComplete extends AppCompatActivity {
                         // Handle unsuccessful uploads
                         // ...
                     }
-                });
-        /*riversRef.getFile(image)
-                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        imageStorage = taskSnapshot.getStorage().toString();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle failed download
-                // ...
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                progressBar.setVisibility(View.VISIBLE);
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                System.out.println("Upload is " + progress + "% done");
+                int currentprogress = (int) progress;
+                progressBar.setProgress(currentprogress);
             }
-        });*/
+        });
 
-        //Database
 
-                           FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-                    DatabaseReference Users=database_user.getReference("Users");
-                    user = new User(id,fullname_string, _user.getEmail(),phone_string,Birthday_string,gender,imageStorage);
-                    Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                            .setValue(user, new DatabaseReference.CompletionListener() {
-                                @Override
-                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                    startActivity(new Intent(SignUpComplete.this, MainActivity.class));
-
-                                }
-                            });
     }
 }

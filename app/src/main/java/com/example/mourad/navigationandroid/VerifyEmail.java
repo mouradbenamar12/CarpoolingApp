@@ -27,6 +27,7 @@ public class VerifyEmail extends AppCompatActivity {
     Button btnSend;
     TextView txtEmail,et_email,login_email;
     Timer t;
+    private  int cpt=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,11 +97,17 @@ public class VerifyEmail extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user != null && user.isEmailVerified()) {
+                            if (cpt==0){
                             t.cancel();
                             Toast.makeText(getApplicationContext(), "your email is verified", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplicationContext(), SignUpComplete.class);
                             startActivity(intent);
                             finish();
+                            cpt=cpt+1;
+                            }
+                            else if (cpt>0){
+                                t.cancel();
+                            }
                         }
                     }
                 });
