@@ -1,30 +1,26 @@
 package com.example.mourad.navigationandroid;
 
 
-import android.net.Uri;
-
-import java.net.URI;
-
 public class User {
 
-        String id;
-        String fullName;
-        String email;
-        String phone;
-        Uri photoUrl;
-        String birthday;
-        String gender;
+        static String id;
+        static String fullName;
+        static String email;
+        static String phone;
+        static String photo;
+        static String birthday;
+        static String gender;
 
     public User(){
 
     }
 
-    public User(String id, String fullName, String email, String phone,String birthday,String gender,Uri photoUrl) {
+    public User(String id, String fullName, String email, String phone,String birthday,String gender,String photo) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.photoUrl = photoUrl;
+        this.photo = photo;
         this.birthday=birthday;
         this.gender=gender;
     }
@@ -53,8 +49,8 @@ public class User {
         this.gender = gender;
     }
 
-    public  void setPhotoUrl(Uri photoUrl) {
-        this.photoUrl = photoUrl;
+    public  void setPhotoUrl(String photoUrl) {
+        this.photo = photoUrl;
     }
 
     public  String getId() {
@@ -81,7 +77,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public  Uri getPhotoUrl() {
-        return photoUrl;
+    public  String getPhotoUrl() {
+        return photo;
     }
 }

@@ -7,8 +7,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,13 +26,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +57,8 @@ public class SignUpComplete extends AppCompatActivity {
     private Button complet;
     private User user;
     private Uri image;
+    private String imageStorage;
+    private StorageReference mStorageRef;
 
 
     @Override
@@ -198,9 +209,9 @@ public class SignUpComplete extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
-                image=resultUri;
-                Glide.with(SignUpComplete.this).load(resultUri).into(imageButton);
+                image= result.getUri();
+
+                Glide.with(SignUpComplete.this).load(image).into(imageButton);
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
@@ -251,11 +262,52 @@ public class SignUpComplete extends AppCompatActivity {
             spinner.requestFocus();
             return;
         }
+        //Storage
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
+        String id = _user.getUid();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        StorageReference riversRef = mStorageRef.child("Image/"+id);
+        riversRef.putFile(image)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        imageStorage=null;
+                        Toast.makeText(getApplicationContext(), "Image is: "+imageStorage,
+                                Toast.LENGTH_SHORT).show();
+                        do{
+                        imageStorage = taskSnapshot.getDownloadUrl().toString();
+                        }while(imageStorage==null);
+                        Toast.makeText(getApplicationContext(), "Image is: "+imageStorage,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
+        /*riversRef.getFile(image)
+                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        imageStorage = taskSnapshot.getStorage().toString();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle failed download
+                // ...
+            }
+        });*/
+
+        //Database
+
                            FirebaseDatabase database_user=FirebaseDatabase.getInstance();
                     DatabaseReference Users=database_user.getReference("Users");
-                    String id = _user.getUid();
-                    user = new User(id,fullname_string, _user.getEmail(),phone_string,Birthday_string,gender,image);
+                    user = new User(id,fullname_string, _user.getEmail(),phone_string,Birthday_string,gender,imageStorage);
                     Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                             .setValue(user, new DatabaseReference.CompletionListener() {
                                 @Override
