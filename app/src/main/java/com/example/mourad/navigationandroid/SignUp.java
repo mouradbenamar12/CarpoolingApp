@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
 
     private static final String TAG = FirstPage.class.getSimpleName();
-    private EditText editTextFullName,editTextEmail,editTextPhone,editTextPsw,editTextConPsw;
+    private EditText editTextEmail,editTextPsw,editTextConPsw;
     private Button buttonSignUp;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListner;
@@ -42,11 +42,11 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
 
-        editTextEmail=(EditText)findViewById(R.id.et_email);
-        editTextPsw=(EditText)findViewById(R.id.etPsw);
-        editTextConPsw=(EditText)findViewById(R.id.et_confPsw);
-        buttonSignUp=(Button)findViewById(R.id.buSignUpNow);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        editTextEmail=findViewById(R.id.et_email);
+        editTextPsw= findViewById(R.id.etPsw);
+        editTextConPsw= findViewById(R.id.et_confPsw);
+        buttonSignUp= findViewById(R.id.buSignUpNow);
+        progressBar = findViewById(R.id.progressbar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -129,17 +129,6 @@ public class SignUp extends AppCompatActivity {
                     }
                 } else{
                     Toast.makeText(getApplicationContext(), "Authentication success.",Toast.LENGTH_SHORT).show();
-                   /* FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-                    DatabaseReference Users=database_user.getReference("Users");
-                    String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User user = new User(id,fullname,email,phone,null);
-                    Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                            .setValue(user, new DatabaseReference.CompletionListener() {
-                                @Override
-                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                    Log.v(TAG, "onComplete Set vaLUE");
-                                }
-                            });*/
                     Intent intent = new Intent(SignUp.this,VerifyEmail.class);
                     startActivity(intent);
                     finish();

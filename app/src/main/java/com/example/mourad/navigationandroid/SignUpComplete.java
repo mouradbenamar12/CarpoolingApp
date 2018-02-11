@@ -10,7 +10,6 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,7 +24,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,14 +32,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
-
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -77,7 +72,7 @@ public class SignUpComplete extends AppCompatActivity {
         birthday=findViewById(R.id.birthdayField);
         imageButton=findViewById(R.id.profilephoto);
         complet=findViewById(R.id.button2);
-        progressBar = (ProgressBar) findViewById(R.id.progressbarUP);
+        progressBar = findViewById(R.id.progressbarUP);
 
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
         image=null;
@@ -87,7 +82,7 @@ public class SignUpComplete extends AppCompatActivity {
         Phone.setText(_user.getPhoneNumber());}
 
         //Spinner
-        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
         // Initializing a String Array
         String[] gender = new String[]{
                 "Gender",
@@ -194,19 +189,19 @@ public class SignUpComplete extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         imageButton = findViewById(R.id.profilephoto);
         super.onActivityResult(requestCode, resultCode, data);
-// handle result of pick image chooser
+            // handle result of pick image chooser
         if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri imageUri = CropImage.getPickImageResultUri(this, data);
 
             // For API >= 23 we need to check specifically that we have permissions to read external storage.
             if (CropImage.isReadExternalStoragePermissionsRequired(this, imageUri)) {
-                // request permissions and handle the result in onRequestPermissionsResult()
+            // request permissions and handle the result in onRequestPermissionsResult()
                 mCropImageUri = imageUri;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},   CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
                 }
             } else {
-                // no permissions required or already granted, can start crop image activity
+            // no permissions required or already granted, can start crop image activity
                 startCropImageActivity(imageUri);
             }
         }
