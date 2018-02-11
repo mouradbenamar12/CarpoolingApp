@@ -1,5 +1,6 @@
 package com.example.mourad.navigationandroid;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,11 +20,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+
+import static com.example.mourad.navigationandroid.User.id;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +41,9 @@ public class MainActivity extends BaseActivity
     private ImageView mDisplayImageView;
     private TextView mNameTextView;
     private TextView mEmailTextView;
+    private StorageReference mStorageRef;
+    private Uri image;
+
     User user;
 
     @Override
@@ -62,14 +75,13 @@ public class MainActivity extends BaseActivity
 
 
 
-                            if(user.getPhotoUrl()!=null){
-                            Glide.with(MainActivity.this)
-                                    .load(user.getPhotoUrl())
-                                    .into(mDisplayImageView);}
+        Glide.with(MainActivity.this)
+                .load(user.getPhotoUrl())
+                .into(mDisplayImageView);
 
+        mNameTextView.setText(user.getFullName());
+        mEmailTextView.setText(user.getEmail());
 
-                            mNameTextView.setText(user.getFullName());
-                            mEmailTextView.setText(user.getEmail());
 
 
 //test
