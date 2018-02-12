@@ -10,14 +10,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -29,27 +25,14 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONObject;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Arrays;
 
 public class FirstPage extends BaseActivity implements View.OnClickListener {
     private static final String TAG = FirstPage.class.getSimpleName();
     private static final int RC_SIGN_IN = 9001; //Request code for signing in
 
-    private LoginButton loginButton;
+    protected LoginButton loginButton;
     private CallbackManager callbackManager;
 //push
 
@@ -210,6 +193,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     }
                 });
     }
+
 
     public void btnSignUp(View view){
         Intent myIntent=new Intent(this,SignUp.class);

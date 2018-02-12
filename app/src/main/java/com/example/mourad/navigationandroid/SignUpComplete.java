@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,18 +43,18 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class SignUpComplete extends AppCompatActivity {
+public class SignUpComplete extends BaseActivity {
     private EditText birthday,fullName,Phone;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private Uri mCropImageUri;
     private ImageButton imageButton;
     private Spinner spinner;
-    private Button complet;
+    protected Button complet;
     private User user;
     private Uri image;
     private String imageStorage;
-    private StorageReference mStorageRef;
+    protected StorageReference mStorageRef;
     private ProgressBar progressBar;
 
 
@@ -67,6 +66,7 @@ public class SignUpComplete extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_complete);
+
         fullName=findViewById(R.id.et_fullName);
         Phone=findViewById(R.id.et_phone);
         birthday=findViewById(R.id.birthdayField);
@@ -74,12 +74,15 @@ public class SignUpComplete extends AppCompatActivity {
         complet=findViewById(R.id.button2);
         progressBar = findViewById(R.id.progressbarUP);
 
+        // Profile Google and Fb
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
         image=null;
+        assert _user != null;
         if(_user.getPhotoUrl()!=null){
         Glide.with(SignUpComplete.this).load(_user.getPhotoUrl()).into(imageButton);
         fullName.setText(_user.getDisplayName());
-        Phone.setText(_user.getPhoneNumber());}
+        Phone.setText(_user.getPhoneNumber());
+        }
 
         //Spinner
         spinner = findViewById(R.id.spinner);
@@ -95,22 +98,20 @@ public class SignUpComplete extends AppCompatActivity {
                 this,R.layout.spinner_item,genderList){
             @Override
             public boolean isEnabled(int position){
-                if(position == 0)
-                {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                }
-                else
-                {
-                    return true;
+                switch (position) {
+                    case 0:
+                        // Disable the first item from Spinner
+                        // First item will be use for hint
+                        return false;
+                    default:
+                        return true;
                 }
 
 
     }
             @Override
             public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
+                                        @NonNull ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 if(position == 0){
@@ -118,7 +119,7 @@ public class SignUpComplete extends AppCompatActivity {
                     tv.setTextColor(Color.GRAY);
                 }
                 else {
-                    tv.setTextColor(Color.BLACK);
+                    tv.setTextColor(getResources().getColor(R.color.colorAccent));
                 }
                 return view;
             }
@@ -128,7 +129,7 @@ public class SignUpComplete extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
+              //  String selectedItemText = (String) parent.getItemAtPosition(position);
                 // If user change the default selection
                 // First item is disable and it is used for hint
                 if(position > 0){
@@ -141,7 +142,6 @@ public class SignUpComplete extends AppCompatActivity {
 
             }
         });
-
             // Birthday Calendar
         myCalendar = Calendar.getInstance();
 
@@ -149,7 +149,6 @@ public class SignUpComplete extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -162,7 +161,6 @@ public class SignUpComplete extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 new DatePickerDialog(SignUpComplete.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -173,6 +171,7 @@ public class SignUpComplete extends AppCompatActivity {
         complet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showProgressDialog();
                 confirme_Signup(fullName.getText().toString(),Phone.getText().toString(),birthday.getText().toString(),spinner.getSelectedItem().toString());
             }
         });
@@ -198,7 +197,8 @@ public class SignUpComplete extends AppCompatActivity {
             // request permissions and handle the result in onRequestPermissionsResult()
                 mCropImageUri = imageUri;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},   CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
                 }
             } else {
             // no permissions required or already granted, can start crop image activity
@@ -213,11 +213,11 @@ public class SignUpComplete extends AppCompatActivity {
                 Glide.with(SignUpComplete.this).load(image).into(imageButton);
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
+          //      Exception error = result.getError();
             }
         }
     }
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE) {
             if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // required permissions granted, start crop image activity
@@ -264,6 +264,7 @@ public class SignUpComplete extends AppCompatActivity {
 
         //Storage
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
+        assert _user != null;
         String id = _user.getUid();
         if(image==null){
             FirebaseDatabase database_user=FirebaseDatabase.getInstance();

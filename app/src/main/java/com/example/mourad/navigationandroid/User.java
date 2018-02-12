@@ -3,66 +3,75 @@ package com.example.mourad.navigationandroid;
 
 public class User {
 
-        static String id;
-        static String fullName;
-        static String email;
-        static String phone;
-        static String photo;
-        static String birthday;
-        static String gender;
+    private static String id;
+    private static String fullName;
+    private static String email;
+    private static String phone;
+    private static String photo;
+    private static String birthday;
+    private static String gender;
 
-    public User(){
+    User(){
 
     }
 
-    public User(String id, String fullName, String email, String phone,String birthday,String gender,String photo) {
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
-        this.phone = phone;
-        this.photo = photo;
-        this.birthday=birthday;
-        this.gender=gender;
+    User(String id, String fullName, String email, String phone,
+         String birthday, String gender, String photo) {
+        User.id = id;
+        User.fullName = fullName;
+        User.email = email;
+        User.phone = phone;
+        User.photo = photo;
+        User.birthday =birthday;
+        User.gender =gender;
     }
+
+    // Setters
 
     public static void setId(String id) {
-       id = id;
+        User.id = id;
     }
 
-    public  void setFullName(String fullName) {
-        this.fullName = fullName;
+    public static void setFullName(String fullName) {
+        User.fullName = fullName;
     }
 
-    public  void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String email) {
+        User.email = email;
     }
 
-    public  void setPhone(String phone) {
-        this.phone = phone;
+    public void setBirthday(String birthday) {
+        User.birthday = birthday;
     }
 
-    public String getGender() {
-        return gender;
+    public static void setPhone(String phone) {
+        User.phone = phone;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public static void setGender(String gender) {
+        User.gender = gender;
     }
 
-    public  void setPhotoUrl(String photoUrl) {
-        this.photo = photoUrl;
+    public static void setPhotoUrl(String photoUrl) {
+        photo = photoUrl;
     }
+
+    // Getters
 
     public  String getId() {
         return id;
     }
 
-    public  String getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
     public  String getEmail() {
         return email;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public  String getPhone() {
@@ -73,11 +82,8 @@ public class User {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
-    public  String getPhotoUrl() {
+    public String getPhotoUrl() {
         return photo;
     }
 }

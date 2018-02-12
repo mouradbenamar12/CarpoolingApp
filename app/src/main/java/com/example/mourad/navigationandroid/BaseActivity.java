@@ -1,6 +1,8 @@
 package com.example.mourad.navigationandroid;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
  * The code that's going to be written here can be done in RegisterActivity. I just like doing it this
  * way, I think it's cleaner and easier to manage and has some benefits
  */
+
+@SuppressLint("Registered")
+
 public class BaseActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -27,7 +32,6 @@ public class BaseActivity extends AppCompatActivity implements
     protected FirebaseAuth mAuth;
     protected FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog mProgressDialog;//Not really needed but I like having it
-    private GoogleSignInOptions mGso;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,16 +67,17 @@ public class BaseActivity extends AppCompatActivity implements
         }
     }
 
-    protected void signOut() {
-        mAuth.signOut();
+    protected void signOut()
+    {
 
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient)
-                .setResultCallback(new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-
-                    }
-                });
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                Intent intent =new Intent(getApplicationContext(),FirstPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override

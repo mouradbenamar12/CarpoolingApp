@@ -24,7 +24,7 @@
             android:overScrollMode="ifContentScrolls"
             android:scrollIndicators="right"
             android:scrollbarFadeDuration="3"
-            android:scrollbars="vertical">
+            android:scrollbars="vertical" tools:targetApi="m">
 
             <Space
                 android:layout_width="wrap_content"
@@ -50,7 +50,9 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="13dp"
-                app:srcCompat="@drawable/manssilhouette" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+                app:srcCompat="@drawable/manssilhouette"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/icon_fullname" />
 
             <EditText
                 android:id="@+id/et_fullName"
@@ -66,7 +68,9 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="13dp"
-                app:srcCompat="@drawable/handset" android:layout_marginStart="10dp" android:contentDescription="@string/todo" />
+                app:srcCompat="@drawable/handset"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/todo" />
 
             <EditText
                 android:id="@+id/et_phone"
@@ -82,7 +86,9 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="13dp"
-                app:srcCompat="@drawable/birthday" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+                app:srcCompat="@drawable/birthday"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
 
             <EditText
                 android:id="@+id/birthdayField"
@@ -98,7 +104,9 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="13dp"
-                app:srcCompat="@drawable/gender" android:contentDescription="@string/todo" android:layout_marginStart="10dp" />
+                app:srcCompat="@drawable/gender"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -127,6 +135,7 @@
         </GridLayout>
 
     </ScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

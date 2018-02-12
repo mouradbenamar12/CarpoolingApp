@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Button buttonLogin;
+    protected Button buttonLogin;
     private EditText editTextEmail, editTextPsw;
     private ProgressBar progressBar;
     @Override
@@ -34,10 +34,10 @@ public class Login extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        buttonLogin =(Button)findViewById(R.id.btnSignIn);
-        editTextEmail=(EditText)findViewById(R.id.login_email);
-        editTextPsw=(EditText)findViewById(R.id.etPsw);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        buttonLogin =findViewById(R.id.btnSignIn);
+        editTextEmail=findViewById(R.id.login_email);
+        editTextPsw=findViewById(R.id.etPsw);
+        progressBar = findViewById(R.id.progressbar);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
         }
 
         if (password.length() < 6) {
-            editTextPsw.setError("Minimum lenght of password should be 6");
+            editTextPsw.setError("Minimum length of password should be 6");
             editTextPsw.requestFocus();
             return;
         }

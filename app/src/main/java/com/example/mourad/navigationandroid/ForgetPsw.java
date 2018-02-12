@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgetPsw extends AppCompatActivity implements View.OnClickListener {
 
     private EditText input_email;
-    private Button btnResetPass;
+    protected Button btnResetPass;
     private RelativeLayout activity_forgot;
 
     private FirebaseAuth auth;
