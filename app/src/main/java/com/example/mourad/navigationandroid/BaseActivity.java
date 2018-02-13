@@ -69,7 +69,7 @@ public class BaseActivity extends AppCompatActivity implements
 
     protected void signOut()
     {
-
+        FirebaseAuth.getInstance().signOut();
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {

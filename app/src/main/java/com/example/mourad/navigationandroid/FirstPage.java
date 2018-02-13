@@ -41,7 +41,9 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     protected LoginButton loginButton;
     private CallbackManager callbackManager;
     protected DatabaseReference rootRef;
-    private User user;
+    protected User user;
+    protected String UserId;
+
 
 
 
@@ -101,9 +103,6 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
             }
         };
     }
-
-    String UserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
-
 
     @Override
     protected void onStart() {
@@ -204,6 +203,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     }
 
     public void alreadyRegisted(){
+        UserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         rootRef.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
