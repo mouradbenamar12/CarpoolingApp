@@ -15,6 +15,14 @@ public class User {
 
     }
 
+    User(String fullName,String email,String photo){
+        User.fullName=fullName;
+        User.photo = photo;
+        User.email = email;
+
+
+    }
+
     User(String id, String fullName, String email, String phone,
          String birthday, String gender, String photo) {
         User.id = id;

@@ -26,6 +26,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Arrays;
 
 public class FirstPage extends BaseActivity implements View.OnClickListener {
@@ -34,7 +40,12 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
 
     protected LoginButton loginButton;
     private CallbackManager callbackManager;
-//push
+    protected DatabaseReference rootRef;
+    private User user;
+
+
+
+    //push
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +102,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         };
     }
 
+    String UserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
     @Override
@@ -153,8 +165,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                                startActivity(new Intent(FirstPage.this, SignUpComplete.class));
-
+                                alreadyRegisted();
                         } else {
                             hideProgressDialog();
                             if (BuildConfig.DEBUG) {
@@ -166,6 +177,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                 });
     }
 
+
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
         mAuth = FirebaseAuth.getInstance();
@@ -176,12 +188,9 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
+                                alreadyRegisted();
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithCredential:success");
-                                Toast.makeText(getApplicationContext(), "FB_Authentication success",
-                                        Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(FirstPage.this, SignUpComplete.class));
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -194,7 +203,32 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                 });
     }
 
+    public void alreadyRegisted(){
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (snapshot.hasChild(UserId)) {
+                    // user already exists in db
 
+                    mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String fullname=mFirebaseUser.getDisplayName();
+                    String email=mFirebaseUser.getEmail();
+                    String tof=mFirebaseUser.getPhotoUrl().toString();
+                    user = new User(fullname,email,tof);
+                    startActivity(new Intent(FirstPage.this, MainActivity.class));
+                    // Toast.makeText(getApplicationContext(),"user already exists in db",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    startActivity(new Intent(FirstPage.this, SignUpComplete.class));
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     public void btnSignUp(View view){
         Intent myIntent=new Intent(this,SignUp.class);
         startActivity(myIntent);

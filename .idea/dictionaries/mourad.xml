@@ -2,10 +2,12 @@
   <dictionary name="mourad">
     <words>
       <w>adduser</w>
+      <w>authentification</w>
       <w>complet</w>
       <w>confirme</w>
       <w>currentprogress</w>
       <w>editphoto</w>
+      <w>firebase</w>
       <w>fragmenet</w>
       <w>fullname</w>
       <w>irthday</w>
