@@ -102,7 +102,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         };
     }
 
-    String UserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String UserId;
 
 
     @Override
@@ -204,6 +204,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     }
 
     public void alreadyRegisted(){
+        UserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
         rootRef = FirebaseDatabase.getInstance().getReference();
         rootRef.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -217,6 +218,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     String tof=mFirebaseUser.getPhotoUrl().toString();
                     user = new User(fullname,email,tof);
                     startActivity(new Intent(FirstPage.this, MainActivity.class));
+                    finish();
                     // Toast.makeText(getApplicationContext(),"user already exists in db",Toast.LENGTH_LONG).show();
                 }
                 else {

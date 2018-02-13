@@ -282,6 +282,8 @@ public class SignUpComplete extends BaseActivity {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+                            finish();
+
 
                         }
                     });
@@ -314,6 +316,8 @@ public class SignUpComplete extends BaseActivity {
                                         @Override
                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                             startActivity(new Intent(SignUpComplete.this, MainActivity.class));
+                                            finish();
+
 
                                         }
                                     });

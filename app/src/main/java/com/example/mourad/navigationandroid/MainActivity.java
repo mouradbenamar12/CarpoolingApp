@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
