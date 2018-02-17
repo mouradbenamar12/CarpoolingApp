@@ -93,9 +93,11 @@ public class Login extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     if(mAuth.getCurrentUser().isEmailVerified()){
+
                     Intent intent =new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    finish();}
+                    finish();
+                    }
                     else {
                         Intent intent = new Intent(Login.this,VerifyEmail.class);
                         startActivity(intent);
