@@ -41,7 +41,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     protected LoginButton loginButton;
     private CallbackManager callbackManager;
     protected DatabaseReference rootRef;
-    private User user;
+    protected User user;
 
 
 

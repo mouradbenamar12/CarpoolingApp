@@ -11,12 +11,9 @@ public class User {
     private static String birthday;
     private static String gender;
 
-    User(){
-
-    }
 
     User(String fullName,String email,String photo){
-        User.fullName=fullName;
+        User.fullName =fullName;
         User.photo = photo;
         User.email = email;
 
@@ -34,17 +31,21 @@ public class User {
         User.gender =gender;
     }
 
+    User() {
+
+    }
+
     // Setters
 
-    public static void setId(String id) {
+    public void setId(String id) {
         User.id = id;
     }
 
-    public static void setFullName(String fullName) {
+    public void setFullName(String fullName) {
         User.fullName = fullName;
     }
 
-    public static void setEmail(String email) {
+    public void setEmail(String email) {
         User.email = email;
     }
 
@@ -52,15 +53,15 @@ public class User {
         User.birthday = birthday;
     }
 
-    public static void setPhone(String phone) {
+    public void setPhone(String phone) {
         User.phone = phone;
     }
 
-    public static void setGender(String gender) {
+    public void setGender(String gender) {
         User.gender = gender;
     }
 
-    public static void setPhotoUrl(String photoUrl) {
+    public void setPhotoUrl(String photoUrl) {
         photo = photoUrl;
     }
 
@@ -89,7 +90,6 @@ public class User {
     public String getBirthday() {
         return birthday;
     }
-
 
     public String getPhotoUrl() {
         return photo;
