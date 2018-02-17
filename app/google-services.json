@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "470325762215-d52ik4dqo2hkooo7ktkp2bv7iige0p3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mourad.navigationandroid",
+            "certificate_hash": "4d9d33be50ba13f790dc5c0833d4ee3bd7fa8fc0"
+          }
+        },
+        {
           "client_id": "470325762215-c7bd92cgt92p49vkm93l66rkemdh8cr6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

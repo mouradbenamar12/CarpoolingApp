@@ -42,8 +42,6 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     private CallbackManager callbackManager;
     protected DatabaseReference rootRef;
     protected User user;
-    protected String UserId;
-
 
 
 
@@ -103,6 +101,9 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
             }
         };
     }
+
+    String UserId;
+
 
     @Override
     protected void onStart() {
@@ -217,6 +218,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                     String tof=mFirebaseUser.getPhotoUrl().toString();
                     user = new User(fullname,email,tof);
                     startActivity(new Intent(FirstPage.this, MainActivity.class));
+                    finish();
                     // Toast.makeText(getApplicationContext(),"user already exists in db",Toast.LENGTH_LONG).show();
                 }
                 else {

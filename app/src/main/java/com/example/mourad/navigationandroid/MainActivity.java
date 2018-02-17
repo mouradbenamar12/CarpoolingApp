@@ -16,7 +16,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -24,7 +33,10 @@ public class MainActivity extends BaseActivity
     protected ImageView mDisplayImageView;
     protected TextView mNameTextView;
     protected TextView mEmailTextView;
-    protected User user;
+    private User user;
+    private FirebaseDatabase mFirebasedata;
+    private DatabaseReference myref;
+    private String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +47,23 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        user=new User();
+        mFirebasedata = FirebaseDatabase.getInstance();
+        myref = mFirebasedata.getReference();
+        FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+        UID = mFirebaseUser.getUid();
+        myref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Showdata(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,16 +83,8 @@ public class MainActivity extends BaseActivity
 
 
 
-        Glide.with(MainActivity.this)
-                .load(user.getPhotoUrl())
-                .into(mDisplayImageView);
-
-        mNameTextView.setText(user.getFullName());
-        mEmailTextView.setText(user.getEmail());
 
 
-
-//test
     }
 
 
@@ -143,6 +163,24 @@ public class MainActivity extends BaseActivity
 
         SelectedScreen(id);
         return true;
+    }
+    private void Showdata(DataSnapshot dataSnapshot) {
+        user=new User();
+        for (DataSnapshot ds : dataSnapshot.getChildren()){
+            user.setBirthday(ds.child(UID).getValue(User.class).getBirthday());
+            user.setEmail(ds.child(UID).getValue(User.class).getEmail());
+            user.setFullName(ds.child(UID).getValue(User.class).getFullName());
+            user.setGender(ds.child(UID).getValue(User.class).getGender());
+            user.setId(ds.child(UID).getValue(User.class).getId());
+            user.setPhone(ds.child(UID).getValue(User.class).getPhone());
+            user.setPhotoUrl(ds.child(UID).getValue(User.class).getPhotoUrl());
+        }
+        Glide.with(MainActivity.this)
+                .load(user.getPhotoUrl())
+                .into(mDisplayImageView);
+
+        mNameTextView.setText(user.getFullName());
+        mEmailTextView.setText(user.getEmail());
     }
 
 
