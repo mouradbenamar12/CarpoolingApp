@@ -33,9 +33,9 @@ public class MainActivity extends BaseActivity
     protected ImageView mDisplayImageView;
     protected TextView mNameTextView;
     protected TextView mEmailTextView;
-    private User user;
-    private FirebaseDatabase mFirebasedata;
-    private DatabaseReference myref;
+    public User user;
+    public FirebaseDatabase mFirebasedata;
+    public DatabaseReference myref;
     private String UID;
 
     @Override
@@ -167,6 +167,7 @@ public class MainActivity extends BaseActivity
     private void Showdata(DataSnapshot dataSnapshot) {
         user=new User();
         for (DataSnapshot ds : dataSnapshot.getChildren()){
+            try {
             user.setBirthday(ds.child(UID).getValue(User.class).getBirthday());
             user.setEmail(ds.child(UID).getValue(User.class).getEmail());
             user.setFullName(ds.child(UID).getValue(User.class).getFullName());
@@ -174,6 +175,9 @@ public class MainActivity extends BaseActivity
             user.setId(ds.child(UID).getValue(User.class).getId());
             user.setPhone(ds.child(UID).getValue(User.class).getPhone());
             user.setPhotoUrl(ds.child(UID).getValue(User.class).getPhotoUrl());
+            }catch (Exception e){
+                e.getMessage();
+            }
         }
         Glide.with(MainActivity.this)
                 .load(user.getPhotoUrl())
