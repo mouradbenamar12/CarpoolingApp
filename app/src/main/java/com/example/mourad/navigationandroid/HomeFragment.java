@@ -4,11 +4,15 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +22,7 @@ public class HomeFragment extends Fragment {
 
     List<Rider_Ways> ridersList;
     RecyclerView recyclerView;
+    Button Propose;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +38,19 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Propose = getView().findViewById(R.id.propose);
+
+        Propose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Fragment fragment = new ProposeFragment();
+                if (fragment!=null){
+                    FragmentTransaction ft;
+                    ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.content_main, fragment).commit();
+                }
+            }
+        });
 
         ridersList = new ArrayList<>();
 
