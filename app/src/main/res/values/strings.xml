@@ -68,4 +68,11 @@
     <string name="search">Search</string>
     <string name="destination">Destination</string>
     <string name="propose_a_way">Propose a way</string>
+    <string name="date_ways">Date :</string>
+    <string name="time_ways">Time :</string>
+    <string name="full_name_ways">Full Name :</string>
+    <string name="source_ways">Source :</string>
+    <string name="destination_ways">Destination :</string>
+    <string name="image__ways">TODO</string>
+    <string name="rating_ways">Rating :</string>
 </resources>
