@@ -16,10 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -175,13 +172,15 @@ public class MainActivity extends BaseActivity
             user.setId(ds.child(UID).getValue(User.class).getId());
             user.setPhone(ds.child(UID).getValue(User.class).getPhone());
             user.setPhotoUrl(ds.child(UID).getValue(User.class).getPhotoUrl());
+
+                Glide.with(this)
+                        .load(user.getPhotoUrl())
+                        .into(mDisplayImageView);
+
             }catch (Exception e){
                 e.getMessage();
             }
         }
-        Glide.with(MainActivity.this)
-                .load(user.getPhotoUrl())
-                .into(mDisplayImageView);
 
         mNameTextView.setText(user.getFullName());
         mEmailTextView.setText(user.getEmail());

@@ -45,6 +45,7 @@ public class ProposeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                User user = new User();
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                 DatabaseReference Ways = database_user.getReference("Ways");
                 String nom=name.getText().toString();
@@ -54,8 +55,9 @@ public class ProposeFragment extends Fragment {
                 String time = ProposeFragment.this.time.getText().toString();
                 String numero = number.getText().toString();
                 String carID = carid.getText().toString();
+                String Image_ways = user.getPhotoUrl();
 
-                Rider_Ways way = new Rider_Ways(null, nom, source, destination,date,time,numero,carID);
+                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID);
                 Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                         .setValue(way, new DatabaseReference.CompletionListener() {
                             @Override

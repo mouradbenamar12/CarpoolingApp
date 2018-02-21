@@ -86,4 +86,9 @@
     <string name="carid_propose">CarID</string>
     <string name="textviewoffre">TextView</string>
     <string name="textviewoffedesc">TextView</string>
+    <string name="textview1">TextView</string>
+    <string name="textviewdes">TextView</string>
+    <string name="textviewdate">TextView</string>
+    <string name="textviewcarId">TextView</string>
+    <string name="textviewTime">TextView</string>
 </resources>

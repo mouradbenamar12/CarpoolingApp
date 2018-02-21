@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 
@@ -45,6 +47,9 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.tvPhone.setText(list.get(position).getPhone());
         holder.tvCarId.setText(list.get(position).getCarId());
 
+        Glide.with(context)
+           .load(list.get(position).getImage_ways())
+           .into(holder.imageProfile);
 
     }
 
@@ -78,8 +83,15 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context,OffreInformation.class);
+            intent.putExtra("image",list.get(getLayoutPosition()).getImage_ways());
             intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
+            intent.putExtra("source",list.get(getLayoutPosition()).getSource());
+            intent.putExtra("destination",list.get(getLayoutPosition()).getDestination());
+            intent.putExtra("date",list.get(getLayoutPosition()).getDate());
+            intent.putExtra("time",list.get(getLayoutPosition()).getTime());
             intent.putExtra("phone",list.get(getLayoutPosition()).getPhone());
+            intent.putExtra("carid",list.get(getLayoutPosition()).getCarId());
+
             context.startActivity(intent);
         }
     }
