@@ -1,77 +1,86 @@
 package com.example.mourad.navigationandroid;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.List;
 
-//public class WaysAdapter Rider_Ways= Product
 
 public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHolder> {
 
-
-    //this context we will use to inflate the layout
-    private Context mCtx;
-
-    //we are storing all the products in a list
-    private List<Rider_Ways> ridersList;
+    private List<Rider_Ways> list;
+    private Context context;
 
     //getting the context and product list with constructor
-    WaysAdapter(Context mCtx, List<Rider_Ways> ridersList) {
-        this.mCtx = mCtx;
-        this.ridersList = ridersList;
+    WaysAdapter(List<Rider_Ways> list, Context context) {
+
+        this.list=list;
+        this.context=context;
     }
 
-    @Override
+
+        @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
-        LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.list_ways, null);
-        return new ProductViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.list_ways, parent,false);
+        return new WaysAdapter.ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        //getting the product of the specified position
-        Rider_Ways rider_ways = ridersList.get(position);
-
+       //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
-        holder.tvFullName.setText(rider_ways.getFull_Name());
-        holder.tvSource.setText(rider_ways.getSource());
-        holder.tvDestination.setText(rider_ways.getDestination());
-        holder.tvDate.setText(rider_ways.getDate());
-        holder.tvTime.setText(rider_ways.getTime());
-        holder.tvRating.setText(String.valueOf(rider_ways.getRating()));
-        holder.imageProfile.setImageDrawable(mCtx.getResources().getDrawable(rider_ways.getImage_ways()));
+        holder.tvFullName.setText(list.get(position).getFull_Name());
+        holder.tvSource.setText(list.get(position).getSource());
+        holder.tvDestination.setText(list.get(position).getDestination());
+        holder.tvDate.setText(list.get(position).getDate());
+        holder.tvTime.setText(list.get(position).getTime());
+        holder.tvPhone.setText(list.get(position).getPhone());
+        holder.tvCarId.setText(list.get(position).getCarId());
+
 
     }
 
 
     @Override
     public int getItemCount() {
-        return ridersList.size();
+        return list.size();
     }
 
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageProfile;
-        TextView tvFullName, tvSource, tvDestination, tvDate, tvTime, tvRating;
+        TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
 
         ProductViewHolder(View itemView) {
             super(itemView);
 
+            imageProfile = itemView.findViewById(R.id.imageProfile);
             tvFullName = itemView.findViewById(R.id.tvFullName);
             tvSource = itemView.findViewById(R.id.tvSource);
             tvDestination = itemView.findViewById(R.id.tvDestination);
             tvDate = itemView.findViewById(R.id.tvDate);
             tvTime = itemView.findViewById(R.id.tvTime);
-            tvRating = itemView.findViewById(R.id.tvRating);
-            imageProfile = itemView.findViewById(R.id.imageProfile);
+            tvPhone =itemView.findViewById(R.id.tvPhone);
+            tvCarId = itemView.findViewById(R.id.tvCarId);
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context,OffreInformation.class);
+            intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
+            intent.putExtra("phone",list.get(getLayoutPosition()).getPhone());
+            context.startActivity(intent);
         }
     }
 }

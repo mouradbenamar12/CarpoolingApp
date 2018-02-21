@@ -5,6 +5,18 @@
     android:orientation="vertical"
     tools:context="com.example.mourad.navigationandroid.ProposeFragment">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_Full_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/full_name_propose"
+            android:inputType="textPersonName" />
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Source"
+            android:hint="@string/source_propose"
             android:inputType="textPersonName" />
     </FrameLayout>
 
@@ -28,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Destination"
+            android:hint="@string/destination_propose"
             android:inputType="textPersonName" />
     </FrameLayout>
 
@@ -41,8 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Date"
-            android:inputType="textPersonName" />
+            android:hint="@string/date_propose"
+            android:inputType="textPersonName"
+            tools:ignore="TextFields" />
     </FrameLayout>
 
     <FrameLayout
@@ -54,8 +67,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Time"
+            android:hint="@string/time_propose"
             android:inputType="textPersonName" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/phone_propose"
+            android:inputType="phone" />
     </FrameLayout>
 
     <FrameLayout
@@ -67,8 +93,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="CarID"
-            android:inputType="textPersonName" />
+            android:hint="@string/carid_propose"
+            android:inputType="textPersonName"
+            tools:ignore="TextFields" />
     </FrameLayout>
 
     <FrameLayout
@@ -79,7 +106,8 @@
             android:id="@+id/btn_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Post" />
+            android:text="@string/post_propose" />
     </FrameLayout>
+
 </LinearLayout>
 

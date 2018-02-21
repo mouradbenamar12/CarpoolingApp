@@ -3,6 +3,7 @@
     <words>
       <w>adduser</w>
       <w>authentification</w>
+      <w>carid</w>
       <w>complet</w>
       <w>confirme</w>
       <w>currentprogress</w>
@@ -13,8 +14,10 @@
       <w>irthday</w>
       <w>listner</w>
       <w>navigationandroid</w>
+      <w>numero</w>
       <w>setings</w>
       <w>signup</w>
+      <w>stringbuffer</w>
       <w>utilisateur</w>
     </words>
   </dictionary>

@@ -74,5 +74,16 @@
     <string name="source_ways">Source :</string>
     <string name="destination_ways">Destination :</string>
     <string name="image__ways">TODO</string>
-    <string name="rating_ways">Rating :</string>
+    <string name="rating_ways">CarId :</string>
+    <string name="phone_ways">Phone :</string>
+    <string name="phone_propose">Phone</string>
+    <string name="time_propose">Time</string>
+    <string name="date_propose">Date</string>
+    <string name="full_name_propose">Full Name</string>
+    <string name="source_propose">Source</string>
+    <string name="destination_propose">Destination</string>
+    <string name="post_propose">Post</string>
+    <string name="carid_propose">CarID</string>
+    <string name="textviewoffre">TextView</string>
+    <string name="textviewoffedesc">TextView</string>
 </resources>

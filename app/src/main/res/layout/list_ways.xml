@@ -19,7 +19,9 @@
                 android:id="@+id/imageProfile"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
-                android:padding="4dp" android:contentDescription="@string/image__ways" />
+                android:padding="4dp"
+                android:src="@drawable/placeholder"
+                android:contentDescription="@string/image__ways" />
 
             <TextView
                 android:id="@+id/tvFullName"
@@ -30,21 +32,6 @@
                 android:text="@string/full_name_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
-
-            <TextView
-                android:id="@+id/tvSource"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvFullName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imageProfile"
-                android:text="@string/source_ways"
-                android:textStyle="bold"
-                android:background="@color/colorPrimary"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/imageProfile" />
 
@@ -93,10 +80,23 @@
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/imageProfile" />
             <TextView
-                android:id="@+id/tvRating"
+                android:id="@+id/tvPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvTime"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/imageProfile"
+                android:text="@string/phone_ways"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/imageProfile" />
+            <TextView
+                android:id="@+id/tvCarId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvPhone"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/imageProfile"
@@ -105,6 +105,21 @@
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/imageProfile" />
+
+            <TextView
+                android:id="@+id/tvSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvFullName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imageProfile"
+                android:layout_toRightOf="@id/imageProfile"
+                android:background="@color/colorPrimary"
+                android:text="@string/source_ways"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

@@ -1,7 +1,7 @@
 package com.example.mourad.navigationandroid;
 
 
-public class Rider_Ways {
+public class Listdata {
 
     private String Image_ways;
     private String Full_Name;
@@ -13,22 +13,6 @@ public class Rider_Ways {
     private String CarId;
 
 
-    public Rider_Ways() {
-    }
-
-    public Rider_Ways(String image_ways, String full_Name, String source, String destination,
-                      String date, String time, String phone, String carId)
-    {
-        this.Image_ways = image_ways;
-        this.Full_Name = full_Name;
-        this.Source = source;
-        this.Destination = destination;
-        this.Date = date;
-        this.Time = time;
-        this.Phone=phone;
-        this.CarId=carId;
-
-    }
 
     // Getters
 

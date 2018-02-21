@@ -1,18 +1,22 @@
 package com.example.mourad.navigationandroid;
 
+import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,26 +24,44 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    List<Rider_Ways> ridersList;
     RecyclerView recyclerView;
-    Button Propose;
+    ProgressDialog progress;
+    List<Rider_Ways> list = new ArrayList<>();
+    DatabaseReference myRef ;
+    RecyclerView.Adapter adapter ;
+
+    Button Propose,Search;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
-        
+
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("Home");
 
-        recyclerView = getView().findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        myRef = FirebaseDatabase.getInstance().getReference("Ways");
+
+       progress = new ProgressDialog(getActivity());
+        progress.setTitle("loading ... ");
+        progress.setMessage("Syncing ...");
+        progress.setCancelable(false);
+        progress.show();
+
+
+
         Propose = getView().findViewById(R.id.propose);
+        Search = getView().findViewById(R.id.search);
 
         Propose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,43 +75,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ridersList = new ArrayList<>();
 
-        //adding some items to our list
-        ridersList.add(
-                new Rider_Ways(R.drawable.clara1,
-                        "Full Name : Benamar Mourad",
-                        "Source : Meknes",
-                        "Destination : Rabat",
-                        "Date : 18/02/2018",
-                        "Time : 16:00PM",
-                        4.3));
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
-        ridersList.add(
-                new Rider_Ways(R.drawable.clara2,
-                        "Full Name : Amine Radi",
-                        "Source : Casablanca",
-                        "Destination : Agadir",
-                        "Date : 8/10/2018",
-                        "Time : 08:00PM",
-                        3.3));
-        ridersList.add(
-                new Rider_Ways(R.drawable.clara3,
-                        "Full Name : Ayoub semrani",
-                        "Source : Marrakech",
-                        "Destination : Ait Heddo",
-                        "Date : 22/08/2019",
-                        "Time : 22:10PM",
-                        4.9));
+                            Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
+                            list.add(riderDetails);
+                        }
 
-       // ProductAdapter adapter = new ProductAdapter(this, productList);
+                        adapter  = new WaysAdapter(list,getContext());
+                        recyclerView.setAdapter(adapter);
+                        progress.dismiss();
 
-        WaysAdapter adapter = new WaysAdapter(getContext(), ridersList);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        progress.dismiss();
+                    }
+                });
 
 
-        //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);
 
-        getActivity().setTitle("Home");
     }
+
+
 }
