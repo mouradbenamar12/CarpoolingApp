@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,8 @@ public class HomeFragment extends Fragment {
     RecyclerView.Adapter adapter ;
 
     Button Propose,Search;
+    String src;
+    String des;
 
 
     @Nullable
@@ -75,20 +79,28 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        loaddata();
 
+        Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                src = ((EditText) getView().findViewById(R.id.source)).getText().toString();
+                des = ((EditText) getView().findViewById(R.id.destination)).getText().toString();
+                list.clear();
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-
                             Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
-                            list.add(riderDetails);
+                            String src_rider=riderDetails.getSource();
+                            String des_rider=riderDetails.getDestination();
+                            if (src_rider.equals(src) && des_rider.equals(des))
+                                list.add(riderDetails);
+
                         }
 
                         adapter  = new WaysAdapter(list,getContext());
                         recyclerView.setAdapter(adapter);
-                        progress.dismiss();
-
                     }
 
                     @Override
@@ -96,10 +108,37 @@ public class HomeFragment extends Fragment {
                         progress.dismiss();
                     }
                 });
+            }
+        });
+
+
+
 
 
 
     }
+public void loaddata(){
+    myRef.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
+
+                Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
+                list.add(riderDetails);
+            }
+
+            adapter  = new WaysAdapter(list,getContext());
+            recyclerView.setAdapter(adapter);
+            progress.dismiss();
+
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            progress.dismiss();
+        }
+    });
+}
 
 
 }
