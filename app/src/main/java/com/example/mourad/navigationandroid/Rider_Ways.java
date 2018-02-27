@@ -11,13 +11,15 @@ public class Rider_Ways {
     private String Time;
     private String Phone;
     private String CarId;
+    private String LatLngSrc;
+    private String LatLngDes;
 
 
     public Rider_Ways() {
     }
 
     public Rider_Ways(String image_ways, String full_Name, String source, String destination,
-                      String date, String time, String phone, String carId)
+                      String date, String time, String phone, String carId,String LatLngSrc,String LatLngDes)
     {
         this.Image_ways = image_ways;
         this.Full_Name = full_Name;
@@ -27,10 +29,27 @@ public class Rider_Ways {
         this.Time = time;
         this.Phone=phone;
         this.CarId=carId;
+        this.LatLngSrc=LatLngSrc;
+        this.LatLngDes=LatLngDes;
 
     }
 
-    // Getters
+    public String getLatLngSrc() {
+        return LatLngSrc;
+    }
+
+    public void setLatLngSrc(String latLngSrc) {
+        LatLngSrc = latLngSrc;
+    }
+
+    public String getLatLngDes() {
+        return LatLngDes;
+    }
+
+    public void setLatLngDes(String latLngDes) {
+        LatLngDes = latLngDes;
+    }
+// Getters
 
     public String getImage_ways() {
         return Image_ways;

@@ -31,6 +31,7 @@ public class ProposeFragment extends Fragment {
     private String src,des;
     protected Button post;
     protected Calendar calender;
+    protected String LatlngSrc,LatlngDes;
 
 
     @Nullable
@@ -69,8 +70,10 @@ public class ProposeFragment extends Fragment {
                 String numero = number.getText().toString();
                 String carID = carid.getText().toString();
                 String Image_ways = user.getPhotoUrl();
+                String latlngSrc = LatlngSrc;
+                String latlngDes = LatlngDes;
 
-                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID);
+                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID,latlngSrc,latlngDes);
                 Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                         .setValue(way, new DatabaseReference.CompletionListener() {
                             @Override
@@ -93,6 +96,7 @@ public class ProposeFragment extends Fragment {
              //   Log.i(TAG, "Place: " + place.getName());
                 Toast.makeText(getContext(),"Place: " + place.getName(),Toast.LENGTH_LONG).show();
                 src=place.getName().toString();
+                LatlngSrc = place.getLatLng().toString();
             }
 
             @Override
@@ -115,6 +119,7 @@ public class ProposeFragment extends Fragment {
                 //   Log.i(TAG, "Place: " + place.getName());
                 Toast.makeText(getContext(),"Place: " + place.getName(),Toast.LENGTH_LONG).show();
                 des=place.getName().toString();
+                LatlngDes=place.getLatLng().toString();
             }
 
             @Override

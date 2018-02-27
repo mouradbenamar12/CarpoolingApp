@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.Status;
@@ -57,6 +58,13 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         String time = intent.getStringExtra("time");
         String phone = intent.getStringExtra("phone");
         String carId= intent.getStringExtra("carid");
+
+        String LatlngSrc=intent.getStringExtra("LatLngSrc");
+        String LatlngDes=intent.getStringExtra("LatLngDes");
+
+
+
+
 
         tvName.setText(name);
         tvSource.setText(String.format("Source :%s", source));

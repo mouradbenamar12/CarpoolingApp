@@ -47,6 +47,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.tvPhone.setText(list.get(position).getPhone());
         holder.tvCarId.setText(list.get(position).getCarId());
 
+
         Glide.with(context)
            .load(list.get(position).getImage_ways())
            .into(holder.imageProfile);
@@ -76,6 +77,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             tvTime = itemView.findViewById(R.id.tvTime);
             tvPhone =itemView.findViewById(R.id.tvPhone);
             tvCarId = itemView.findViewById(R.id.tvCarId);
+
             itemView.setOnClickListener(this);
 
         }
@@ -91,6 +93,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             intent.putExtra("time",list.get(getLayoutPosition()).getTime());
             intent.putExtra("phone",list.get(getLayoutPosition()).getPhone());
             intent.putExtra("carid",list.get(getLayoutPosition()).getCarId());
+            intent.putExtra("LatLngSrc",list.get(getLayoutPosition()).getLatLngSrc());
+            intent.putExtra("LatLngDes",list.get(getLayoutPosition()).getLatLngDes());
 
             context.startActivity(intent);
         }
