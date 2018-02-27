@@ -18,31 +18,22 @@
             android:inputType="textPersonName" />
     </FrameLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_source"
-            android:layout_width="wrap_content"
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/source_propose"
-            android:inputType="textPersonName" />
-    </FrameLayout>
+            android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
+            />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/et_des"
-            android:layout_width="wrap_content"
+        <fragment
+            android:id="@+id/place_autocomplete_fragment2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/destination_propose"
-            android:inputType="textPersonName" />
-    </FrameLayout>
+            android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
+            />
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -98,6 +89,7 @@
             tools:ignore="TextFields" />
     </FrameLayout>
 
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -108,6 +100,8 @@
             android:layout_height="wrap_content"
             android:text="@string/post_propose" />
     </FrameLayout>
+
+
 
 </LinearLayout>
 

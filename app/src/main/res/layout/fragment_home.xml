@@ -10,20 +10,36 @@
             android:layout_height="250dp"
             android:background="@drawable/carinside">
 
-            <EditText
-                android:id="@+id/source"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="50dp"
-                android:layout_marginStart="1dp"
+            <fragment
+                android:id="@+id/place_autocomplete_fragment_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@drawable/searchback"
-                android:gravity="center"
-                android:hint="@string/source"
+                android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
                 android:paddingLeft="10dp"
                 android:layout_marginLeft="1dp"
                 android:paddingStart="10dp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:layout_marginStart="1dp"
+                />
+
+            <fragment
+                android:id="@+id/place_autocomplete_fragment_destination"
+                android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchback"
+                android:gravity="center"
+                android:layout_marginLeft="1dp"
+                />
+
+
 
             <Button
                 android:id="@+id/search"
@@ -40,19 +56,6 @@
                 android:layout_marginLeft="1dp"
                 tools:ignore="RtlSymmetry" />
 
-            <EditText
-                android:id="@+id/destination"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/searchback"
-                android:gravity="center"
-                android:hint="@string/destination"
-
-                android:layout_marginLeft="1dp"
-               />
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"

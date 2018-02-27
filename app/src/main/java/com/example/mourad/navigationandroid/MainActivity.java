@@ -80,8 +80,6 @@ public class MainActivity extends BaseActivity
 
 
 
-
-
     }
 
 
@@ -93,6 +91,7 @@ public class MainActivity extends BaseActivity
         } else {
             super.onBackPressed();
         }
+
     }
 
     @Override

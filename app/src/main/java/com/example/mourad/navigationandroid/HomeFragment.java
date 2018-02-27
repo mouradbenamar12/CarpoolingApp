@@ -13,7 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -84,8 +89,6 @@ public class HomeFragment extends Fragment {
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                src = ((EditText) getView().findViewById(R.id.source)).getText().toString();
-                des = ((EditText) getView().findViewById(R.id.destination)).getText().toString();
                 list.clear();
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -113,6 +116,49 @@ public class HomeFragment extends Fragment {
 
 
 
+        SupportPlaceAutocompleteFragment autocompleteFragmentSource  = (SupportPlaceAutocompleteFragment)getChildFragmentManager()
+                .findFragmentById(R.id.place_autocomplete_fragment_source);
+        //ImageView searchSrc = (ImageView)((LinearLayout)autocompleteFragmentSource.getView()).getChildAt(0);
+        //  searchSrc.setImageDrawable(getResources().getDrawable(R.drawable.source));
+
+        autocompleteFragmentSource.setHint(" Source ...");
+        autocompleteFragmentSource.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                //   Log.i(TAG, "Place: " + place.getName());
+                Toast.makeText(getContext(),"Place: " + place.getName(),Toast.LENGTH_LONG).show();
+                src=place.getName().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                //Log.i(TAG, "An error occurred: " + status);
+                Toast.makeText(getContext(),"An error occurred: " + status,Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        SupportPlaceAutocompleteFragment autocompleteFragmentDestination  = (SupportPlaceAutocompleteFragment)getChildFragmentManager()
+                .findFragmentById(R.id.place_autocomplete_fragment_destination);
+        //ImageView searchDest = (ImageView)((LinearLayout)autocompleteFragmentDestination.getView()).getChildAt(0);
+        //searchDest.setImageDrawable(getResources().getDrawable(R.drawable.clara1));
+
+        autocompleteFragmentDestination.setHint(" Destination ... ");
+        autocompleteFragmentDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                //   Log.i(TAG, "Place: " + place.getName());
+                Toast.makeText(getContext(),"Place: " + place.getName(),Toast.LENGTH_LONG).show();
+                des=place.getName().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                //Log.i(TAG, "An error occurred: " + status);
+                Toast.makeText(getContext(),"An error occurred: " + status,Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 
 

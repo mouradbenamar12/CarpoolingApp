@@ -53,6 +53,11 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        if (mAuth.getCurrentUser()!=null){
+            startActivity(new Intent(FirstPage.this, MainActivity.class));
+            finish();
+        }
+
         // Facebook SDK init
         mAuth = FirebaseAuth.getInstance();
         FacebookSdk.sdkInitialize(getApplicationContext());
