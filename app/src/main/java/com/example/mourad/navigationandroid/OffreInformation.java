@@ -1,19 +1,12 @@
 package com.example.mourad.navigationandroid;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
-import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -21,10 +14,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
-
 public class OffreInformation extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    protected double latSrc,longSrc;
+    protected double latDes,longDes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +54,16 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
         String LatlngSrc=intent.getStringExtra("LatLngSrc");
         String LatlngDes=intent.getStringExtra("LatLngDes");
+        LatlngSrc=LatlngSrc.substring(10,LatlngSrc.length()-1);
+        LatlngDes=LatlngDes.substring(10,LatlngDes.length()-1);
 
+        String[] latlong1 =  LatlngSrc.split(",");
+        latSrc = Double.parseDouble(latlong1[0]);
+        longSrc = Double.parseDouble(latlong1[1]);
 
-
+        String[] latlong2 =  LatlngDes.split(",");
+        latDes = Double.parseDouble(latlong2[0]);
+        longDes = Double.parseDouble(latlong2[1]);
 
 
         tvName.setText(name);
@@ -86,9 +86,13 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
 
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng source = new LatLng(latSrc, longSrc);
+        mMap.addMarker(new MarkerOptions().position(source).title("Source"));
+
+        LatLng destination = new LatLng(latDes, longDes);
+        mMap.addMarker(new MarkerOptions().position(destination).title("destination"));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(source));
 
     }
 }
