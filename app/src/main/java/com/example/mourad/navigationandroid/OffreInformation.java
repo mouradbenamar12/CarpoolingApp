@@ -87,6 +87,7 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
         // Add a marker in Sydney, Australia, and move the camera.
         LatLng source = new LatLng(latSrc, longSrc);
+
         mMap.addMarker(new MarkerOptions().position(source).title("Source"));
 
         LatLng destination = new LatLng(latDes, longDes);
