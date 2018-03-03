@@ -164,13 +164,13 @@ public class MainActivity extends BaseActivity
         user=new User();
         for (DataSnapshot ds : dataSnapshot.getChildren()){
             try {
-            user.setBirthday(ds.child(UID).getValue(User.class).getBirthday());
-            user.setEmail(ds.child(UID).getValue(User.class).getEmail());
-            user.setFullName(ds.child(UID).getValue(User.class).getFullName());
-            user.setGender(ds.child(UID).getValue(User.class).getGender());
-            user.setId(ds.child(UID).getValue(User.class).getId());
-            user.setPhone(ds.child(UID).getValue(User.class).getPhone());
-            user.setPhotoUrl(ds.child(UID).getValue(User.class).getPhotoUrl());
+            user.setBirthday(ds.child(UID).child("Information").getValue(User.class).getBirthday());
+            user.setEmail(ds.child(UID).child("Information").getValue(User.class).getEmail());
+            user.setFullName(ds.child(UID).child("Information").getValue(User.class).getFullName());
+            user.setGender(ds.child(UID).child("Information").getValue(User.class).getGender());
+            user.setId(ds.child(UID).child("Information").getValue(User.class).getId());
+            user.setPhone(ds.child(UID).child("Information").getValue(User.class).getPhone());
+            user.setPhotoUrl(ds.child(UID).child("Information").getValue(User.class).getPhotoUrl());
 
                 Glide.with(this)
                         .load(user.getPhotoUrl())

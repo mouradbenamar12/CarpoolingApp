@@ -13,12 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +38,10 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     ProgressDialog progress;
     List<Rider_Ways> list = new ArrayList<>();
-    DatabaseReference myRef ;
+    DatabaseReference myRef,Users,uid,favorite;
     RecyclerView.Adapter adapter ;
 
+    ImageView fav_image;
     Button Propose,Search;
     String src;
     String des;
@@ -67,6 +72,7 @@ public class HomeFragment extends Fragment {
         progress.setCancelable(false);
         progress.show();
 
+        fav_image = view.findViewById(R.id.fav);
 
 
         Propose = getView().findViewById(R.id.propose);
@@ -185,6 +191,7 @@ public void loaddata(){
         }
     });
 }
+
 
 
 }

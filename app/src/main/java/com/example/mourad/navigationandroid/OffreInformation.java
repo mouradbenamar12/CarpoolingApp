@@ -107,7 +107,7 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
         final LatLng destination = new LatLng(latDes, longDes);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(source));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(source,5f));
 
         String serverKey = "AIzaSyCbc1dGroLKt1IoA6MMw1H8bbBGqTFBQf8";
         GoogleDirection.withServerKey(serverKey)

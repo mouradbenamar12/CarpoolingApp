@@ -72,8 +72,9 @@ public class ProposeFragment extends Fragment {
                 String Image_ways = user.getPhotoUrl();
                 String latlngSrc = LatlngSrc;
                 String latlngDes = LatlngDes;
+                String UID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID,latlngSrc,latlngDes);
+                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID,latlngSrc,latlngDes,UID);
                 Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                         .setValue(way, new DatabaseReference.CompletionListener() {
                             @Override

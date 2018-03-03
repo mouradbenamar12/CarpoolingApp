@@ -55,7 +55,7 @@ public class SignUpComplete extends BaseActivity {
     private Uri image;
     private String imageStorage;
     protected StorageReference mStorageRef;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
 
 
 
@@ -73,7 +73,7 @@ public class SignUpComplete extends BaseActivity {
         birthday=findViewById(R.id.birthdayField);
         imageButton=findViewById(R.id.profilephoto);
         complet=findViewById(R.id.button2);
-        progressBar = findViewById(R.id.progressbarUP);
+        //progressBar = findViewById(R.id.progressbarUP);
 
         // Profile Google and Fb
         FirebaseUser _user=FirebaseAuth.getInstance().getCurrentUser();
@@ -296,7 +296,7 @@ public class SignUpComplete extends BaseActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
-                            progressBar.setVisibility(View.GONE);
+                           // progressBar.setVisibility(View.GONE);
                             imageStorage = taskSnapshot.getDownloadUrl().toString();
                             Toast.makeText(getApplicationContext(), "Image is: " + imageStorage,
                                     Toast.LENGTH_SHORT).show();
@@ -311,8 +311,8 @@ public class SignUpComplete extends BaseActivity {
                             String email = _user.getEmail();
                             String id = _user.getUid();
                             user = new User(id, name, email, phone, Birthday, gender, imageStorage);
-                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                                    .setValue(user, new DatabaseReference.CompletionListener() {
+                            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("Information").setValue(user, new DatabaseReference.CompletionListener() {
                                         @Override
                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                             startActivity(new Intent(SignUpComplete.this, MainActivity.class));
@@ -332,11 +332,11 @@ public class SignUpComplete extends BaseActivity {
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressBar.setVisibility(View.VISIBLE);
+                    //progressBar.setVisibility(View.VISIBLE);
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                     System.out.println("Upload is " + progress + "% done");
-                    int currentprogress = (int) progress;
-                    progressBar.setProgress(currentprogress);
+                    //int currentprogress = (int) progress;
+                    //progressBar.setProgress(currentprogress);
                 }
             });
 
