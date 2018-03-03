@@ -1,24 +1,40 @@
 package com.example.mourad.navigationandroid;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.akexorcist.googledirection.DirectionCallback;
+import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.TransportMode;
+import com.akexorcist.googledirection.constant.Unit;
+import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Info;
+import com.akexorcist.googledirection.model.Leg;
+import com.akexorcist.googledirection.model.Route;
+import com.akexorcist.googledirection.util.DirectionConverter;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
 
 public class OffreInformation extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     protected double latSrc,longSrc;
     protected double latDes,longDes;
-
+    TextView tvName,tvSource,tvDestination,tvDate,tvTime,tvPhone,tvCarid,tvDuration,tvDistance;
+    ImageView imageWay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +45,7 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this);
 
 
-        TextView tvName,tvSource,tvDestination,tvDate,tvTime,tvPhone,tvCarid;
-        ImageView imageWay;
+
 
         imageWay = findViewById(R.id.ivDetails);
         tvName = findViewById(R.id.tvName);
@@ -40,6 +55,8 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         tvTime=findViewById(R.id.txtvTime);
         tvPhone =findViewById(R.id.tv_phone);
         tvCarid = findViewById(R.id.txtvCarid);
+        tvDistance=findViewById(R.id.tvDistance);
+        tvDuration=findViewById(R.id.tvDuration);
 
         Intent intent = getIntent();
 
@@ -85,15 +102,48 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
         mMap = googleMap;
 
-        // Add a marker in Sydney, Australia, and move the camera.
-        LatLng source = new LatLng(latSrc, longSrc);
+        final LatLng source = new LatLng(latSrc, longSrc);
 
-        mMap.addMarker(new MarkerOptions().position(source).title("Source"));
 
-        LatLng destination = new LatLng(latDes, longDes);
-        mMap.addMarker(new MarkerOptions().position(destination).title("destination"));
+        final LatLng destination = new LatLng(latDes, longDes);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(source));
+
+        String serverKey = "AIzaSyCbc1dGroLKt1IoA6MMw1H8bbBGqTFBQf8";
+        GoogleDirection.withServerKey(serverKey)
+                .from(source)
+                .to(destination)
+                .transportMode(TransportMode.DRIVING)
+                .unit(Unit.METRIC)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        mMap.addMarker(new MarkerOptions().position(source).title("Source"));
+                        mMap.addMarker(new MarkerOptions().position(destination).title("destination"));
+                        Route route = direction.getRouteList().get(0);
+                        Leg leg = route.getLegList().get(0);
+                        ArrayList<LatLng> directionPositionList = leg.getDirectionPoint();
+                        PolylineOptions polylineOptions = DirectionConverter.createPolyline(OffreInformation.this, directionPositionList, 5, Color.BLUE);
+                        Info distanceInfo = leg.getDistance();
+                        Info durationInfo = leg.getDuration();
+                        String distance = distanceInfo.getText();
+                        String duration = durationInfo.getText();
+                        tvDistance.setText(String.format("Distance :%s", distance));
+                        tvDuration.setText(String.format("Duration :%s", duration));
+                        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                        builder.include(source);
+                        builder.include(destination);
+                        LatLngBounds bounds = builder.build();
+                        final CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 50);
+                        mMap.addPolyline(polylineOptions);
+                        mMap.animateCamera(cu);
+                    }
+
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                        // Do something here
+                    }
+                });
 
     }
 }
