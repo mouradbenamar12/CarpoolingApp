@@ -28,6 +28,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     private String UID;
     private  ImageView fav_image;
     private DatabaseReference Users,uid,favorite;
+    private boolean a=false;
 
 
     //getting the context and product list with constructor
@@ -98,8 +99,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
          fav_image.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-            if(fav_image.getDrawable().getConstantState()==
-              v.getResources().getDrawable(R.drawable.ic_favorite_black_24dp).getConstantState()){
+            if(isFavorite()){
                 removeFavorite();
             }else{
                 addFavorite();
@@ -139,7 +139,6 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
-                        Toast.makeText(context,"add to favorite",Toast.LENGTH_LONG).show();
                     }
                 });
     }
@@ -154,12 +153,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                 .removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        Toast.makeText(context,"remove from favorite",Toast.LENGTH_LONG).show();
 
                     }
                 });
     }
-    public void isFavorite(){
+    public boolean  isFavorite(){
         Users = FirebaseDatabase.getInstance().getReference("Users");
         uid=Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         favorite=uid.child("Favorites");
@@ -169,10 +167,9 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
                     String UIDFav;
                     UIDFav = dataSnapshot1.getValue(String.class);
-                    Toast.makeText(context,"is value "+UIDFav,Toast.LENGTH_LONG).show();
                     if (UID.equals(UIDFav)){
-                        Toast.makeText(context,"is favorite ",Toast.LENGTH_LONG).show();
                         fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+                         a=true;
                     }
                 }
             }
@@ -182,5 +179,6 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
+       return a;
     }
 }

@@ -278,6 +278,7 @@ public class SignUpComplete extends BaseActivity {
             String Id =_user.getUid();
             user = new User(Id,Name,Email,PHone,BIrthday,Gender,_user.getPhotoUrl().toString());
             Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                    .child("Information")
                     .setValue(user, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
