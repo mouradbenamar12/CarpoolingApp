@@ -2,15 +2,16 @@ package com.example.mourad.navigationandroid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +26,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     private List<Rider_Ways> list;
     private Context context;
-    private String UID;
-    private  ImageView fav_image;
-    private DatabaseReference Users,uid,favorite;
-    private boolean a=false;
-
+    private boolean stat;
 
     //getting the context and product list with constructor
     WaysAdapter(List<Rider_Ways> list, Context context) {
@@ -39,8 +36,10 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     }
 
 
+
+        @NonNull
         @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.list_ways, parent,false);
@@ -48,9 +47,10 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
        //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
+        isFavorite(holder.getAdapterPosition(),holder);
         holder.tvFullName.setText(list.get(position).getFull_Name());
         holder.tvSource.setText(list.get(position).getSource());
         holder.tvDestination.setText(list.get(position).getDestination());
@@ -58,9 +58,19 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.tvTime.setText(list.get(position).getTime());
         holder.tvPhone.setText(list.get(position).getPhone());
         holder.tvCarId.setText(list.get(position).getCarId());
-        UID=list.get(position).getUID();
+        final int pp=holder.getAdapterPosition();
+        holder.favoriteButton.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
+            @Override
+            public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
+                if (favorite){
+                    addFavorite(pp);
+                }else {
+                    removeFavorite(pp);
 
+                }
 
+            }
+        });
         Glide.with(context)
            .load(list.get(position).getImage_ways())
            .into(holder.imageProfile);
@@ -78,10 +88,10 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
         ImageView imageProfile;
         TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
+        MaterialFavoriteButton favoriteButton;
 
         ProductViewHolder(final View itemView) {
             super(itemView);
-
             imageProfile = itemView.findViewById(R.id.imageProfile);
             tvFullName = itemView.findViewById(R.id.tvFullName);
             tvSource = itemView.findViewById(R.id.tvSource);
@@ -90,22 +100,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             tvTime = itemView.findViewById(R.id.tvTime);
             tvPhone =itemView.findViewById(R.id.tvPhone);
             tvCarId = itemView.findViewById(R.id.tvCarId);
-            fav_image = itemView.findViewById(R.id.fav);
-
+            favoriteButton=itemView.findViewById(R.id.fav);
             itemView.setOnClickListener(this);
-
-            isFavorite();
-
-         fav_image.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            if(isFavorite()){
-                removeFavorite();
-            }else{
-                addFavorite();
-                }
-          }
-            });
         }
 
         @Override
@@ -124,32 +120,28 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             context.startActivity(intent);
         }
-
     }
 
-    public void addFavorite(){
-        fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
+    private void addFavorite(int pos){
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
-
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Favorites")
-                .child(UID)
-                .setValue(UID, new DatabaseReference.CompletionListener() {
+                .child(list.get(pos).getUID())
+                .setValue(list.get(pos).getUID(), new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
                     }
                 });
     }
-    public void removeFavorite(){
-        fav_image.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+    private void removeFavorite(int pos){
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
 
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Favorites")
-                .child(UID)
+                .child(list.get(pos).getUID())
                 .removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -157,19 +149,20 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                     }
                 });
     }
-    public boolean  isFavorite(){
-        Users = FirebaseDatabase.getInstance().getReference("Users");
-        uid=Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        favorite=uid.child("Favorites");
-        favorite.addValueEventListener(new ValueEventListener() {
+    private void isFavorite(int pos, final ProductViewHolder holder){
+        final String UID=list.get(pos).getUID();
+        FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+        DatabaseReference Users = database_user.getReference("Users");
+
+        Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Favorites").
+                addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-                    String UIDFav;
-                    UIDFav = dataSnapshot1.getValue(String.class);
+                    String UIDFav = dataSnapshot1.getValue(String.class);
                     if (UID.equals(UIDFav)){
-                        fav_image.setImageResource(R.drawable.ic_favorite_black_24dp);
-                         a=true;
+                        holder.favoriteButton.setFavorite(true,false);
                     }
                 }
             }
@@ -179,6 +172,6 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
-       return a;
     }
+
 }
