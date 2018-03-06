@@ -1,16 +1,49 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgshare"
     tools:context="com.example.mourad.navigationandroid.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/share"
-        android:textSize="30sp"/>
 
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="285dp"
+        android:layout_height="165dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="68dp"
+        android:text='If you find our app useful for you ,  you can share this free app from here with your friends  , by Click on "Share app" :'
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/sharapp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText"
+        android:layout_marginRight="78dp"
+        android:layout_marginLeft="48dp" />
+
+    <Button
+        android:id="@+id/sharapp"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_marginBottom="395dp"
+        android:layout_marginEnd="264dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/animation_btn2"
+        android:text="Share app"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="HardcodedText"
+        android:layout_marginRight="264dp"
+        android:layout_marginLeft="64dp" />
+
+</android.support.constraint.ConstraintLayout>

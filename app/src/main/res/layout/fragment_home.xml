@@ -64,11 +64,13 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
+                android:background="#b3d6b1"
                 android:layout_height="match_parent" />
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
+
             android:layout_height="match_parent">
 
             <Button

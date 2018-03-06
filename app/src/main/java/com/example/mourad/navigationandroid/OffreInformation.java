@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +40,12 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_offre_information);
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -84,12 +91,12 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
 
         tvName.setText(name);
-        tvSource.setText(String.format("Source :%s", source));
-        tvDestination.setText(String.format("Destination :%s", destination));
-        tvDate.setText(String.format("Date :%s", date));
-        tvTime.setText(String.format("Time :%s", time));
-        tvPhone.setText(String.format("Phone :%s", phone));
-        tvCarid.setText(String.format("CarId :%s", carId));
+        tvSource.setText(source);
+        tvDestination.setText(destination);
+        tvDate.setText(date);
+        tvTime.setText(time);
+        tvPhone.setText(phone);
+        tvCarid.setText(carId);
 
         Glide.with(getApplicationContext()).load(image).into(imageWay);
 
@@ -128,8 +135,8 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
                         Info durationInfo = leg.getDuration();
                         String distance = distanceInfo.getText();
                         String duration = durationInfo.getText();
-                        tvDistance.setText(String.format("Distance :%s", distance));
-                        tvDuration.setText(String.format("Duration :%s", duration));
+                        tvDistance.setText(distance);
+                        tvDuration.setText(duration);
                         LatLngBounds.Builder builder = new LatLngBounds.Builder();
                         builder.include(source);
                         builder.include(destination);

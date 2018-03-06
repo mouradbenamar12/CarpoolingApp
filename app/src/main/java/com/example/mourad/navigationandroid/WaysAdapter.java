@@ -1,7 +1,9 @@
 package com.example.mourad.navigationandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +28,6 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     private List<Rider_Ways> list;
     private Context context;
-    private boolean stat;
 
     //getting the context and product list with constructor
     WaysAdapter(List<Rider_Ways> list, Context context) {
@@ -47,7 +48,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ProductViewHolder holder, @SuppressLint("RecyclerView") final int position) {
        //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
         isFavorite(holder.getAdapterPosition(),holder);
@@ -71,6 +72,33 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
+
+        holder.imageWtsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             /*   Uri uri = Uri.parse("smsto:" + list.get(position).getPhone());
+                Intent i = new Intent(Intent.ACTION_SENDTO,uri);
+                i.setPackage("com.whatsapp");
+                context.startActivity(i); */
+
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+list.get(position).getPhone()));
+                context.startActivity(intent);
+
+            }
+        });
+
+        holder.imageShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+                String shareBody="Hey check out our app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus";
+                myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+                context.startActivity(Intent.createChooser(myIntent, "Share Using"));
+
+            }
+        });
         Glide.with(context)
            .load(list.get(position).getImage_ways())
            .into(holder.imageProfile);
@@ -86,7 +114,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageProfile;
+        ImageView imageProfile,imageWtsp,imageShare;
         TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
         MaterialFavoriteButton favoriteButton;
 
@@ -101,6 +129,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             tvPhone =itemView.findViewById(R.id.tvPhone);
             tvCarId = itemView.findViewById(R.id.tvCarId);
             favoriteButton=itemView.findViewById(R.id.fav);
+            imageWtsp=itemView.findViewById(R.id.wtsp);
+            imageShare = itemView.findViewById(R.id.share);
             itemView.setOnClickListener(this);
         }
 
