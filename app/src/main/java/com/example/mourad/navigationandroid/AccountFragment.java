@@ -55,7 +55,7 @@ public class AccountFragment extends Fragment {
     private ImageButton imageButton;
     private Spinner spinner;
     protected Button complet;
-    private User user,user_ph;
+    private User user;
     private Uri image;
     private String imageStorage;
     protected StorageReference mStorageRef;
@@ -71,12 +71,13 @@ public class AccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        user = new User();
         getActivity().setTitle("My Account");
         usr=FirebaseDatabase.getInstance().getReference("Users");
         usr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                user_ph=dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Information").getValue(User.class);
+                user=dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Information").getValue(User.class);
             }
 
             @Override
@@ -95,13 +96,13 @@ public class AccountFragment extends Fragment {
         // Profile Google and Fb
         FirebaseUser _user= FirebaseAuth.getInstance().getCurrentUser();
         image=null;
-        if(user_ph.getPhotoUrl()!=null){
-            Glide.with(AccountFragment.this).load(user_ph.getPhotoUrl()).into(imageButton);
-            fullName.setText(user_ph.getFullName());
-            Phone.setText(user_ph.getPhone());
-            birthday.setText(user_ph.getBirthday());
-            if(user_ph.getGender().equals("Male")) spinner.setSelection(1);
-            if(user_ph.getGender().equals("Female")) spinner.setSelection(2);
+        if(user.getPhotoUrl()!=null){
+            Glide.with(AccountFragment.this).load(user.getPhotoUrl()).into(imageButton);
+            fullName.setText(user.getFullName());
+            Phone.setText(user.getPhone());
+            birthday.setText(user.getBirthday());
+            if(user.getGender().equals("Male")) spinner.setSelection(1);
+            if(user.getGender().equals("Female")) spinner.setSelection(2);
         }
 
         //Spinner
