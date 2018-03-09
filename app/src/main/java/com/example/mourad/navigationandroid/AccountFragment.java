@@ -79,7 +79,6 @@ public class AccountFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 user=dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Information").getValue(User.class);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -95,15 +94,7 @@ public class AccountFragment extends Fragment {
 
         // Profile Google and Fb
         FirebaseUser _user= FirebaseAuth.getInstance().getCurrentUser();
-        image=null;
-        if(user.getPhotoUrl()!=null){
-            Glide.with(AccountFragment.this).load(user.getPhotoUrl()).into(imageButton);
-            fullName.setText(user.getFullName());
-            Phone.setText(user.getPhone());
-            birthday.setText(user.getBirthday());
-            if(user.getGender().equals("Male")) spinner.setSelection(1);
-            if(user.getGender().equals("Female")) spinner.setSelection(2);
-        }
+
 
         //Spinner
         spinner = getView().findViewById(R.id.spinner_acc);
@@ -201,6 +192,14 @@ public class AccountFragment extends Fragment {
                 CropImage.startPickImageActivity(getContext(),AccountFragment.this);
             }
         });
+        image=null;
+        if(user.getPhotoUrl()!=null){
+            Glide.with(AccountFragment.this).load(user.getPhotoUrl()).into(imageButton);
+            fullName.setText(user.getFullName());
+            Phone.setText(user.getPhone());
+            birthday.setText(user.getBirthday());
+            spinner.setSelection(spinnerArrayAdapter.getPosition(user.getGender()));
+        }
 
     }
     private void updateLabel() {
