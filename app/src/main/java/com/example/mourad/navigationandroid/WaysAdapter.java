@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
@@ -76,15 +78,22 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.imageWtsp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Uri uri = Uri.parse("smsto:" + list.get(position).getPhone());
+
+                Uri uri = Uri.parse("smsto:" + list.get(position).getPhone());
                 Intent i = new Intent(Intent.ACTION_SENDTO,uri);
                 i.setPackage("com.whatsapp");
-                context.startActivity(i); */
+                context.startActivity(i);
 
+
+
+            }
+        });
+        holder.imagePhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+list.get(position).getPhone()));
                 context.startActivity(intent);
-
             }
         });
 
@@ -96,9 +105,27 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                 String shareBody="Hey check out our app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus";
                 myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
                 context.startActivity(Intent.createChooser(myIntent, "Share Using"));
-
             }
         });
+
+        if (list.get(position).getUID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            holder.btn_delete.setVisibility(View.VISIBLE);
+        }else {
+            holder.btn_delete.setVisibility(View.GONE);
+        }
+
+        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeAt(holder.getPosition());
+                FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+                DatabaseReference Ways = database_user.getReference("Ways");
+                Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .removeValue();
+                Toast.makeText(context,"Delete success",Toast.LENGTH_LONG).show();
+            }
+        });
+
         Glide.with(context)
            .load(list.get(position).getImage_ways())
            .into(holder.imageProfile);
@@ -114,9 +141,10 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageProfile,imageWtsp,imageShare;
+        ImageView imageProfile,imageWtsp,imageShare,imagePhone;
         TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
         MaterialFavoriteButton favoriteButton;
+        Button btn_delete;
 
         ProductViewHolder(final View itemView) {
             super(itemView);
@@ -131,6 +159,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             favoriteButton=itemView.findViewById(R.id.fav);
             imageWtsp=itemView.findViewById(R.id.wtsp);
             imageShare = itemView.findViewById(R.id.share);
+            imagePhone = itemView.findViewById(R.id.imgPhone);
+            btn_delete = itemView.findViewById(R.id.btn_delete);
             itemView.setOnClickListener(this);
         }
 
@@ -202,6 +232,10 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
+    }
+    private void removeAt(int position) {
+        list.remove(position);
+
     }
 
 }

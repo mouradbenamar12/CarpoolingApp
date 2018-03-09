@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast; // jfjh
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,6 +56,7 @@ public class AccountFragment extends Fragment {
     private Spinner spinner;
     protected Button complet;
     private User user;
+    private Rider_Ways rider_ways;
     private Uri image;
     private String imageStorage;
     protected StorageReference mStorageRef;
@@ -93,8 +94,6 @@ public class AccountFragment extends Fragment {
         //progressBar = findViewById(R.id.progressbarUP);
 
         // Profile Google and Fb
-        FirebaseUser _user= FirebaseAuth.getInstance().getCurrentUser();
-
 
         //Spinner
         spinner = getView().findViewById(R.id.spinner_acc);
@@ -296,9 +295,10 @@ public class AccountFragment extends Fragment {
             String PHone=Phone.getText().toString();
             String BIrthday=birthday.getText().toString();
             String Gender=spinner.getSelectedItem().toString();
-            String Email= _user.getEmail();
-            String Id =_user.getUid();
-            user = new User(Id,Name,Email,PHone,BIrthday,Gender,_user.getPhotoUrl().toString());
+            String Email= user.getEmail();
+            String Id =user.getId();
+            user = new User(Id,Name,Email,PHone,BIrthday,Gender, user.getPhotoUrl());
+
             Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
                     .child("Information")
                     .setValue(user, new DatabaseReference.CompletionListener() {
@@ -321,22 +321,45 @@ public class AccountFragment extends Fragment {
                             Toast.makeText(getContext(), "Image is: " + imageStorage,
                                     Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser _user = FirebaseAuth.getInstance().getCurrentUser();
                             FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                             DatabaseReference Users = database_user.getReference("Users");
+                            DatabaseReference Ways = database_user.getReference("Ways");
                             String name = fullName.getText().toString();
                             String phone = Phone.getText().toString();
                             String Birthday = birthday.getText().toString();
                             String gender = spinner.getSelectedItem().toString();
-                            String email = _user.getEmail();
-                            String id = _user.getUid();
+                            String email = user.getEmail();
+                            String id = user.getId();
                             user = new User(id, name, email, phone, Birthday, gender, imageStorage);
                             Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .child("Information").setValue(user, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                                    Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                 }
                             });
+                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("phone".replace(".", ","))
+                                    .setValue(user.getPhone(), new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                        }
+                                    });
+                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("full_Name".replace(".", ","))
+                                    .setValue(user.getFullName(), new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                        }
+                                    });
+                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("image_ways".replace(".", ","))
+                                    .setValue(user.getPhotoUrl(), new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                        }
+                                    });
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

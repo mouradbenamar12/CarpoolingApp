@@ -1,11 +1,6 @@
 package com.example.mourad.navigationandroid;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.TaskStackBuilder;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -13,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 
 public class HomeFragment extends Fragment {
@@ -42,6 +37,7 @@ public class HomeFragment extends Fragment {
     List<Rider_Ways> list = new ArrayList<>();
     DatabaseReference myRef;
     RecyclerView.Adapter adapter ;
+    Timer t;
 
     ImageView fav_image;
     Button Propose,Search;
@@ -181,8 +177,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-
     }
+
 
    /* @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void updateNotification() {
@@ -224,6 +220,7 @@ public class HomeFragment extends Fragment {
         }
     });
 }
+
 
 
 

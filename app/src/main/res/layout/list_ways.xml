@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -156,6 +157,28 @@
                 android:text="@string/source_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/tvCarId"
+                android:layout_alignLeft="@+id/wtsp"
+                android:layout_alignStart="@+id/wtsp"
+                app:srcCompat="@drawable/ic_perm_phone_msg_black_24dp"
+                tools:ignore="ContentDescription,VectorDrawableCompat" />
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wtsp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/tvTime"
+                android:layout_toStartOf="@+id/tvTime"
+                android:text="delete "
+                tools:ignore="HardcodedText" />
 
         </RelativeLayout>
 
