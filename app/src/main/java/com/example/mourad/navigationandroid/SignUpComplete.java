@@ -173,7 +173,6 @@ public class SignUpComplete extends BaseActivity {
         complet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showProgressDialog();
                 confirme_Signup(fullName.getText().toString(),Phone.getText().toString(),birthday.getText().toString(),spinner.getSelectedItem().toString());
             }
         });
@@ -297,6 +296,7 @@ public class SignUpComplete extends BaseActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
                            // progressBar.setVisibility(View.GONE);
+                            hideProgressDialog();
                             imageStorage = taskSnapshot.getDownloadUrl().toString();
                             Toast.makeText(getApplicationContext(), "Image is: " + imageStorage,
                                     Toast.LENGTH_SHORT).show();
@@ -335,7 +335,9 @@ public class SignUpComplete extends BaseActivity {
                     //progressBar.setVisibility(View.VISIBLE);
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                     System.out.println("Upload is " + progress + "% done");
-                    //int currentprogress = (int) progress;
+                    int currentprogress = (int) progress;
+                    showProgressDialog();
+                    showPercentProgressDialog(currentprogress);
                     //progressBar.setProgress(currentprogress);
                 }
             });

@@ -1,6 +1,5 @@
 package com.example.mourad.navigationandroid;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,12 +29,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     private List<Rider_Ways> list;
     private Context context;
-
     //getting the context and product list with constructor
     WaysAdapter(List<Rider_Ways> list, Context context) {
-
         this.list=list;
         this.context=context;
+        setHasStableIds(true);
     }
 
 
@@ -50,9 +48,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ProductViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(ProductViewHolder holder, int position) {
        //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
+        final int poss=holder.getAdapterPosition();
+        final Rider_Ways rd=list.get(position);
         isFavorite(holder.getAdapterPosition(),holder);
         holder.tvFullName.setText(list.get(position).getFull_Name());
         holder.tvSource.setText(list.get(position).getSource());
@@ -61,14 +61,13 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.tvTime.setText(list.get(position).getTime());
         holder.tvPhone.setText(list.get(position).getPhone());
         holder.tvCarId.setText(list.get(position).getCarId());
-        final int pp=holder.getAdapterPosition();
-        holder.favoriteButton.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
+       holder.favoriteButton.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
             @Override
             public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
                 if (favorite){
-                    addFavorite(pp);
+                    addFavorite(rd);
                 }else {
-                    removeFavorite(pp);
+                    removeFavorite(rd);
 
                 }
 
@@ -79,7 +78,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             @Override
             public void onClick(View v) {
 
-                Uri uri = Uri.parse("smsto:" + list.get(position).getPhone());
+                Uri uri = Uri.parse("smsto:" + list.get(poss).getPhone());
                 Intent i = new Intent(Intent.ACTION_SENDTO,uri);
                 i.setPackage("com.whatsapp");
                 context.startActivity(i);
@@ -88,11 +87,19 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
+        holder.imageWtsp.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(context,"list: "+list.size(),Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
         holder.imagePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+list.get(position).getPhone()));
+                intent.setData(Uri.parse("tel:"+list.get(poss).getPhone()));
                 context.startActivity(intent);
             }
         });
@@ -113,11 +120,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         }else {
             holder.btn_delete.setVisibility(View.GONE);
         }
-
+        final Rider_Ways rider=list.get(poss);
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeAt(holder.getPosition());
+                removeAt(rider);
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                 DatabaseReference Ways = database_user.getReference("Ways");
                 Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -132,7 +139,15 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
     @Override
     public int getItemCount() {
         return list.size();
@@ -182,26 +197,26 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         }
     }
 
-    private void addFavorite(int pos){
+    private void addFavorite(Rider_Ways rider){
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Favorites")
-                .child(list.get(pos).getUID())
-                .setValue(list.get(pos).getUID(), new DatabaseReference.CompletionListener() {
+                .child(rider.getUID())
+                .setValue(rider.getUID(), new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 
                     }
                 });
     }
-    private void removeFavorite(int pos){
+    private void removeFavorite(Rider_Ways rider){
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
 
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Favorites")
-                .child(list.get(pos).getUID())
+                .child(rider.getUID())
                 .removeValue(new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -233,9 +248,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             }
         });
     }
-    private void removeAt(int position) {
-        list.remove(position);
-
+    private void removeAt(Rider_Ways rid) {
+        int poss=list.indexOf(rid);
+        list.remove(poss);
+        notifyDataSetChanged();
+        notifyItemRemoved(poss);
     }
 
 }

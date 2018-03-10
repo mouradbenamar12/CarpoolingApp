@@ -199,9 +199,12 @@ public class HomeFragment extends Fragment {
     } */
 
     public void loaddata(){
-    myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
+            list.clear();
+            recyclerView.clearOnScrollListeners();
+            recyclerView.clearOnChildAttachStateChangeListeners();
             for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
                 Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
