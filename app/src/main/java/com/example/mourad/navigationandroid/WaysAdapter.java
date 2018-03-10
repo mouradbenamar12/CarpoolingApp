@@ -87,14 +87,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
             }
         });
-        holder.imageWtsp.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(context,"list: "+list.size(),Toast.LENGTH_LONG).show();
 
-                return false;
-            }
-        });
         holder.imagePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

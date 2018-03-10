@@ -56,7 +56,6 @@ public class AccountFragment extends Fragment {
     private Spinner spinner;
     protected Button complet;
     private User user;
-    private Rider_Ways rider_ways;
     private Uri image;
     private String imageStorage;
     protected StorageReference mStorageRef;

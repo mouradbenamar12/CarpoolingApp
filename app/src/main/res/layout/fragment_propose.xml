@@ -35,19 +35,17 @@
             />
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
         <EditText
             android:id="@+id/et_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:focusable="false"
             android:hint="@string/date_propose"
-            android:inputType="textPersonName"
             tools:ignore="TextFields" />
-    </FrameLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -58,8 +56,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:focusable="false"
             android:hint="@string/time_propose"
-            android:inputType="textPersonName" />
+             />
     </FrameLayout>
 
     <FrameLayout

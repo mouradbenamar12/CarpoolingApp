@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +34,8 @@ public class MainActivity extends BaseActivity
     public FirebaseDatabase mFirebasedata;
     public DatabaseReference myref;
     private String UID;
+    private long backPressedTime;
+    private Toast Toastback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +87,24 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+    /*    if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
-        }
+        }  */
 
+      if (backPressedTime + 2000 > System.currentTimeMillis()){
+            Toastback.cancel();
+            super.onBackPressed();
+            return;
+        }else {
+            Toastback = Toast.makeText(this,"Press back again to exit",Toast.LENGTH_LONG);
+            Toastback.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,12 +157,14 @@ public class MainActivity extends BaseActivity
 
         }
         if (fragment!=null){
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_main, fragment).commit();
+            final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_main, fragment);
+            ft.commit();
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
