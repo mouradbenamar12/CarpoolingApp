@@ -36,7 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 
 public class HomeFragment extends Fragment {
@@ -46,7 +45,6 @@ public class HomeFragment extends Fragment {
     List<Rider_Ways> list = new ArrayList<>();
     DatabaseReference myRef;
     RecyclerView.Adapter adapter ;
-    Timer t;
 
     ImageView fav_image;
     Button Propose,Search;

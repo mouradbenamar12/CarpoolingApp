@@ -48,7 +48,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
        //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
         final int poss=holder.getAdapterPosition();
