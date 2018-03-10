@@ -1,13 +1,20 @@
 package com.example.mourad.navigationandroid;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
@@ -25,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -91,16 +100,9 @@ public class HomeFragment extends Fragment {
 
         loaddata();
 
-      /*  adapter  = new WaysAdapter(list,getContext());
+        adapter  = new WaysAdapter(list,getContext());
         recyclerView.setAdapter(adapter);
-        int newCount = adapter.getItemCount();
-        int previousItem = getFromSavePref();
-        if(previousItem < newCount)
-        {
-            updateNotification();
-            previousItem=newCount;
-            savedInSharedPref(previousItem);
-        } */
+
 
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,26 +182,42 @@ public class HomeFragment extends Fragment {
     }
 
 
-   /* @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void updateNotification() {
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(getActivity());
+        Notification notification = new NotificationCompat.Builder(getActivity())
+                //Title of the notification
+                .setContentTitle("hello")
+                //Content of the notification once opened
+                .setContentText("hhhhh")
+                //This bit will show up in the notification area in devices that support that
+                .setTicker("gggggg")
+                //Icon that shows up in the notification area
+                .setSmallIcon(R.drawable.logo)
+                //Icon that shows up in the drawer
+                .setLargeIcon(BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.logo))
+                //Set the intent
+                .setContentIntent(pendingIntentForNotification())
+                //Build the notification with all the stuff you've just set.
+                .build();
 
-        notification.setSmallIcon(R.drawable.logo);
+                NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, notification);
+    }
+    private PendingIntent pendingIntentForNotification() {
+        //Create the intent you want to show when the notification is clicked
+        Intent intent = new Intent(getActivity(), MainActivity.class);
 
-        notification.setContentTitle(getString(R.string.about));
-        notification.setContentText(getString(R.string.already_have_an_account));
-        Intent intent = new Intent(getActivity(), HomeFragment.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
-        stackBuilder.addParentStack(HomeFragment.class);
-        stackBuilder.addNextIntent(intent);
-        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        notification.setContentIntent(pendingIntent);
-        NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification.build());
-    } */
+        //Add any extras (in this case, that you want to relaunch this fragment)
+        //intent.putExtra(MainActivity.EXTRA_FRAGMENT_TO_LAUNCH, MainActivity.TAG_NOTIFICATION_FRAGMENT);
+
+        //This will hold the intent you've created until the notification is tapped.
+        PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 1, intent, 0);
+        return pendingIntent;
+    }
 
     public void loaddata(){
         myRef.addValueEventListener(new ValueEventListener() {
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             list.clear();
@@ -214,6 +232,18 @@ public class HomeFragment extends Fragment {
             adapter  = new WaysAdapter(list,getContext());
             recyclerView.setAdapter(adapter);
             progress.dismiss();
+            if (Notification_item.getCountItem()==0){
+                Notification_item.setCountItem(adapter.getItemCount());
+            }else {
+                Toast.makeText(getContext(),"else",Toast.LENGTH_LONG).show();
+                int newCount = adapter.getItemCount();
+                int previousItem = Notification_item.getCountItem();
+                if(previousItem < newCount){
+                    updateNotification();
+                    Notification_item.setCountItem(newCount);
+                }
+            }
+
 
         }
 

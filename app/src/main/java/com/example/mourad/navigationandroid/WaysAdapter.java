@@ -82,12 +82,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
                 Intent i = new Intent(Intent.ACTION_SENDTO,uri);
                 i.setPackage("com.whatsapp");
                 context.startActivity(i);
-
-
-
             }
         });
-
         holder.imagePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
