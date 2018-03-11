@@ -224,7 +224,6 @@ public class HomeFragment extends Fragment {
             recyclerView.clearOnScrollListeners();
             recyclerView.clearOnChildAttachStateChangeListeners();
             for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
-
                 Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
                 list.add(riderDetails);
             }
@@ -235,7 +234,6 @@ public class HomeFragment extends Fragment {
             if (Notification_item.getCountItem()==0){
                 Notification_item.setCountItem(adapter.getItemCount());
             }else {
-                Toast.makeText(getContext(),"else",Toast.LENGTH_LONG).show();
                 int newCount = adapter.getItemCount();
                 int previousItem = Notification_item.getCountItem();
                 if(previousItem < newCount){

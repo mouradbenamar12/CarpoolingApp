@@ -49,18 +49,18 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-       //  Rider_Ways mylist = list.get(position);
-        //binding the data with the viewholder views
-        final int poss=holder.getAdapterPosition();
-        final Rider_Ways rd=list.get(position);
-        isFavorite(holder.getAdapterPosition(),holder);
-        holder.tvFullName.setText(list.get(position).getFull_Name());
-        holder.tvSource.setText(list.get(position).getSource());
-        holder.tvDestination.setText(list.get(position).getDestination());
-        holder.tvDate.setText(list.get(position).getDate());
-        holder.tvTime.setText(list.get(position).getTime());
-        holder.tvPhone.setText(list.get(position).getPhone());
-        holder.tvCarId.setText(list.get(position).getCarId());
+       //Rider_Ways mylist = list.get(position);
+       //binding the data with the viewholder views
+       final int poss=holder.getAdapterPosition();
+       final Rider_Ways rd=list.get(position);
+       isFavorite(holder.getAdapterPosition(),holder);
+       holder.tvFullName.setText(list.get(position).getFull_Name());
+       holder.tvSource.setText(list.get(position).getSource());
+       holder.tvDestination.setText(list.get(position).getDestination());
+       holder.tvDate.setText(list.get(position).getDate());
+       holder.tvTime.setText(list.get(position).getTime());
+       holder.tvPhone.setText(list.get(position).getPhone());
+       holder.tvCarId.setText(list.get(position).getCarId());
        holder.favoriteButton.setOnFavoriteChangeListener(new MaterialFavoriteButton.OnFavoriteChangeListener() {
             @Override
             public void onFavoriteChanged(MaterialFavoriteButton buttonView, boolean favorite) {
@@ -105,6 +105,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         });
 
         if (list.get(position).getUID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+            holder.favoriteButton.setVisibility(View.GONE);
             holder.btn_delete.setVisibility(View.VISIBLE);
         }else {
             holder.btn_delete.setVisibility(View.GONE);

@@ -58,47 +58,29 @@ public class WaysFragment extends Fragment {
         progress.setMessage("Syncing ...");
         progress.setCancelable(false);
         progress.show();
-        getCurrentWay();
         ShowFavorites();
     }
-    public void getCurrentWay(){
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Rider_Ways riderDetails = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getValue(Rider_Ways.class);
-                if (riderDetails == null){
-                    recyclerView_current.setVisibility(View.GONE);
-                    empty_view.setVisibility(View.VISIBLE);
-                }
-                else{
-                    list.add(riderDetails);
-                    adapter  = new WaysAdapter(list,getContext());
-                    recyclerView_current.setAdapter(adapter);
-                   }
-                progress.dismiss();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                progress.dismiss();
-            }
-        });
-    }
     public void ShowFavorites(){
+        final String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
 
                     Rider_Ways riderDetails = dataSnapshot1.getValue(Rider_Ways.class);
-                    if (riderDetails != null){
-                        isFavorite(riderDetails);
-                    }else{
+                    if (riderDetails == null){
+                        recyclerView_current.setVisibility(View.GONE);
+                        empty_view.setVisibility(View.VISIBLE);
                         recyclerView_favorites.setVisibility(View.GONE);
                         empty_favorites.setVisibility(View.VISIBLE);
+                    }else if(riderDetails.getUID().equals(uid)){
+                        list.add(riderDetails);
+                        adapter  = new WaysAdapter(list,getContext());
+                        recyclerView_current.setAdapter(adapter);
+                        recyclerView_current.setVisibility(View.VISIBLE);
+                        empty_view.setVisibility(View.GONE);
+                    }else{
+                        isFavorite(riderDetails);
                     }
                 }
                 progress.dismiss();
@@ -111,13 +93,14 @@ public class WaysFragment extends Fragment {
             }
         });
     }
-    private void isFavorite(final Rider_Ways RiderDetails){
-       FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+    private void isFavorite(Rider_Ways rider){
+        final Rider_Ways RiderDetails = rider;
+        FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
 
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Favorites").
-                addValueEventListener(new ValueEventListener() {
+                .child("Favorites")
+                .addValueEventListener(new ValueEventListener(){
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
@@ -126,12 +109,11 @@ public class WaysFragment extends Fragment {
                                 list2.add(RiderDetails);
                             }
                         }
-                        if (list2.isEmpty()){
-                            recyclerView_favorites.setVisibility(View.GONE);
-                            empty_favorites.setVisibility(View.VISIBLE);
-                        }else {
+                        if (!list2.isEmpty()){
                             adapter2 = new WaysAdapter(list2,getContext());
                             recyclerView_favorites.setAdapter(adapter2);
+                            recyclerView_favorites.setVisibility(View.VISIBLE);
+                            empty_favorites.setVisibility(View.GONE);
                         }
                     }
 

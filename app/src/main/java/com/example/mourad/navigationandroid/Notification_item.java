@@ -6,7 +6,7 @@ package com.example.mourad.navigationandroid;
 public class Notification_item {
     private static int countItem;
 
-    public Notification_item(int icon, CharSequence tickerText, long when) {
+    public Notification_item() {
     }
 
     static void setCountItem(int countItem) {
