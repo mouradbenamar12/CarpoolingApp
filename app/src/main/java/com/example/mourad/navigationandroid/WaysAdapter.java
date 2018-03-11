@@ -106,6 +106,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
         if (list.get(position).getUID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
             holder.btn_delete.setVisibility(View.VISIBLE);
+            holder.favoriteButton.setVisibility(View.GONE);
         }else {
             holder.btn_delete.setVisibility(View.GONE);
         }
