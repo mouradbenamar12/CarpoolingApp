@@ -11,14 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +91,7 @@ public class WaysFragment extends Fragment {
             }
         });
     }
-    private void isFavorite(Rider_Ways rider){
+    private void isFavorite(final Rider_Ways rider){
         final Rider_Ways RiderDetails = rider;
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
@@ -114,6 +112,8 @@ public class WaysFragment extends Fragment {
                             recyclerView_favorites.setAdapter(adapter2);
                             recyclerView_favorites.setVisibility(View.VISIBLE);
                             empty_favorites.setVisibility(View.GONE);
+
+
                         }
                     }
 
@@ -123,4 +123,5 @@ public class WaysFragment extends Fragment {
                     }
                 });
     }
+
 }

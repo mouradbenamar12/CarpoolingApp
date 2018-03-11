@@ -78,7 +78,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             @Override
             public void onClick(View v) {
 
-                Uri uri = Uri.parse("smsto:" + list.get(poss).getPhone());
+                Uri uri = Uri.parse("smsto:+212" + list.get(poss).getPhone());
                 Intent i = new Intent(Intent.ACTION_SENDTO,uri);
                 i.setPackage("com.whatsapp");
                 context.startActivity(i);

@@ -1,5 +1,6 @@
 package com.example.mourad.navigationandroid;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -44,7 +45,9 @@ public class HomeFragment extends Fragment {
     private DatabaseReference myRef,mynotif;
     private RecyclerView.Adapter adapter ;
     private static int id=1;
+    protected Context MyContext;
 
+    private boolean notificationsStatut;
     ImageView fav_image;
     Button Propose,Search;
     String src;
@@ -54,7 +57,11 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        MyContext= getActivity();
+
         return inflater.inflate(R.layout.fragment_home, container, false);
+
 
 
     }
@@ -97,6 +104,7 @@ public class HomeFragment extends Fragment {
         });
 
         loaddata();
+
 
         adapter  = new WaysAdapter(list,getContext());
         recyclerView.setAdapter(adapter);
@@ -181,8 +189,8 @@ public class HomeFragment extends Fragment {
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void updateNotification() {
-        Notification notification = new NotificationCompat.Builder(getActivity())
+    public void updateNotification() {
+        Notification notification = new NotificationCompat.Builder(MyContext)
                 //Title of the notification
                 .setContentTitle("hello")
                 //Content of the notification once opened
@@ -196,8 +204,9 @@ public class HomeFragment extends Fragment {
                 .setAutoCancel(true)
                 //Build the notification with all the stuff you've just set.
                 .build();
-                NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(id, notification);
+
+                NotificationManager notificationManager = (NotificationManager) MyContext.getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(1, notification);
                 id++;
     }
  /*   private PendingIntent pendingIntentForNotification() {
@@ -230,33 +239,59 @@ public class HomeFragment extends Fragment {
             progress.dismiss();
 
 
-
-            mynotif.addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+            DatabaseReference Users = database_user.getReference("Users");
+            Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("Settings")
+                    .child("Notification")
+                    .addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    int newCount = adapter.getItemCount();
-                    int previousItem;
-                 try {
-                      previousItem = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notifications").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getValue(Integer.class);
-                 }catch (Exception e){
-                      previousItem = 0;
-                 }
-                    if (previousItem==0 || previousItem > newCount){
-                        Notification_item.setCountItem(adapter.getItemCount());
-                        addNotificationItem(Notification_item.getCountItem());
-                    }
-                    else if(previousItem < newCount){
-                        updateNotification();
-                        Notification_item.setCountItem(newCount);
-                        addNotificationItem(Notification_item.getCountItem());
-                    }
+                     notificationsStatut = dataSnapshot.getValue(Boolean.class);
+
+                    if (notificationsStatut){
+
+              mynotif.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                int newCount = adapter.getItemCount();
+                                int previousItem;
+                                try {
+                                    previousItem = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Notifications").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getValue(Integer.class);
+                                }catch (Exception e){
+                                    previousItem = 0;
+                                }
+                                if (previousItem==0 || previousItem > newCount){
+                                    Notification_item.setCountItem(adapter.getItemCount());
+                                    addNotificationItem(Notification_item.getCountItem());
+                                }
+                                else if(previousItem < newCount && notificationsStatut){
+                                    updateNotification();
+                                    Notification_item.setCountItem(newCount);
+                                    addNotificationItem(Notification_item.getCountItem());
+                                } else if (!notificationsStatut){
+                                    Notification_item.setCountItem(newCount);
+                                    addNotificationItem(Notification_item.getCountItem());
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                progress.dismiss();
+                            }
+                        });
                     }
 
+                }
+
                 @Override
-                public void onCancelled(DatabaseError error) {
-                    progress.dismiss();
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
+
+
+
 
         }
 

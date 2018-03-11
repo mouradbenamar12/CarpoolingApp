@@ -266,6 +266,17 @@ public class SignUpComplete extends BaseActivity {
         assert _user != null;
         String id = _user.getUid();
         if(image==null){
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference User = database.getReference("Users");
+            User.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("Settings")
+                    .child("Notification")
+                    .setValue(true, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                        }
+                    });
             FirebaseDatabase database_user=FirebaseDatabase.getInstance();
             DatabaseReference Users=database_user.getReference("Users");
             String Name=fullName.getText().toString();
@@ -288,6 +299,17 @@ public class SignUpComplete extends BaseActivity {
                     });
         }
         if(image!=null) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference User = database.getReference("Users");
+            User.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("Settings")
+                    .child("Notification")
+                    .setValue(true, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                        }
+                    });
             mStorageRef = FirebaseStorage.getInstance().getReference();
             StorageReference riversRef = mStorageRef.child("Image/" + id);
             riversRef.putFile(image)
@@ -339,9 +361,11 @@ public class SignUpComplete extends BaseActivity {
                     showProgressDialog();
                     showPercentProgressDialog(currentprogress);
                     //progressBar.setProgress(currentprogress);
+
                 }
             });
 
         }
+
     }
 }
