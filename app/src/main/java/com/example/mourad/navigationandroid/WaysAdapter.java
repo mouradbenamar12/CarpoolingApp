@@ -219,8 +219,8 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         DatabaseReference Users = database_user.getReference("Users");
 
         Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Favorites").
-                addValueEventListener(new ValueEventListener() {
+                .child("Favorites")
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot dataSnapshot1 :dataSnapshot.getChildren()){
