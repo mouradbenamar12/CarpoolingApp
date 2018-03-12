@@ -18,13 +18,16 @@
             android:padding="8dp">
 
 
-            <ImageView
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imageProfile"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
                 android:padding="4dp"
                 android:src="@drawable/placeholder"
-                android:contentDescription="@string/image__ways" />
+                android:transitionName="imageTransition"
+                tools:ignore="UnusedAttribute" />
 
             <com.github.ivbaranov.mfb.MaterialFavoriteButton
                 android:id="@+id/fav"
@@ -72,7 +75,25 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
+                android:layout_toEndOf="@id/imageProfile"
+                android:transitionName="nameTransition"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:id="@+id/tvSource"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvFullName"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imageProfile"
+                android:layout_toRightOf="@id/imageProfile"
+                android:text="@string/source_ways"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                android:transitionName="sourceTransition"
+                tools:ignore="UnusedAttribute"/>
 
             <TextView
                 android:id="@+id/tvDestination"
@@ -89,7 +110,8 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_marginStart="5dp"
                 android:paddingEnd="5dp"
-                tools:ignore="RtlSymmetry" />
+                android:transitionName="destinationTransition"
+                tools:ignore="RtlSymmetry,UnusedAttribute"/>
 
             <TextView
                 android:id="@+id/tvDate"
@@ -103,7 +125,9 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
+                android:layout_toEndOf="@id/imageProfile"
+                android:transitionName="dateTransition"
+                tools:ignore="UnusedAttribute"/>
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="180dp"
@@ -116,7 +140,9 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
+                android:layout_toEndOf="@id/imageProfile"
+                android:transitionName="timeTransition"
+                tools:ignore="UnusedAttribute"/>
             <TextView
                 android:id="@+id/tvPhone"
                 android:layout_width="180dp"
@@ -129,7 +155,9 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
+                android:layout_toEndOf="@id/imageProfile"
+                android:transitionName="phoneTransition"
+                tools:ignore="UnusedAttribute"/>
             <TextView
                 android:id="@+id/tvCarId"
                 android:layout_width="180dp"
@@ -142,21 +170,9 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile" />
-
-            <TextView
-                android:id="@+id/tvSource"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvFullName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/imageProfile"
-                android:layout_toRightOf="@id/imageProfile"
-                android:text="@string/source_ways"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:textStyle="bold" />
+                android:transitionName="carIdTransition"
+                tools:ignore="UnusedAttribute"/>
 
             <ImageView
                 android:id="@+id/imgPhone"

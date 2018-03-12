@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dfgdfg"
+    android:background="@drawable/bg_carpooling"
     tools:context="com.example.mourad.navigationandroid.FirstPage"
     tools:layout_editor_absoluteX="16dp"
     tools:layout_editor_absoluteY="81dp">
@@ -38,8 +38,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
         app:layout_constraintEnd_toStartOf="@+id/loginForgetPage"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="27dp"
-        android:layout_marginRight="15dp" />
+        tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/btn_gmail"
@@ -62,8 +61,24 @@
         android:layout_marginStart="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carpool_vector" />
 
+    <ImageView
+        android:id="@+id/carpool_vector"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="137dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="108dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/fb_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/carpool_first"
+        tools:ignore="ContentDescription" />
 
 
 </android.support.constraint.ConstraintLayout>

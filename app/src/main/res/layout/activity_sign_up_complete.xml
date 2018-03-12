@@ -24,7 +24,8 @@
             android:overScrollMode="ifContentScrolls"
             android:scrollIndicators="right"
             android:scrollbarFadeDuration="3"
-            android:scrollbars="vertical" tools:targetApi="m">
+            android:scrollbars="vertical"
+            tools:targetApi="m">
 
             <Space
                 android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
                 android:contentDescription="@string/imageuser"
                 android:cropToPadding="false"
                 android:onClick="editphoto"
+                android:background="@null"
                 app:srcCompat="@drawable/placeholder" />
 
             <ImageView

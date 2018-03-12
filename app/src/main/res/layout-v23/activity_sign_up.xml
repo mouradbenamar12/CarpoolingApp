@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginRight="4dp"
-        tools:ignore="UnusedAttribute">
+        tools:ignore="RtlHardcoded,UnusedAttribute">
 
         <ImageView
             android:layout_width="45dp"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginStart="36dp"
         android:text="@string/already_have_an_account"
-        android:textColor="@color/com_facebook_button_background_color_focused"
+        android:textColor="@color/com_facebook_button_login_silver_background_color"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_login2"
@@ -143,7 +143,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        tools:ignore="RtlCompat" />
+        android:layout_marginRight="90dp"
+        android:layout_marginLeft="8dp"
+        tools:ignore="RtlHardcoded" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

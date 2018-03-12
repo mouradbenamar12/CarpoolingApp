@@ -61,5 +61,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.akexorcist:googledirectionlibrary:1.0.4'
     compile 'com.github.ivbaranov:materialfavoritebutton:0.1.4'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
 apply plugin: 'com.google.gms.google-services'

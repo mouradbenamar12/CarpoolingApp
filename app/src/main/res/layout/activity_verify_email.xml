@@ -11,6 +11,23 @@
     tools:layout_editor_absoluteY="25dp">
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Contraint"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:gravity="center"
+        android:text="@string/verify_your_email_address"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/Contraint"
         android:layout_width="300dp"
@@ -21,25 +38,6 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="true"
         android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/txt_email"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="11dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="@string/verify_your_email_address"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txt_email"

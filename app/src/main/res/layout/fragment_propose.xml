@@ -5,20 +5,6 @@
     android:orientation="vertical"
     tools:context="com.example.mourad.navigationandroid.ProposeFragment">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/et_Full_Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/full_name_propose"
-            android:inputType="textPersonName" />
-    </FrameLayout>
-
-
         <fragment
             android:id="@+id/place_autocomplete_fragment"
             android:layout_width="match_parent"

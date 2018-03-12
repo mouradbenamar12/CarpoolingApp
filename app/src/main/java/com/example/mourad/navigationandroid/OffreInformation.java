@@ -31,12 +31,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class OffreInformation extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     protected double latSrc,longSrc;
     protected double latDes,longDes;
-    TextView tvName,tvSource,tvDestination,tvDate,tvTime,tvPhone,tvCarid,tvDuration,tvDistance;
-    ImageView imageWay;
+    protected TextView tvName,tvSource,tvDestination,tvDate,tvTime,tvPhone,tvCarid,tvDuration,tvDistance;
+    protected ImageView imageWay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

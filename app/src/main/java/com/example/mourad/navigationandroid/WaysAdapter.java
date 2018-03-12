@@ -1,10 +1,14 @@
 package com.example.mourad.navigationandroid;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHolder> {
@@ -51,6 +57,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
        //  Rider_Ways mylist = list.get(position);
         //binding the data with the viewholder views
+
         final int poss=holder.getAdapterPosition();
         final Rider_Ways rd=list.get(position);
         isFavorite(holder.getAdapterPosition(),holder);
@@ -78,7 +85,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             @Override
             public void onClick(View v) {
 
-                Uri uri = Uri.parse("smsto:+212" + list.get(poss).getPhone());
+                Uri uri = Uri.parse("smsto:" + list.get(poss).getPhone());
                 Intent i = new Intent(Intent.ACTION_SENDTO,uri);
                 i.setPackage("com.whatsapp");
                 context.startActivity(i);
@@ -123,6 +130,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             }
         });
 
+
         Glide.with(context)
            .load(list.get(position).getImage_ways())
            .into(holder.imageProfile);
@@ -146,10 +154,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageProfile,imageWtsp,imageShare,imagePhone;
+        ImageView imageWtsp,imageShare,imagePhone;
         TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
         MaterialFavoriteButton favoriteButton;
         Button btn_delete;
+        CircleImageView imageProfile;
 
         ProductViewHolder(final View itemView) {
             super(itemView);
@@ -169,11 +178,13 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             itemView.setOnClickListener(this);
         }
 
+        @SuppressLint("NewApi")
         @Override
         public void onClick(View v) {
+            User user = new User();
             Intent intent = new Intent(context,OffreInformation.class);
             intent.putExtra("image",list.get(getLayoutPosition()).getImage_ways());
-            intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
+            intent.putExtra("full Name",user.getFullName());
             intent.putExtra("source",list.get(getLayoutPosition()).getSource());
             intent.putExtra("destination",list.get(getLayoutPosition()).getDestination());
             intent.putExtra("date",list.get(getLayoutPosition()).getDate());
@@ -183,7 +194,21 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             intent.putExtra("LatLngSrc",list.get(getLayoutPosition()).getLatLngSrc());
             intent.putExtra("LatLngDes",list.get(getLayoutPosition()).getLatLngDes());
 
-            context.startActivity(intent);
+            Pair[] pairs = new Pair[8];
+            pairs[0]=new Pair<View,String>(imageProfile,"imageTransition");
+            pairs[1]=new Pair<View,String>(tvFullName,"nameTransition");
+            pairs[2]=new Pair<View,String>(tvSource,"sourceTransition");
+            pairs[3]=new Pair<View,String>(tvDestination,"destinationTransition");
+            pairs[4]=new Pair<View,String>(tvDate,"dateTransition");
+            pairs[5]=new Pair<View,String>(tvTime,"timeTransition");
+            pairs[6]=new Pair<View,String>(tvPhone,"phoneTransition");
+            pairs[7]=new Pair<View,String>(tvCarId,"carIdTransition");
+
+            @SuppressLint({"NewApi", "LocalSuppress"})
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
+            context.startActivity(intent,options.toBundle());
+
+
         }
     }
 

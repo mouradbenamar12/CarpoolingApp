@@ -24,10 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    protected ImageView mDisplayImageView;
+    protected CircleImageView mDisplayImageView;
     protected TextView mNameTextView;
     protected TextView mEmailTextView;
     public User user;

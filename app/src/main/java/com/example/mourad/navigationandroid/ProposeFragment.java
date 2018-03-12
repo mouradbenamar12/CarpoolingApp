@@ -27,7 +27,7 @@ import java.util.Calendar;
 
 public class ProposeFragment extends Fragment {
 
-    private EditText name,time,date,number,carid;
+    private EditText time,date,number,carid;
     private String src,des;
     protected Button post;
     protected Calendar calender;
@@ -48,7 +48,6 @@ public class ProposeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Propose a Way");
 
-        name = getView().findViewById(R.id.et_Full_Name);
         date = getView().findViewById(R.id.et_date);
         time = getView().findViewById(R.id.et_time);
         number=getView().findViewById(R.id.et_Number);
@@ -62,7 +61,7 @@ public class ProposeFragment extends Fragment {
                 User user = new User();
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                 DatabaseReference Ways = database_user.getReference("Ways");
-                String nom=name.getText().toString();
+                String nom=user.getFullName();
                 String source = src;
                 String destination = des;
                 String date = ProposeFragment.this.date.getText().toString();

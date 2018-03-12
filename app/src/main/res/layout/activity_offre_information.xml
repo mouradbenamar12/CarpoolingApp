@@ -4,287 +4,237 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".OffreInformation"
-    tools:layout_editor_absoluteY="25dp">
+    android:background="@drawable/bg_info"
+    tools:context="com.example.mourad.navigationandroid.SignUpComplete">
 
-    <ImageView
-        android:id="@+id/ivDetails"
-        android:layout_width="0dp"
-        android:layout_height="187dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvName"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/placeholder"
-        tools:ignore="ContentDescription"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="21dp" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="91dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="89dp"
-        android:text="@string/textviewoffre"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvDuration"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        android:layout_marginLeft="2dp" />
-
-    <TextView
-        android:id="@+id/txtvSource"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/textview1"
-        app:layout_constraintBottom_toTopOf="@+id/txtvDestiination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="82dp"
-        android:layout_marginLeft="12dp" />
-
-    <TextView
-        android:id="@+id/txtvDestiination"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginBottom="23dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="19dp"
-        android:text="@string/textviewdes"
-        app:layout_constraintBottom_toTopOf="@+id/txtvDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/txtvSource"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="82dp" />
-
-    <TextView
-        android:id="@+id/txtvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="23dp"
-        android:text="@string/textviewdate"
-        app:layout_constraintBottom_toTopOf="@+id/txtvTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/txtvDestiination"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="82dp" />
-
-    <TextView
-        android:id="@+id/txtvCarid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/textviewcarId"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="8dp" />
-
-    <TextView
-        android:id="@+id/txtvTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="82dp"
-        android:text="@string/textviewTime"
-        app:layout_constraintBottom_toTopOf="@+id/tv_phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="82dp" />
-
-    <TextView
-        android:id="@+id/tv_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="215dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginTop="152dp"
-        android:text="@string/textviewoffedesc"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="82dp" />
-
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_phone"
-        tools:context=".MapsActivity" />
-
-    <TextView
-        android:id="@+id/tvDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        tools:ignore="HardcodedText"
-        android:layout_marginLeft="14dp" />
-
-    <TextView
-        android:id="@+id/tvDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/tvDuration"
-        tools:ignore="HardcodedText" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_perm_phone_msg_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView8"
-        app:layout_constraintEnd_toStartOf="@+id/tv_phone"
-        app:layout_constraintStart_toEndOf="@+id/ivDetails"
-        tools:ignore="ContentDescription"
-        android:layout_marginRight="12dp" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="21dp"
-        android:src="@drawable/ic_access_time_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/txtvTime"
-        app:layout_constraintStart_toEndOf="@+id/ivDetails"
-        tools:ignore="ContentDescription"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="21dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_edit_location_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView5"
-        app:layout_constraintEnd_toStartOf="@+id/txtvSource"
-        app:layout_constraintStart_toEndOf="@+id/ivDetails"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="21dp" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="14dp"
-        android:src="@drawable/ic_golf_course_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/txtvDestiination"
-        app:layout_constraintStart_toEndOf="@+id/ivDetails"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        tools:ignore="ContentDescription"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="12dp" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollIndicators="right"
+            android:scrollbarFadeDuration="3"
+            android:scrollbars="vertical"
+            tools:targetApi="m">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="18dp"
-        android:src="@drawable/ic_date_range_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/txtvDate"
-        app:layout_constraintStart_toEndOf="@+id/ivDetails"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        tools:ignore="ContentDescription"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="21dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginBottom="115dp"
-        android:layout_marginTop="115dp"
-        android:src="@drawable/ic_account_circle_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.4"
-        tools:ignore="ContentDescription" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_drive_eta_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtvCarid"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        tools:ignore="ContentDescription" />
+            <ImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/ivDetails"
+                android:layout_width="100dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="112dp"
+                android:src="@drawable/placeholder"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:transitionName="imageTransition"
+                tools:ignore="ContentDescription" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="55dp"
-        android:layout_marginStart="4dp"
-        android:src="@drawable/ic_watch_later_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/map"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription"
-        android:layout_marginLeft="4dp" />
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/ic_hourglass_full_black_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        tools:ignore="ContentDescription"
-        android:layout_marginLeft="4dp" />
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/user_info"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/icon_fullname" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Benamar Mourad"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="nameTransition"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/source_info"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/txtvSource"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Source"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText"
+                android:transitionName="sourceTransition"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/destination_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/txtvDestiination"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Destination"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="destinationTransition"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/date_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/txtvDate"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Date"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="dateTransition"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/time"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/txtvTime"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Time"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="timeTransition"/>
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/phone_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Phone"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="phoneTransition"/>
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/car_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/txtvCarid"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="CarId"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields"
+                android:transitionName="carIdTransition"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/duration_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Duration"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields" />
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/distance_info"
+                android:contentDescription="@string/todo"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:text="Distance"
+                android:textSize="24sp"
+                tools:ignore="HardcodedText,TextFields" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="328dp"
+                android:layout_height="180dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:context=".MapsActivity" />
+
+        </GridLayout>
+
+
+    </ScrollView>
+
 
 
 </android.support.constraint.ConstraintLayout>

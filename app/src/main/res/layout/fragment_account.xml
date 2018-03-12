@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageButton
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilephoto_acc"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
@@ -42,7 +42,8 @@
                 android:adjustViewBounds="false"
                 android:contentDescription="@string/imageuser"
                 android:cropToPadding="false"
-                app:srcCompat="@drawable/placeholder" />
+                android:background="@null"
+                android:src="@drawable/placeholder" />
 
             <ImageView
                 android:layout_width="45dp"

@@ -2,12 +2,19 @@ package com.example.mourad.navigationandroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -35,6 +42,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Arrays;
 
 public class FirstPage extends BaseActivity implements View.OnClickListener {
+
     private static final String TAG = FirstPage.class.getSimpleName();
     private static final int RC_SIGN_IN = 9001; //Request code for signing in
 
@@ -42,27 +50,44 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
     private CallbackManager callbackManager;
     protected DatabaseReference rootRef;
     protected User user;
+    protected ImageView carpool_vector;
+    protected Animation carpool;
 
 
 
     //push
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-      requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(R.layout.activity_first_page);
+
+
 
         if (mAuth.getCurrentUser()!=null){
             startActivity(new Intent(FirstPage.this, MainActivity.class));
             finish();
         }
 
+        carpool_vector = findViewById(R.id.carpool_vector);
+        carpool = AnimationUtils.loadAnimation(this,R.anim.carpool);
+        carpool_vector.setAnimation(carpool);
+
+       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.carpool_vector);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(),bitmap);
+        roundedBitmapDrawable.setCircular(true);
+        carpool_vector.setImageDrawable(roundedBitmapDrawable); */
+
+
         // Facebook SDK init
         mAuth = FirebaseAuth.getInstance();
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        setContentView(R.layout.activity_first_page);
 
         loginButton = findViewById(R.id.fb_login);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email"));

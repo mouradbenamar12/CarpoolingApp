@@ -46,13 +46,15 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class AccountFragment extends Fragment {
     private EditText birthday,fullName,Phone;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private Uri mCropImageUri;
-    private ImageButton imageButton;
+    private CircleImageView imageButton;
     private Spinner spinner;
     protected Button complet;
     private User user;

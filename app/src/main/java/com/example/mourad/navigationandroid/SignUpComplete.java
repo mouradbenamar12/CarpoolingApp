@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -64,9 +68,11 @@ public class SignUpComplete extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_sign_up_complete);
 
         fullName=findViewById(R.id.et_fullName);
@@ -74,6 +80,12 @@ public class SignUpComplete extends BaseActivity {
         birthday=findViewById(R.id.birthdayField);
         imageButton=findViewById(R.id.profilephoto);
         complet=findViewById(R.id.button2);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.placeholder);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(),bitmap);
+        roundedBitmapDrawable.setCircular(true);
+        imageButton.setImageDrawable(roundedBitmapDrawable);
+
         //progressBar = findViewById(R.id.progressbarUP);
 
         // Profile Google and Fb
@@ -320,8 +332,7 @@ public class SignUpComplete extends BaseActivity {
                            // progressBar.setVisibility(View.GONE);
                             hideProgressDialog();
                             imageStorage = taskSnapshot.getDownloadUrl().toString();
-                            Toast.makeText(getApplicationContext(), "Image is: " + imageStorage,
-                                    Toast.LENGTH_SHORT).show();
+
 
                             FirebaseUser _user = FirebaseAuth.getInstance().getCurrentUser();
                             FirebaseDatabase database_user = FirebaseDatabase.getInstance();
