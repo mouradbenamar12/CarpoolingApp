@@ -62,5 +62,6 @@ dependencies {
     compile 'com.akexorcist:googledirectionlibrary:1.0.4'
     compile 'com.github.ivbaranov:materialfavoritebutton:0.1.4'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.anjlab.android.iab.v3:library:1.0.44'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -18,7 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +38,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -62,6 +63,8 @@ public class AccountFragment extends Fragment {
     private String imageStorage;
     protected StorageReference mStorageRef;
     DatabaseReference usr;
+    protected ProgressBar progressBar;
+
 
 
     @Nullable
@@ -92,7 +95,7 @@ public class AccountFragment extends Fragment {
         imageButton=getView().findViewById(R.id.profilephoto_acc);
         complet=getView().findViewById(R.id.button2_acc);
         spinner=getView().findViewById(R.id.spinner_acc);
-        //progressBar = findViewById(R.id.progressbarUP);
+        progressBar = getView().findViewById(R.id.progressbarUP);
 
         // Profile Google and Fb
 
@@ -232,7 +235,6 @@ public class AccountFragment extends Fragment {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == -1) {
-                Toast.makeText(getContext(),"11111111",Toast.LENGTH_LONG).show();
                 image= result.getUri();
 
                 Glide.with(AccountFragment.this).load(image).into(imageButton);
@@ -246,7 +248,6 @@ public class AccountFragment extends Fragment {
     }
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE) {
-            Toast.makeText(getContext(),"555",Toast.LENGTH_LONG).show();
             if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // required permissions granted, start crop image activity
                 startCropImageActivity(mCropImageUri);
@@ -258,6 +259,8 @@ public class AccountFragment extends Fragment {
 
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
+                .setCropShape(CropImageView.CropShape.OVAL)
+                .setAutoZoomEnabled(false)
                 .setMinCropResultSize(500,500)
                 .setMaxCropResultSize(800,800)
                 .start(getContext(),AccountFragment.this);
@@ -305,9 +308,16 @@ public class AccountFragment extends Fragment {
                     .setValue(user, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-
                         }
                     });
+            FirebaseDatabase db = FirebaseDatabase.getInstance();
+            DatabaseReference Ways = db.getReference("Ways");
+            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                    .child("full_Name")
+                    .setValue(Name);
+            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                    .child("phone")
+                    .setValue(PHone);
         }
         if(image!=null) {
             mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -317,11 +327,9 @@ public class AccountFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
-                            // progressBar.setVisibility(View.GONE);
-                            imageStorage = taskSnapshot.getDownloadUrl().toString();
-                            Toast.makeText(getContext(), "Image is: " + imageStorage,
-                                    Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
 
+                            imageStorage = taskSnapshot.getDownloadUrl().toString();
                             FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                             DatabaseReference Users = database_user.getReference("Users");
                             DatabaseReference Ways = database_user.getReference("Ways");
@@ -336,7 +344,6 @@ public class AccountFragment extends Fragment {
                                     .child("Information").setValue(user, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-
                                     Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -372,11 +379,11 @@ public class AccountFragment extends Fragment {
                     }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    //progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
                     double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                    System.out.println("Upload is " + progress + "% done");
-                    //int currentprogress = (int) progress;
-                    //progressBar.setProgress(currentprogress);
+                    int currentprogress = (int) progress;
+                    System.out.println(currentprogress);
+                    progressBar.setProgress(currentprogress);
                 }
             });
 

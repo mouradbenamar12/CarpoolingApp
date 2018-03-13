@@ -2,12 +2,8 @@ package com.example.mourad.navigationandroid;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -200,7 +197,6 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
                             hideProgressDialog();
                             if (BuildConfig.DEBUG) {
                                 Toast.makeText(FirstPage.this, "Authentification failed", Toast.LENGTH_SHORT).show();
-                                signOut();
                             }
                         }
                     }

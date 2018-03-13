@@ -12,7 +12,6 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -183,7 +182,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             User user = new User();
             Intent intent = new Intent(context,OffreInformation.class);
             intent.putExtra("image",list.get(getLayoutPosition()).getImage_ways());
-            intent.putExtra("full Name",user.getFullName());
+            intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
             intent.putExtra("source",list.get(getLayoutPosition()).getSource());
             intent.putExtra("destination",list.get(getLayoutPosition()).getDestination());
             intent.putExtra("date",list.get(getLayoutPosition()).getDate());
