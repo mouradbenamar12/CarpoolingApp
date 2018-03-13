@@ -14,13 +14,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="185dp"
             android:padding="8dp">
 
 
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imageProfile"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
@@ -67,25 +65,25 @@
 
             <TextView
                 android:id="@+id/tvFullName"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/full_name_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile"
                 android:transitionName="nameTransition"
                 tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvSource"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvFullName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
@@ -93,108 +91,174 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="sourceTransition"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvDestination"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvSource"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="7dp"
                 android:layout_toEndOf="@+id/imageProfile"
                 android:layout_toRightOf="@+id/imageProfile"
-                android:layout_marginLeft="5dp"
+                android:paddingEnd="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/destination_ways"
-                android:textStyle="bold"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:layout_marginStart="5dp"
-                android:paddingEnd="5dp"
+                android:textStyle="bold"
                 android:transitionName="destinationTransition"
-                tools:ignore="RtlSymmetry,UnusedAttribute"/>
+                tools:ignore="RtlSymmetry,UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvDate"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDestination"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/date_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile"
                 android:transitionName="dateTransition"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
+
             <TextView
                 android:id="@+id/tvTime"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDate"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/time_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile"
                 android:transitionName="timeTransition"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
+
             <TextView
                 android:id="@+id/tvPhone"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvTime"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imageProfile"
+                android:layout_alignBottom="@+id/imgPhone"
+                android:layout_alignLeft="@+id/tvTime"
+                android:layout_alignStart="@+id/tvTime"
                 android:text="@string/phone_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile"
                 android:transitionName="phoneTransition"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
+
             <TextView
                 android:id="@+id/tvCarId"
-                android:layout_width="180dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvPhone"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imageProfile"
+                android:layout_alignLeft="@+id/tvTime"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/tvTime"
                 android:text="@string/rating_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/imageProfile"
                 android:transitionName="carIdTransition"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
 
             <ImageView
                 android:id="@+id/imgPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/tvCarId"
                 android:layout_alignLeft="@+id/wtsp"
                 android:layout_alignStart="@+id/wtsp"
+                android:layout_below="@+id/tvTime"
                 app:srcCompat="@drawable/ic_perm_phone_msg_black_24dp"
                 tools:ignore="ContentDescription,VectorDrawableCompat" />
 
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/wtsp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_toLeftOf="@+id/tvTime"
-                android:layout_toStartOf="@+id/tvTime"
-                android:text="delete "
-                tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imageProfile"
+                android:layout_toRightOf="@+id/imageProfile"
+                android:src="@drawable/user_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/tvSource"
+                android:layout_toEndOf="@+id/imageProfile"
+                android:layout_toRightOf="@+id/imageProfile"
+                android:src="@drawable/source_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_above="@+id/tvDate"
+                android:layout_toEndOf="@+id/imageProfile"
+                android:layout_toRightOf="@+id/imageProfile"
+                android:src="@drawable/destination_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="18dp"
+                android:layout_alignBottom="@+id/tvDate"
+                android:layout_toEndOf="@+id/imageProfile"
+                android:layout_toRightOf="@+id/imageProfile"
+                android:src="@drawable/date_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@+id/imageView5"
+                android:layout_alignStart="@+id/imageView5"
+                android:layout_alignTop="@+id/tvTime"
+                android:src="@drawable/time_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@+id/imageView3"
+                android:layout_alignStart="@+id/imageView3"
+                android:layout_alignTop="@+id/tvPhone"
+                android:src="@drawable/phone_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@+id/imageView5"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/imageView5"
+                android:src="@drawable/car_info"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                android:src="@drawable/delete_user"
+                tools:ignore="ContentDescription" />
 
         </RelativeLayout>
 

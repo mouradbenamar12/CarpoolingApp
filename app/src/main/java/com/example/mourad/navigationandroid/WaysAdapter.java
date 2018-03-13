@@ -112,13 +112,13 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         });
 
         if (list.get(position).getUID().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-            holder.btn_delete.setVisibility(View.VISIBLE);
+            holder.imageDelete.setVisibility(View.VISIBLE);
             holder.favoriteButton.setVisibility(View.GONE);
         }else {
-            holder.btn_delete.setVisibility(View.GONE);
+            holder.imageDelete.setVisibility(View.GONE);
         }
         final Rider_Ways rider=list.get(poss);
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+        holder.imageDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 removeAt(rider);
@@ -154,10 +154,9 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView imageWtsp,imageShare,imagePhone;
+        ImageView imageWtsp,imageShare,imagePhone,imageDelete;
         TextView tvFullName, tvSource, tvDestination, tvDate, tvTime,tvPhone, tvCarId;
         MaterialFavoriteButton favoriteButton;
-        Button btn_delete;
         CircleImageView imageProfile;
 
         ProductViewHolder(final View itemView) {
@@ -174,7 +173,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             imageWtsp=itemView.findViewById(R.id.wtsp);
             imageShare = itemView.findViewById(R.id.share);
             imagePhone = itemView.findViewById(R.id.imgPhone);
-            btn_delete = itemView.findViewById(R.id.btn_delete);
+            imageDelete = itemView.findViewById(R.id.imageDelete);
             itemView.setOnClickListener(this);
         }
 
