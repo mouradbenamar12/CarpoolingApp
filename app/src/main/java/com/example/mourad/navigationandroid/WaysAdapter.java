@@ -183,7 +183,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             User user = new User();
             Intent intent = new Intent(context,OffreInformation.class);
             intent.putExtra("image",list.get(getLayoutPosition()).getImage_ways());
-            intent.putExtra("full Name",user.getFullName());
+            intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
             intent.putExtra("source",list.get(getLayoutPosition()).getSource());
             intent.putExtra("destination",list.get(getLayoutPosition()).getDestination());
             intent.putExtra("date",list.get(getLayoutPosition()).getDate());
