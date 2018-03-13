@@ -15,5 +15,6 @@
         android:text="Remove ads for 0.99$"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="90dp" />
+        android:layout_marginLeft="90dp"
+        tools:ignore="HardcodedText" />
 </android.support.constraint.ConstraintLayout>
