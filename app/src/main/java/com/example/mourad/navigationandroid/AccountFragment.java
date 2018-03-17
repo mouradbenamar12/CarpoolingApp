@@ -260,9 +260,8 @@ public class AccountFragment extends Fragment {
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
                 .setCropShape(CropImageView.CropShape.OVAL)
-                .setAutoZoomEnabled(false)
-                .setMinCropResultSize(500,500)
-                .setMaxCropResultSize(800,800)
+                .setFixAspectRatio(true)
+                .setMinCropWindowSize(500,500)
                 .start(getContext(),AccountFragment.this);
     }
 
@@ -294,9 +293,9 @@ public class AccountFragment extends Fragment {
         String id = _user.getUid();
         if(image==null){
             FirebaseDatabase database_user=FirebaseDatabase.getInstance();
-            DatabaseReference Users=database_user.getReference("Users");
-            String Name=fullName.getText().toString();
-            String PHone=Phone.getText().toString();
+            final DatabaseReference Users=database_user.getReference("Users");
+            final String Name=fullName.getText().toString();
+            final String PHone=Phone.getText().toString();
             String BIrthday=birthday.getText().toString();
             String Gender=spinner.getSelectedItem().toString();
             String Email= user.getEmail();
@@ -311,13 +310,26 @@ public class AccountFragment extends Fragment {
                         }
                     });
             FirebaseDatabase db = FirebaseDatabase.getInstance();
-            DatabaseReference Ways = db.getReference("Ways");
-            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                    .child("full_Name")
-                    .setValue(Name);
-            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                    .child("phone")
-                    .setValue(PHone);
+            final DatabaseReference Ways = db.getReference("Ways");
+            Ways.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                .child("full_Name")
+                                .setValue(Name);
+                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                .child("phone")
+                                .setValue(PHone);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
         }
         if(image!=null) {
             mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -332,7 +344,7 @@ public class AccountFragment extends Fragment {
                             imageStorage = taskSnapshot.getDownloadUrl().toString();
                             FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                             DatabaseReference Users = database_user.getReference("Users");
-                            DatabaseReference Ways = database_user.getReference("Ways");
+                            final DatabaseReference Ways = database_user.getReference("Ways");
                             String name = fullName.getText().toString();
                             String phone = Phone.getText().toString();
                             String Birthday = birthday.getText().toString();
@@ -347,27 +359,42 @@ public class AccountFragment extends Fragment {
                                     Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                 }
                             });
-                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("phone".replace(".", ","))
-                                    .setValue(user.getPhone(), new DatabaseReference.CompletionListener() {
-                                        @Override
-                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                        }
-                                    });
-                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("full_Name".replace(".", ","))
-                                    .setValue(user.getFullName(), new DatabaseReference.CompletionListener() {
-                                        @Override
-                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                        }
-                                    });
-                            Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("image_ways".replace(".", ","))
-                                    .setValue(user.getPhotoUrl(), new DatabaseReference.CompletionListener() {
-                                        @Override
-                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                        }
-                                    });
+
+                            Ways.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .child("phone".replace(".", ","))
+                                                .setValue(user.getPhone(), new DatabaseReference.CompletionListener() {
+                                                    @Override
+                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                    }
+                                                });
+                                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .child("full_Name".replace(".", ","))
+                                                .setValue(user.getFullName(), new DatabaseReference.CompletionListener() {
+                                                    @Override
+                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                    }
+                                                });
+                                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .child("image_ways".replace(".", ","))
+                                                .setValue(user.getPhotoUrl(), new DatabaseReference.CompletionListener() {
+                                                    @Override
+                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                    }
+                                                });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

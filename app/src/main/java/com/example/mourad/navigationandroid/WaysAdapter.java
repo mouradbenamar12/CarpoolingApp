@@ -6,6 +6,7 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
@@ -202,9 +203,14 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             pairs[6]=new Pair<View,String>(tvPhone,"phoneTransition");
             pairs[7]=new Pair<View,String>(tvCarId,"carIdTransition");
 
-            @SuppressLint({"NewApi", "LocalSuppress"})
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
-            context.startActivity(intent,options.toBundle());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+                @SuppressLint({"NewApi", "LocalSuppress"})
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
+                context.startActivity(intent,options.toBundle());
+            }else {
+                context.startActivity(intent);
+            }
 
 
         }

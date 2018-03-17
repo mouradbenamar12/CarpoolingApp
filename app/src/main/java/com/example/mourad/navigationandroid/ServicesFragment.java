@@ -45,7 +45,6 @@ public class ServicesFragment extends Fragment implements BillingProcessor.IBill
     }
     @Override
     public void onPurchaseHistoryRestored() {
-        Toast.makeText(getContext(),"Already purchased",Toast.LENGTH_LONG).show();
 
     }
 
