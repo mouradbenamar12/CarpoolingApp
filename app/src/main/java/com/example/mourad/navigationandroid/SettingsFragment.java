@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,8 +31,7 @@ public class SettingsFragment extends Fragment implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private boolean notificationsStatut;
-    protected GoogleApiClient mGoogleApiClient;
-    FirebaseAuth mAuth;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -103,7 +101,14 @@ public class SettingsFragment extends Fragment implements
 
             }
         });
+
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void addSwitchNotification(boolean notifItem){
         FirebaseDatabase database_user = FirebaseDatabase.getInstance();
         DatabaseReference Users = database_user.getReference("Users");
@@ -122,6 +127,9 @@ public class SettingsFragment extends Fragment implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+
+
     public void alertsignout()
     {
         AlertDialog.Builder alertDialog2 = new
@@ -166,4 +174,5 @@ public class SettingsFragment extends Fragment implements
 
 
     }
+
 }

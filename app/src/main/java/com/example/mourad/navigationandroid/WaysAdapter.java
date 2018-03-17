@@ -180,7 +180,6 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         @SuppressLint("NewApi")
         @Override
         public void onClick(View v) {
-            User user = new User();
             Intent intent = new Intent(context,OffreInformation.class);
             intent.putExtra("image",list.get(getLayoutPosition()).getImage_ways());
             intent.putExtra("full Name",list.get(getLayoutPosition()).getFull_Name());
