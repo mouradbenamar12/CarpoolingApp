@@ -54,13 +54,14 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
+        try {
         MyContext= getActivity();
 
         return inflater.inflate(R.layout.fragment_home, container, false);
-
-
-
+        }catch (Exception e){
+            e.getMessage();
+        }
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -284,16 +285,13 @@ public class HomeFragment extends Fragment {
 
                 }
             });
-
-
-
-
         }
 
         @Override
         public void onCancelled(DatabaseError error) {
             showProgressDialog(false,0);
         }
+
     });
 }
     private void addNotificationItem(int notifItem){

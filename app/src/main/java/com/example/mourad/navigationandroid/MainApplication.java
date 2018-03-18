@@ -6,10 +6,6 @@ import android.support.multidex.MultiDexApplication;
 
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate;
 
-/**
- * Created by abdelle on 3/17/18.
- */
-
 public class MainApplication extends MultiDexApplication {
     LocalizationApplicationDelegate localizationDelegate = new LocalizationApplicationDelegate(this);
 

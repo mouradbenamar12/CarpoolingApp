@@ -45,7 +45,7 @@
                 android:onClick="editphoto"
                 android:background="@null"
                 app:srcCompat="@drawable/placeholder"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <ImageView
                 android:layout_width="45dp"
@@ -54,7 +54,7 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/manssilhouette"
                 android:layout_marginStart="10dp"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <EditText
                 android:id="@+id/et_fullName"
@@ -72,7 +72,8 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/handset"
                 android:layout_marginStart="10dp"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:id="@+id/et_phone"
@@ -90,7 +91,8 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/birthday"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:id="@+id/birthdayField"
@@ -108,7 +110,8 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/gender"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <Spinner
                 android:id="@+id/spinner"
@@ -132,7 +135,8 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/animation_btn2"
                 android:text="@string/complet_signup"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded" />
 
         </GridLayout>
 

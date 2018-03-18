@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -203,7 +202,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             pairs[7]=new Pair<View,String>(tvCarId,"carIdTransition");
 
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                 @SuppressLint({"NewApi", "LocalSuppress"})
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
                 context.startActivity(intent,options.toBundle());

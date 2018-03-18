@@ -22,21 +22,25 @@ public class Language extends LocalizationActivity {
         setLanguage("fr");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();
     }
+
     public void ara_img(View view){
         setLanguage("ar");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();
 
     }
+
     public void eng_img(View view){
         setLanguage("en");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();
 
     }
+
     public void ger_img(View view){
         setLanguage("de");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();
 
     }
+
     public void spn_img(View view){
         setLanguage("es");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();

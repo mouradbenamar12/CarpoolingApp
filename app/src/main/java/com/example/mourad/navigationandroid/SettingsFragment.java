@@ -31,6 +31,7 @@ public class SettingsFragment extends Fragment implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private boolean notificationsStatut;
+    private Button modeNight;
 
     @Nullable
     @Override
@@ -58,6 +59,13 @@ public class SettingsFragment extends Fragment implements
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(),Language.class));
+            }
+        });
+        modeNight = view.findViewById(R.id.modeNight);
+        modeNight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),ThemeActivity.class));
             }
         });
 

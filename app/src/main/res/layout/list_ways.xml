@@ -9,12 +9,13 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cbd4ca"
+        android:background="?attr/cardbackground"
         android:layout_margin="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="185dp"
+            android:background="?attr/cardbackground"
             android:padding="8dp">
 
 
@@ -91,7 +92,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="sourceTransition"
-                tools:ignore="UnusedAttribute" />
+                tools:ignore="RtlHardcoded,UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvDestination"
@@ -109,7 +110,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="destinationTransition"
-                tools:ignore="RtlSymmetry,UnusedAttribute" />
+                tools:ignore="RtlHardcoded,RtlSymmetry,UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvDate"

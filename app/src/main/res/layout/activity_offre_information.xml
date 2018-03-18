@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_info"
-    tools:context="com.example.mourad.navigationandroid.SignUpComplete">
+    tools:context="com.example.mourad.navigationandroid.OffreInformation">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:transitionName="imageTransition"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
 
             <ImageView
@@ -57,7 +57,7 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/user_info"
                 android:layout_marginStart="10dp"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -76,7 +76,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/source_info"
                 android:layout_marginStart="10dp"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtvSource"
@@ -95,7 +96,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/destination_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtvDestiination"
@@ -114,7 +116,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/date_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtvDate"
@@ -133,7 +136,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/time_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtvTime"
@@ -151,7 +155,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/phone_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_phone"
@@ -169,7 +174,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/car_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txtvCarid"
@@ -188,7 +194,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/duration_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tvDuration"
@@ -205,7 +212,8 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/distance_info"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tvDistance"
@@ -216,15 +224,16 @@
                 android:textSize="24sp"
                 tools:ignore="HardcodedText,TextFields" />
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="1dp"
+                android:layout_height="10dp" />
 
             <fragment xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="328dp"
-                android:layout_height="180dp"
+                android:layout_width="280dp"
+                android:layout_height="170dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

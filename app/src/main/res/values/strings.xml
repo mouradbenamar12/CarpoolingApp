@@ -46,51 +46,10 @@
     <string name="date_propose">Date</string>
     <string name="post_propose">Post</string>
     <string name="carid_propose">CarID</string>
-    <string name="share">Share</string>
-    <string name="title_share">Share!</string>
-    <string name="html" tools:ignore="StringEscaping" translatable="false">
-                <![CDATA[
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>test</title>
-	<meta charset="utf-8">
-	<style type="text/css">
-		h1{
-			color: blue;
-		}
-		body {
-			    background-color: lightblue;
-		}
-	</style>
-</head>
-<body>
-	<h1>What is carpooling?</h1>
-
-<p>Carpooling is a device that aims to reduce fuel costs while protecting our planet. That is to say that it is a way of driving differently by sharing one's car with people making the same journey.</p>
-<ul>
-<li><h2>usage</h2></li>
-
-<p>Carpooling is a modern hitchhiking device that connects potential road mates. This system is therefore suitable for drivers and passengers who regularly make the same journey or more punctual.</p>
-
-<li><h2>Vous êtes passager ?</h2> </li>
-
-<p>You want to travel cheaper, faster. A simple and economical solution that will allow you to expand your social network and make money and time, all in a secure and friendly atmosphere. Use the "Pip Yallah" carpool application in Morocco and book a seat now!</p>
-
-<li><h2>Are you a driver?</h2></li>
-
-<p>You have a vehicle and want to offer your free seats. Offer a carpooling solution in Morocco to share the cost of your trip, reduce Co2 emissions and congestion, and expand your circle of friends.</p>
-<br/>
-</ul>
-
-<footer>Pip Yallah Application, 2018.</footer>
-<br/>
-</body>
-</html>
-                ]]>
-    </string>
+    <string name="share">share</string>
     <string name="update">Update</string>
+    <string name="mode_dark">Mode Dark</string>
+    <string name="enable_mode_night">Enable Mode Night</string>
     <string name="francais_txt" translatable="false">Français</string>
     <string name="english_txt" translatable="false">English</string>
     <string name="arabic_txt" translatable="false">العربية</string>
@@ -99,9 +58,18 @@
     <string name="change_language">Change Language</string>
     <string name="logout">Logout</string>
     <string name="notifications">Notifications</string>
-    <string name="send_verification">send verification</string>
     <string name="btn_signup">Signup</string>
     <string name="Share_txt">If you find our app useful for you, you can share this free app from here with your friends.</string>
     <string name="btn_later">Later</string>
     <string name="change_language_succes">the Language is successfully Changed</string>
+    <string name="dismiss">dismiss</string>
+    <string name="about_body"><![CDATA[
+        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
+        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
+        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
+        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    ]]></string>
+    <string name="syncing">Syncing …</string>
 </resources>

@@ -21,7 +21,8 @@
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/btn_gmail"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="32dp" />
+        android:layout_marginRight="32dp"
+        tools:ignore="RtlHardcoded" />
 
 
     <Button

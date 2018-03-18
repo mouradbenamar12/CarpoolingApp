@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ds" >
+        <attr name="backgroundcolor" format="color|reference" />
+        <attr name="cardbackground" format="color|reference" />
+        <attr name="textcolor" format="color|reference" />
+        <attr name="tintcolor" format="color|reference" />
+        <attr name="buttoncolor" format="color|reference" />
+        <attr name="bg_nav_header" format="color|reference"/>
+        <attr name="bg_item" format="color|reference"/>
+        <attr name="bg_name" format="color|reference"/>
+        <attr name="bg_email" format="color|reference"/>
+        <attr name="bg_NavigationView" format="color|reference"/>
+
+
+    </declare-styleable>
+
+</resources>

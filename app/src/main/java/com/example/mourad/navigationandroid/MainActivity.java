@@ -44,6 +44,13 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPref sharedpref = new SharedPref(this);
+
+        if(sharedpref.loadNightModeState()) {
+            setTheme(R.style.darktheme);
+        } else
+            setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
       /*  requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -172,7 +179,7 @@ public class MainActivity extends BaseActivity
                         .show();
                 break;
             case R.id.nav_about :
-                fragment = new AboutFragment();
+                AboutDialog.show(MainActivity.this);
                 break;
 
         }

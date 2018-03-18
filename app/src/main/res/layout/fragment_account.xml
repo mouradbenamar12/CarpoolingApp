@@ -49,7 +49,7 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/manssilhouette"
                 android:layout_marginStart="10dp"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,RtlHardcoded" />
 
             <EditText
                 android:id="@+id/et_fullName_acc"
@@ -85,7 +85,8 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/birthday"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <EditText
                 android:id="@+id/birthdayField_acc"
@@ -102,7 +103,8 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/gender"
                 android:contentDescription="@string/todo"
-                android:layout_marginStart="10dp" />
+                android:layout_marginStart="10dp"
+                tools:ignore="RtlHardcoded" />
 
             <Spinner
                 android:id="@+id/spinner_acc"
@@ -125,7 +127,8 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/animation_btn2"
                 android:text="@string/update"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded" />
 
         </GridLayout>
 

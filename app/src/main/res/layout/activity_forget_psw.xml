@@ -113,7 +113,8 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/activity_forgot_psw"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/textView6"
@@ -127,7 +128,8 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/signUp"
         app:layout_constraintEnd_toStartOf="@+id/signUp"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/textView7"

@@ -33,54 +33,24 @@
     <string name="post_propose">نشر</string>
     <string name="carid_propose">معرف السيارة</string>
     <string name="share">شارك</string>
-    <string name="html" tools:ignore="StringEscaping" translatable="false">
-                <![CDATA[
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>test</title>
-	<meta charset="utf-8">
-	<style type="text/css">
-		h1{
-			color: blue;
-		}
-		body {
-			    background-color: lightblue;
-		}
-	</style>
-</head>
-<body>
-	<h1>Qu\'est-ce que le covoiturage ?</h1>
-
-<p>Le covoiturage est un dispositif qui a pour vocation de réduire les dépenses de carburant tout en protégeant notre planète. C\'est-à-dire que c\'est une façon de rouler autrement en partageant sa voiture avec des personnes effectuant le même trajet.</p>
-<ul>
-<li><h2>Fonctionnement</h2></li>
-
-<p>Le covoiturage est un dispositif d\'auto-stop moderne qui met en contact des compagnons de route potentiels. Ce système est donc adapté aux conducteurs et passagers qui effectuent régulièrement le même trajet ou de façon plus ponctuelle.</p>
-
-<li><h2>Vous êtes passager ?</h2> </li>
-
-<p>Vous voulez voyager moins cher, plus rapide. Une solution simple et économique, qui vous permettra d\'élargir votre réseau social et de gagner de l\'argent et du temps, le tout dans une ambiance sécurisée et conviviale. Utilisez l\'applcation "Pip Yallah" de covoiturage au Maroc  et réservez une place dès maintenant! </p>
-
-<li><h2>Vous êtes conducteur ?</h2></li>
-
-<p>Vous disposez d\’un véhicule et voulez proposer vos places libres. Offrez une solution de covoiturage au Maroc afin de partager les frais de votre voyage, de réduire l\'émission de Co2 et l\’embouteillage, et de développer votre cercle de connaissances/amis.</p>
-<br/>
-</ul>
-
-<footer>Application Pip Yallah , 2018.</footer>
-<br/>
-</body>
-</html>
-                ]]>
-    </string>
     <string name="update">تحديث</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="logout">الخروج</string>
     <string name="notifications">إشعارات</string>
     <string name="send_verification">إرسال التحقق</string>
     <string name="btn_signup">سجل</string>
+    <string name="mode_dark">وضع الليل</string>
+    <string name="enable_mode_night">تشغيل وضع الليل</string>
+    <string name="dismiss">رفض</string>
+    <string name="about_body"><![CDATA[
+        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
+        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
+        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
+        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    ]]></string>
+    <string name="syncing">تزامن …</string>
     <string name="Share_txt">إذا وجدت أن تطبيقنا مفيد لك ، يمكنك مشاركة هذا التطبيق المجاني من هنا مع أصدقائك.</string>
     <string name="btn_later">لاحقا</string>
     <string name="title_share">شارك!</string>

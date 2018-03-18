@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
+<resources>
     <string name="home">Accueil</string>
     <string name="services">Services</string>
     <string name="my_ways">Mes Trajets</string>
@@ -38,50 +37,20 @@
     <string name="change_language">Changer la Langue</string>
     <string name="logout">Déconcentrer</string>
     <string name="notifications">Notifications</string>
-    <string name="html" tools:ignore="StringEscaping">
-                <![CDATA[
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>test</title>
-	<meta charset="utf-8">
-	<style type="text/css">
-		h1{
-			color: blue;
-		}
-		body {
-			    background-color: lightblue;
-		}
-	</style>
-</head>
-<body>
-	<h1>Qu\'est-ce que le covoiturage ?</h1>
-
-<p>Le covoiturage est un dispositif qui a pour vocation de réduire les dépenses de carburant tout en protégeant notre planète. C\'est-à-dire que c\'est une façon de rouler autrement en partageant sa voiture avec des personnes effectuant le même trajet.</p>
-<ul>
-<li><h2>Fonctionnement</h2></li>
-
-<p>Le covoiturage est un dispositif d\'auto-stop moderne qui met en contact des compagnons de route potentiels. Ce système est donc adapté aux conducteurs et passagers qui effectuent régulièrement le même trajet ou de façon plus ponctuelle.</p>
-
-<li><h2>Vous êtes passager ?</h2> </li>
-
-<p>Vous voulez voyager moins cher, plus rapide. Une solution simple et économique, qui vous permettra d\'élargir votre réseau social et de gagner de l\'argent et du temps, le tout dans une ambiance sécurisée et conviviale. Utilisez l\'applcation "Pip Yallah" de covoiturage au Maroc  et réservez une place dès maintenant! </p>
-
-<li><h2>Vous êtes conducteur ?</h2></li>
-
-<p>Vous disposez d\’un véhicule et voulez proposer vos places libres. Offrez une solution de covoiturage au Maroc afin de partager les frais de votre voyage, de réduire l\'émission de Co2 et l\’embouteillage, et de développer votre cercle de connaissances/amis.</p>
-<br/>
-</ul>
-
-<footer>Application Pip Yallah , 2018.</footer>
-<br/>
-</body>
-</html>
-                ]]>
-    </string>
     <string name="send_verification">Envoyer Verification</string>
     <string name="btn_signup">S\'inscrire</string>
+    <string name="mode_dark">Mode de Nuit</string>
+    <string name="enable_mode_night">Activer Mode de Nuit</string>
+    <string name="dismiss">rejeter</string>
+    <string name="about_body"><![CDATA[
+        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
+        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
+        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
+        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    ]]></string>
+    <string name="syncing">Synchronisation …</string>
     <string name="Share_txt">Si vous trouvez notre application utile pour vous, vous pouvez partager cette application gratuite d\'ici avec vos amis.</string>
     <string name="btn_later">Plus tard</string>
     <string name="title_share">Partager!</string>

@@ -40,6 +40,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -241,8 +242,9 @@ public class SignUpComplete extends BaseActivity {
 
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
-                .setMinCropResultSize(500,500)
-                .setMaxCropResultSize(800,800)
+                .setCropShape(CropImageView.CropShape.OVAL)
+                .setFixAspectRatio(true)
+                .setMinCropWindowSize(500,500)
                 .start(this);
     }
     public void editphoto(View view){

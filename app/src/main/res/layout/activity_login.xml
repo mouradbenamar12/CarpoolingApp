@@ -23,7 +23,8 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/logo"
@@ -40,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <EditText
         android:id="@+id/login_email"
@@ -60,7 +61,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/log_icon"
         app:layout_constraintStart_toStartOf="@+id/etPsw"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        tools:ignore="RtlHardcoded" />
 
     <EditText
         android:id="@+id/etPsw"
@@ -76,7 +78,8 @@
         android:paddingRight="30dp"
         android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/btnSignIn"
@@ -93,20 +96,19 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/log_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:srcCompat="@drawable/user_icon"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <Button
         android:id="@+id/forget_psw"
@@ -126,7 +128,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
-        tools:targetApi="jelly_bean_mr2" />
+        tools:targetApi="jelly_bean_mr2"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/signUp"
@@ -146,7 +149,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        tools:targetApi="kitkat_watch" />
+        tools:targetApi="kitkat_watch"
+        tools:ignore="RtlHardcoded" />
 
     <ImageView
         android:id="@+id/imageView4"
