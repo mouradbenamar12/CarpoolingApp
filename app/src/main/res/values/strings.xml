@@ -46,7 +46,8 @@
     <string name="date_propose">Date</string>
     <string name="post_propose">Post</string>
     <string name="carid_propose">CarID</string>
-    <string name="share">share</string>
+    <string name="share">Share</string>
+    <string name="title_share">Share!</string>
     <string name="html" tools:ignore="StringEscaping" translatable="false">
                 <![CDATA[
 
@@ -100,4 +101,7 @@
     <string name="notifications">Notifications</string>
     <string name="send_verification">send verification</string>
     <string name="btn_signup">Signup</string>
+    <string name="Share_txt">If you find our app useful for you, you can share this free app from here with your friends.</string>
+    <string name="btn_later">Later</string>
+    <string name="change_language_succes">the Language is successfully Changed</string>
 </resources>

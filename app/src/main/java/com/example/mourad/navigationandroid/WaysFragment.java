@@ -41,7 +41,7 @@ public class WaysFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("My Ways");
+        getActivity().setTitle(R.string.my_ways);
         myRef = FirebaseDatabase.getInstance().getReference("Ways");
         empty_view=view.findViewById(R.id.empty_view);
         recyclerView_current = view.findViewById(R.id.recyclerView_current);

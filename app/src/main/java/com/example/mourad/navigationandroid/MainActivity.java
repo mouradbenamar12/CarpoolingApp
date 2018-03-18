@@ -1,5 +1,6 @@
 package com.example.mourad.navigationandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,7 +16,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -145,7 +149,27 @@ public class MainActivity extends BaseActivity
                 fragment = new SettingsFragment();
                 break;
             case R.id.nav_share :
-                fragment = new ShareFragment();
+                new MaterialStyledDialog.Builder(this)
+                        .setTitle(R.string.title_share)
+                        .setDescription(R.string.Share_txt)
+                        .setIcon(R.drawable.logo_icon)
+                        .setHeaderColor(R.color.appcolor)
+                        .setHeaderDrawable(R.drawable.share_header)
+                        .withDialogAnimation(true)
+                        .setPositiveText(R.string.share)
+                        .setCancelable(false)
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                                myIntent.setType("text/plain");
+                                String shareBody="Hey check out app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus";
+                                myIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+                                startActivity(Intent.createChooser(myIntent, "Share Using"));
+                            }
+                        })
+                        .setNegativeText(R.string.btn_later)
+                        .show();
                 break;
             case R.id.nav_about :
                 fragment = new AboutFragment();

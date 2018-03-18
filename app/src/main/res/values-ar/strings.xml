@@ -78,7 +78,11 @@
     <string name="update">تحديث</string>
     <string name="change_language">تغيير اللغة</string>
     <string name="logout">الخروج</string>
-    <string name="notifications">Notifications</string>
+    <string name="notifications">إشعارات</string>
     <string name="send_verification">إرسال التحقق</string>
     <string name="btn_signup">سجل</string>
+    <string name="Share_txt">إذا وجدت أن تطبيقنا مفيد لك ، يمكنك مشاركة هذا التطبيق المجاني من هنا مع أصدقائك.</string>
+    <string name="btn_later">لاحقا</string>
+    <string name="title_share">شارك!</string>
+    <string name="change_language_succes">تم تغيير اللغة بنجاح</string>
 </resources>

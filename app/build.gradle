@@ -64,5 +64,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.anjlab.android.iab.v3:library:1.0.44'
     compile 'com.akexorcist:localizationactivity:1.2.2'
+    compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
 }
 apply plugin: 'com.google.gms.google-services'

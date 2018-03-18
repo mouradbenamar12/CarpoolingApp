@@ -31,7 +31,7 @@
     <string name="time_propose">Hora</string>
     <string name="date_propose">Fecha</string>
     <string name="post_propose">Enviar</string>
-    <string name="carid_propose">Identificación del coche</string>
+    <string name="carid_propose">ID del coche</string>
     <string name="share">compartir</string>
     <string name="html" tools:ignore="StringEscaping" translatable="false">
                 <![CDATA[
@@ -81,4 +81,8 @@
     <string name="notifications">Notificaciones</string>
     <string name="send_verification">enviar verificación</string>
     <string name="btn_signup">Regístrate</string>
+    <string name="Share_txt">Si encuentra que nuestra aplicación es útil para usted, puede compartir esta aplicación gratuita desde aquí con sus amigos.</string>
+    <string name="btn_later">Luego</string>
+    <string name="title_share">compartir!</string>
+    <string name="change_language_succes">el idioma se modificó con éxito</string>
 </resources>

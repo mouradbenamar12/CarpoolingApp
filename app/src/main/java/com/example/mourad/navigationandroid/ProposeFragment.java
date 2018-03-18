@@ -46,7 +46,7 @@ public class ProposeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Propose a Way");
+        getActivity().setTitle(R.string.propose_a_way);
 
         date = getView().findViewById(R.id.et_date);
         time = getView().findViewById(R.id.et_time);

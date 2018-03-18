@@ -1,14 +1,12 @@
 package com.example.mourad.navigationandroid;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -44,7 +42,6 @@ public class HomeFragment extends Fragment {
     private List<Rider_Ways> list = new ArrayList<>();
     private DatabaseReference myRef,mynotif;
     private RecyclerView.Adapter adapter ;
-    private static int id=1;
     protected Context MyContext;
 
     private boolean notificationsStatut;
@@ -70,7 +67,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Home");
+        getActivity().setTitle(R.string.home);
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -80,10 +77,7 @@ public class HomeFragment extends Fragment {
         mynotif  = FirebaseDatabase.getInstance().getReference("Users");
 
         progress = new ProgressDialog(getActivity());
-        progress.setTitle("loading ... ");
-        progress.setMessage("Syncing ...");
-        progress.setCancelable(false);
-        progress.show();
+        showProgressDialog(true,60000);
 
         fav_image = view.findViewById(R.id.fav);
 
@@ -132,7 +126,8 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onCancelled(DatabaseError error) {
-                        progress.dismiss();
+                        showProgressDialog(false,0);
+
                     }
                 });
             }
@@ -206,8 +201,9 @@ public class HomeFragment extends Fragment {
                 .build();
 
                 NotificationManager notificationManager = (NotificationManager) MyContext.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, notification);
-                id++;
+        if (notificationManager != null) {
+            notificationManager.notify(1, notification);
+        }
     }
  /*   private PendingIntent pendingIntentForNotification() {
         //Create the intent you want to show when the notification is clicked
@@ -236,8 +232,7 @@ public class HomeFragment extends Fragment {
 
             adapter  = new WaysAdapter(list,getContext());
             recyclerView.setAdapter(adapter);
-            progress.dismiss();
-
+            showProgressDialog(false,0);
 
             FirebaseDatabase database_user = FirebaseDatabase.getInstance();
             DatabaseReference Users = database_user.getReference("Users");
@@ -277,7 +272,7 @@ public class HomeFragment extends Fragment {
 
                             @Override
                             public void onCancelled(DatabaseError error) {
-                                progress.dismiss();
+                                showProgressDialog(false,0);
                             }
                         });
                     }
@@ -297,7 +292,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onCancelled(DatabaseError error) {
-            progress.dismiss();
+            showProgressDialog(false,0);
         }
     });
 }
@@ -313,6 +308,30 @@ public class HomeFragment extends Fragment {
 
                     }
                 });
+    }
+    private void showProgressDialog(boolean show, long time) {
+        try {
+            if (progress != null) {
+                if (show) {
+                    progress.setTitle("loading ... ");
+                    progress.setMessage("Syncing ...");
+                    progress.setCancelable(false);
+                    progress.show();
+                    new Handler().postDelayed(new Runnable() {
+                        public void run() {
+                            if(progress!=null && progress.isShowing()) {
+                                progress.dismiss();
+                                Toast.makeText(getActivity(), "Couldn't connect, please try again later.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }, time);
+                } else {
+                    progress.dismiss();
+                }
+            }
+        }catch(IllegalArgumentException ignored){
+        }catch(Exception ignored){
+        }
     }
 
 
