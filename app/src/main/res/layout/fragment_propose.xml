@@ -71,7 +71,7 @@
             android:ems="10"
             android:hint="@string/carid_propose"
             android:inputType="textPersonName"
-            tools:ignore="TextFields" />
+            tools:ignore="TextFields"/>
     </FrameLayout>
 
 

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mourad.navigationandroid.Language">
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollIndicators="right"
+        android:scrollbarFadeDuration="3"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="m">
+
+        <ImageView
+            android:id="@+id/france_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="45dp"
+            android:contentDescription="@string/todo"
+            android:onClick="fr_img"
+            app:srcCompat="@drawable/france" />
+
+        <TextView
+            android:id="@+id/france_txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="45dp"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:onClick="fr_img"
+            android:text="@string/francais_txt"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/english_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo"
+            android:onClick="eng_img"
+            app:srcCompat="@drawable/unitedkingdom" />
+
+        <TextView
+            android:id="@+id/english_txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:onClick="eng_img"
+            android:text="@string/english_txt"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/arabic_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo"
+            android:onClick="ara_img"
+            app:srcCompat="@drawable/saudiarabia" />
+
+        <TextView
+            android:id="@+id/arabic_txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:onClick="ara_img"
+            android:text="@string/arabic_txt"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/german_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo"
+            android:onClick="ger_img"
+            app:srcCompat="@drawable/germany" />
+
+        <TextView
+            android:id="@+id/german_txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:onClick="ger_img"
+            android:text="@string/deutsche_txt"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/spanish_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo"
+            android:onClick="spn_img"
+            app:srcCompat="@drawable/spain" />
+
+        <TextView
+            android:id="@+id/spanish_txtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:elegantTextHeight="false"
+            android:freezesText="false"
+            android:onClick="spn_img"
+            android:text="@string/espanol_txt"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>

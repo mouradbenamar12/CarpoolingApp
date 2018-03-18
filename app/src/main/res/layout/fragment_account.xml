@@ -40,10 +40,10 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="10dp"
                 android:adjustViewBounds="false"
-                android:contentDescription="@string/imageuser"
                 android:cropToPadding="false"
                 android:background="@null"
-                android:src="@drawable/placeholder" />
+                android:src="@drawable/placeholder"
+                tools:ignore="RtlHardcoded" />
 
             <ImageView
                 android:layout_width="45dp"
@@ -52,7 +52,7 @@
                 android:layout_marginTop="13dp"
                 app:srcCompat="@drawable/manssilhouette"
                 android:layout_marginStart="10dp"
-                android:contentDescription="@string/icon_fullname" />
+                tools:ignore="ContentDescription" />
 
             <EditText
                 android:id="@+id/et_fullName_acc"

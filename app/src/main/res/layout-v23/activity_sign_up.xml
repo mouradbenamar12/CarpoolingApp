@@ -86,7 +86,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/animation_btn2"
-            android:text="@string/signup"
+            android:text="@string/btn_signup"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold|italic"

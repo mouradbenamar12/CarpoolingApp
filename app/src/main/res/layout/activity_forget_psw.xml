@@ -74,13 +74,12 @@
         android:layout_height="31dp"
         android:layout_marginEnd="17dp"
         android:layout_marginStart="30dp"
-        android:contentDescription="@string/email"
         app:layout_constraintBottom_toBottomOf="@+id/frg_email"
         app:layout_constraintEnd_toStartOf="@+id/frg_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frg_email"
         app:srcCompat="@drawable/email"
-        tools:ignore="RtlCompat" />
+        tools:ignore="ContentDescription,RtlCompat" />
 
     <Button
         android:id="@+id/loginForgetPage"

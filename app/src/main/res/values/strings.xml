@@ -1,97 +1,53 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Pip Yalla</string>
+    <string name="app_name" translatable="false">Pip Yalla</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="action_settings">Logout</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="services">Services</string>
     <string name="my_ways">My ways</string>
     <string name="my_account">My account</string>
     <string name="communicate">Communicate</string>
-    <string name="about">About</string>
+    <string name="about">About</string>c
     <string name="settings">Settings</string>
-    <string name="About">Abouuuuuuuuuuuuuuuut</string>
-    <string name="Home">Hommmmme</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
-    <string name="pass">Pasword</string>
-    <string name="email">Email</string>
     <string name="mail">E_mail</string>
     <string name="confirm_password">Confirm password</string>
     <string name="full_name">Full Name</string>
-    <string name="todo">TODO</string>
+    <string name="todo" translatable="false">TODO</string>
     <string name="phone">Phone</string>
-    <string name="home2">Home</string>
-    <string name="title_activity_home2">home2Activity</string>
     <string name="forgot_your_password">Forgot your password?</string>
-    <string name="sing_up_now">Sing Up now</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="signup_now">Signup Now</string>
     <string name="don_t_have_an_acount">Don\'t have an acount?</string>
     <string name="already_have_an_account">Already have an account?</string>
-    <string name="sign_up_now">Sign Up Now</string>
-    <string name="signup">SignUp</string>
-    <string name="login1">Login</string>
-    <string name="loginFirstPage">Login</string>
-    <string name="sing_up_First_page">Sing Up</string>
     <string name="reset_password">Reset Password</string>
-    <string name="facebook_app_id">180851565981014</string>
-    <string name="facebook_app_secret">abca3cd3ad9190315bb399c4dca5d9ea</string>
+    <string name="facebook_app_id" translatable="false">180851565981014</string>
+    <string name="facebook_app_secret" translatable="false">abca3cd3ad9190315bb399c4dca5d9ea</string>
     <string name="email_or_username">Email or Username</string>
-    <string name="account">Account</string>
-    <string name="shaare">Share</string>
-    <string name="my_wayss">My Ways</string>
-    <string name="android_studio">Android Studio</string>
-    <string name="android_studio_android_com">android.studio@android.com</string>
-    <string name="imag_nav">img nav</string>
-    <string name="loading">loading ...</string>
-    <string name="imageuser">imageUser</string>
+    <string name="loading">loading …</string>
     <string name="birthday">Birthday</string>
-    <string name="send_email_verify">send_email_verify</string>
-    <string name="refresh">refresh</string>
-    <string name="status_of_verify_string_email">status_of_verify_string_email</string>
-    <string name="emaaaaail">emaaaaail</string>
-    <string name="send_verification">Send Verification</string>
-    <string name="please_verify_your_email">Please verify your email</string>
     <string name="verify_your_email_address">Verify your email address</string>
-    <string name="a_verification_link_was_sent_to_abdellebay_gmail_com_when_you_first_created_this_account_please_click_on_that_link_to_verify_your_email_address_if_you_cannot_find_it_you_may_request_a_new_one_below">A verification link was sent to abdellebay@gmail.com when you first created this account. Please click on that link to verify your email address. if you cannot find it you may request a new one below</string>
     <string name="complet_signup">Complet SignUp</string>
-    <string name="icon_fullname">icon fullName</string>
-    <string name="source">Source</string>
     <string name="search">Search</string>
-    <string name="destination">Destination</string>
     <string name="propose_a_way">Propose a way</string>
-    <string name="date_ways">Date :</string>
-    <string name="time_ways">Time :</string>
-    <string name="full_name_ways">Full Name :</string>
-    <string name="source_ways">Source :</string>
-    <string name="destination_ways">Destination :</string>
-    <string name="image__ways">TODO</string>
-    <string name="rating_ways">CarId :</string>
-    <string name="phone_ways">Phone :</string>
+    <string name="date_ways" translatable="false">Date :</string>
+    <string name="time_ways" translatable="false">Time :</string>
+    <string name="full_name_ways" translatable="false">Full Name :</string>
+    <string name="source_ways" translatable="false">Source :</string>
+    <string name="destination_ways" translatable="false">Destination :</string>
+    <string name="rating_ways" translatable="false">CarId :</string>
+    <string name="phone_ways" translatable="false">Phone :</string>
     <string name="phone_propose">Phone</string>
     <string name="time_propose">Time</string>
     <string name="date_propose">Date</string>
-    <string name="full_name_propose">Full Name</string>
-    <string name="source_propose">Source</string>
-    <string name="destination_propose">Destination</string>
     <string name="post_propose">Post</string>
     <string name="carid_propose">CarID</string>
-    <string name="textviewoffre">TextView</string>
-    <string name="textviewoffedesc">TextView</string>
-    <string name="textview1">TextView</string>
-    <string name="textviewdes">TextView</string>
-    <string name="textviewdate">TextView</string>
-    <string name="textviewcarId">TextView</string>
-    <string name="textviewTime">TextView</string>
     <string name="share">share</string>
-    <string name="html" tools:ignore="StringEscaping">
+    <string name="html" tools:ignore="StringEscaping" translatable="false">
                 <![CDATA[
 
 <!DOCTYPE html>
@@ -109,29 +65,39 @@
 	</style>
 </head>
 <body>
-	<h1>Qu\'est-ce que le covoiturage ?</h1>
+	<h1>What is carpooling?</h1>
 
-<p>Le covoiturage est un dispositif qui a pour vocation de réduire les dépenses de carburant tout en protégeant notre planète. C\'est-à-dire que c\'est une façon de rouler autrement en partageant sa voiture avec des personnes effectuant le même trajet.</p>
+<p>Carpooling is a device that aims to reduce fuel costs while protecting our planet. That is to say that it is a way of driving differently by sharing one's car with people making the same journey.</p>
 <ul>
-<li><h2>Fonctionnement</h2></li>
+<li><h2>usage</h2></li>
 
-<p>Le covoiturage est un dispositif d\'auto-stop moderne qui met en contact des compagnons de route potentiels. Ce système est donc adapté aux conducteurs et passagers qui effectuent régulièrement le même trajet ou de façon plus ponctuelle.</p>
+<p>Carpooling is a modern hitchhiking device that connects potential road mates. This system is therefore suitable for drivers and passengers who regularly make the same journey or more punctual.</p>
 
 <li><h2>Vous êtes passager ?</h2> </li>
 
-<p>Vous voulez voyager moins cher, plus rapide. Une solution simple et économique, qui vous permettra d\'élargir votre réseau social et de gagner de l\'argent et du temps, le tout dans une ambiance sécurisée et conviviale. Utilisez l\'applcation "Pip Yallah" de covoiturage au Maroc  et réservez une place dès maintenant! </p>
+<p>You want to travel cheaper, faster. A simple and economical solution that will allow you to expand your social network and make money and time, all in a secure and friendly atmosphere. Use the "Pip Yallah" carpool application in Morocco and book a seat now!</p>
 
-<li><h2>Vous êtes conducteur ?</h2></li>
+<li><h2>Are you a driver?</h2></li>
 
-<p>Vous disposez d\’un véhicule et voulez proposer vos places libres. Offrez une solution de covoiturage au Maroc afin de partager les frais de votre voyage, de réduire l\'émission de Co2 et l\’embouteillage, et de développer votre cercle de connaissances/amis.</p>
+<p>You have a vehicle and want to offer your free seats. Offer a carpooling solution in Morocco to share the cost of your trip, reduce Co2 emissions and congestion, and expand your circle of friends.</p>
 <br/>
 </ul>
 
-<footer>Application Pip Yallah , 2018.</footer>
+<footer>Pip Yallah Application, 2018.</footer>
 <br/>
 </body>
 </html>
                 ]]>
     </string>
     <string name="update">Update</string>
+    <string name="francais_txt" translatable="false">Français</string>
+    <string name="english_txt" translatable="false">English</string>
+    <string name="arabic_txt" translatable="false">العربية</string>
+    <string name="deutsche_txt" translatable="false">Deutsche</string>
+    <string name="espanol_txt" translatable="false">Español</string>
+    <string name="change_language">Change Language</string>
+    <string name="logout">Logout</string>
+    <string name="notifications">Notifications</string>
+    <string name="send_verification">send verification</string>
+    <string name="btn_signup">Signup</string>
 </resources>

@@ -1,0 +1,84 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="home">Zuhause</string>
+    <string name="services">Dienstleistungen</string>
+    <string name="my_ways">Meine Wege</string>
+    <string name="my_account">Mein Konto</string>
+    <string name="communicate">Kommunizieren</string>
+    <string name="about">Über</string>c
+    <string name="settings">die Einstellungen</string>
+    <string name="password">Passwort</string>
+    <string name="username">Nutzername</string>
+    <string name="mail">E_mail</string>
+    <string name="confirm_password">Bestätige das Passwort</string>
+    <string name="full_name">Vollständiger Name</string>
+    <string name="phone">Telefon</string>
+    <string name="forgot_your_password">Haben Sie Ihr Passwort vergessen?</string>
+    <string name="login">Anmeldung</string>
+    <string name="forgot_password">Passwort vergessen</string>
+    <string name="signup_now">Jetzt registrieren</string>
+    <string name="don_t_have_an_acount">Hast du kein Konto?</string>
+    <string name="already_have_an_account">Hast du schon ein Konto?</string>
+    <string name="reset_password">Passwort zurücksetzen</string>
+    <string name="email_or_username">E-Mail Adresse oder Benutzername</string>
+    <string name="loading">Wird geladen …</string>
+    <string name="birthday">Geburtstag</string>
+    <string name="verify_your_email_address">Bestätige deine Email-Adresse</string>
+    <string name="complet_signup">Schließen Sie sich ab</string>
+    <string name="search">Suche</string>
+    <string name="propose_a_way">Einen Weg vorschlagen</string>
+    <string name="phone_propose">Telefon</string>
+    <string name="time_propose">Zeit</string>
+    <string name="date_propose">Datum</string>
+    <string name="post_propose">Post</string>
+    <string name="carid_propose">Auto ID</string>
+    <string name="share">Aktie</string>
+    <string name="html" tools:ignore="StringEscaping" translatable="false">
+                <![CDATA[
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		h1{
+			color: blue;
+		}
+		body {
+			    background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<h1>What is carpooling?</h1>
+
+<p>Carpooling is a device that aims to reduce fuel costs while protecting our planet. That is to say that it is a way of driving differently by sharing one's car with people making the same journey.</p>
+<ul>
+<li><h2>usage</h2></li>
+
+<p>Carpooling is a modern hitchhiking device that connects potential road mates. This system is therefore suitable for drivers and passengers who regularly make the same journey or more punctual.</p>
+
+<li><h2>Vous êtes passager ?</h2> </li>
+
+<p>You want to travel cheaper, faster. A simple and economical solution that will allow you to expand your social network and make money and time, all in a secure and friendly atmosphere. Use the "Pip Yallah" carpool application in Morocco and book a seat now!</p>
+
+<li><h2>Are you a driver?</h2></li>
+
+<p>You have a vehicle and want to offer your free seats. Offer a carpooling solution in Morocco to share the cost of your trip, reduce Co2 emissions and congestion, and expand your circle of friends.</p>
+<br/>
+</ul>
+
+<footer>Pip Yallah Application, 2018.</footer>
+<br/>
+</body>
+</html>
+                ]]>
+    </string>
+    <string name="update">Aktualisieren</string>
+    <string name="change_language">Sprache ändern</string>
+    <string name="logout">Ausloggen</string>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="send_verification">Bestätigung senden</string>
+    <string name="btn_signup">Anmelden</string>
+</resources>

@@ -57,7 +57,7 @@
                 android:layout_marginTop="13dp"
                 android:src="@drawable/user_info"
                 android:layout_marginStart="10dp"
-                android:contentDescription="@string/icon_fullname" />
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tvName"
