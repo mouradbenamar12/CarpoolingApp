@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="home">Accueil</string>
+    <string name="services">Services</string>
+    <string name="my_ways">Mes Trajets</string>
+    <string name="my_account">Mon Compte</string>
+    <string name="communicate">Comunication</string>
+    <string name="about">Sur Application</string>c
+    <string name="settings">Parametres</string>
+    <string name="password">Mot de Passe</string>
+    <string name="username">Nom d\'Utilisateur</string>
+    <string name="mail">E_mail</string>
+    <string name="confirm_password">Confirmez le mot de passe</string>
+    <string name="full_name">Nom Complet</string>
+    <string name="phone">Téléphone</string>
+    <string name="forgot_your_password">Mot de Passe Oublié?</string>
+    <string name="login">S\'identifier</string>
+    <string name="forgot_password">Mot de Passe Oublié</string>
+    <string name="signup_now">S\'inscrire Maintenant</string>
+    <string name="don_t_have_an_acount">Vous n\'avez pas de compte?</string>
+    <string name="already_have_an_account">Vous avez déjà un compte?</string>
+    <string name="reset_password">Réinitialiser le Mot de Passe</string>
+    <string name="email_or_username">Email ou Nom d\'Utilisateur</string>
+    <string name="loading">Chargement …</string>
+    <string name="birthday">Anniversaire</string>
+    <string name="verify_your_email_address">Vérifiez Votre Adresse Email</string>
+    <string name="complet_signup">Compléter l\'Inscription</string>
+    <string name="search">Chercher</string>
+    <string name="propose_a_way">Proposer un Tajet</string>
+    <string name="phone_propose">Téléphone</string>
+    <string name="time_propose">Temps</string>
+    <string name="date_propose">Date</string>
+    <string name="post_propose">Poster</string>
+    <string name="carid_propose">l\'immatricul</string>
+    <string name="share">Partager</string>
+    <string name="update">Mettre à jour</string>
+    <string name="change_language">Changer la Langue</string>
+    <string name="logout">Déconcentrer</string>
+    <string name="notifications">Notifications</string>
+    <string name="html" tools:ignore="StringEscaping">
+                <![CDATA[
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		h1{
+			color: blue;
+		}
+		body {
+			    background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<h1>Qu\'est-ce que le covoiturage ?</h1>
+
+<p>Le covoiturage est un dispositif qui a pour vocation de réduire les dépenses de carburant tout en protégeant notre planète. C\'est-à-dire que c\'est une façon de rouler autrement en partageant sa voiture avec des personnes effectuant le même trajet.</p>
+<ul>
+<li><h2>Fonctionnement</h2></li>
+
+<p>Le covoiturage est un dispositif d\'auto-stop moderne qui met en contact des compagnons de route potentiels. Ce système est donc adapté aux conducteurs et passagers qui effectuent régulièrement le même trajet ou de façon plus ponctuelle.</p>
+
+<li><h2>Vous êtes passager ?</h2> </li>
+
+<p>Vous voulez voyager moins cher, plus rapide. Une solution simple et économique, qui vous permettra d\'élargir votre réseau social et de gagner de l\'argent et du temps, le tout dans une ambiance sécurisée et conviviale. Utilisez l\'applcation "Pip Yallah" de covoiturage au Maroc  et réservez une place dès maintenant! </p>
+
+<li><h2>Vous êtes conducteur ?</h2></li>
+
+<p>Vous disposez d\’un véhicule et voulez proposer vos places libres. Offrez une solution de covoiturage au Maroc afin de partager les frais de votre voyage, de réduire l\'émission de Co2 et l\’embouteillage, et de développer votre cercle de connaissances/amis.</p>
+<br/>
+</ul>
+
+<footer>Application Pip Yallah , 2018.</footer>
+<br/>
+</body>
+</html>
+                ]]>
+    </string>
+    <string name="send_verification">Envoyer Verification</string>
+    <string name="btn_signup">S\'inscrire</string>
+</resources>

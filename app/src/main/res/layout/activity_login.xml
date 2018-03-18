@@ -137,7 +137,7 @@
         android:layout_marginRight="20dp"
         android:background="@android:color/transparent"
         android:onClick="btnSignUp"
-        android:text="@string/sing_up_now"
+        android:text="@string/signup_now"
         android:textAllCaps="?android:attr/windowSwipeToDismiss"
         android:textColor="@android:color/black"
         android:textIsSelectable="false"
@@ -157,12 +157,12 @@
         android:layout_marginRight="2dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="29dp"
-        android:contentDescription="@string/pass"
         app:layout_constraintEnd_toStartOf="@+id/etPsw"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log_icon"
-        app:srcCompat="@drawable/pass_icon" />
+        app:srcCompat="@drawable/pass_icon"
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

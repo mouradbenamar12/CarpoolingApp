@@ -53,6 +53,13 @@ public class SettingsFragment extends Fragment implements
                 .enableAutoManage(getActivity(), this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();*/
+        Button changelang=view.findViewById(R.id.change_language);
+        changelang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),Language.class));
+            }
+        });
 
         Button logout=view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {

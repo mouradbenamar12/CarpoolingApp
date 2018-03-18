@@ -4,31 +4,35 @@
     android:layout_height="match_parent"
     android:weightSum="3"
     android:orientation="vertical"
-    tools:context="com.example.mourad.navigationandroid.HomeFragment">
+    tools:context="com.example.mourad.navigationandroid.WaysFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="676dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_current"
             android:layout_width="match_parent"
-            android:background="#b3d6b1"
             android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:background="#b3d6b1"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/empty_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:visibility="visible"
             android:text="No Way Found"
+            android:visibility="visible"
             tools:ignore="HardcodedText" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="676dp"
+        android:layout_marginTop="30dp"
         android:layout_weight="1">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_favorites"

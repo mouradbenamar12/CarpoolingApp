@@ -54,7 +54,7 @@ public class FirstPage extends BaseActivity implements View.OnClickListener {
 
     //push
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 

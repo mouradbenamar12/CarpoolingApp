@@ -5,8 +5,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 @SuppressLint("Registered")
 
-public class BaseActivity extends AppCompatActivity implements
+public class BaseActivity extends LocalizationActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     protected FirebaseUser mFirebaseUser;
@@ -31,7 +31,7 @@ public class BaseActivity extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;//Not really needed but I like having it
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         if (mAuth != null) {
