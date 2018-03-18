@@ -77,7 +77,7 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         user = new User();
-        getActivity().setTitle("My Account");
+        getActivity().setTitle(R.string.my_account);
         usr=FirebaseDatabase.getInstance().getReference("Users");
         usr.addValueEventListener(new ValueEventListener() {
             @Override

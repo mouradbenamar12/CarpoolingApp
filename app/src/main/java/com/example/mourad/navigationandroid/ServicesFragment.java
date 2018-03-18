@@ -27,7 +27,7 @@ public class ServicesFragment extends Fragment implements BillingProcessor.IBill
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Services");
+        getActivity().setTitle(R.string.services);
 
         bp=new BillingProcessor(getContext(),null,this);
         removeAds=view.findViewById(R.id.removeAds);

@@ -82,4 +82,8 @@
     </string>
     <string name="send_verification">Envoyer Verification</string>
     <string name="btn_signup">S\'inscrire</string>
+    <string name="Share_txt">Si vous trouvez notre application utile pour vous, vous pouvez partager cette application gratuite d\'ici avec vos amis.</string>
+    <string name="btn_later">Plus tard</string>
+    <string name="title_share">Partager!</string>
+    <string name="change_language_succes">la langue est modifiée avec succès</string>
 </resources>

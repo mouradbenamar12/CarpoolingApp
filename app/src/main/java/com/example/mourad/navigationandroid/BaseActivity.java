@@ -28,7 +28,7 @@ public class BaseActivity extends LocalizationActivity implements
     protected GoogleApiClient mGoogleApiClient;
     protected FirebaseAuth mAuth;
     protected FirebaseAuth.AuthStateListener mAuthListener;
-    private ProgressDialog mProgressDialog;//Not really needed but I like having it
+    protected ProgressDialog mProgressDialog;//Not really needed but I like having it
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

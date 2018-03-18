@@ -81,4 +81,8 @@
     <string name="notifications">Benachrichtigungen</string>
     <string name="send_verification">Bestätigung senden</string>
     <string name="btn_signup">Anmelden</string>
+    <string name="Share_txt">Wenn Sie unsere App für Sie nützlich finden, können Sie diese kostenlose App von hier aus mit Ihren Freunden teilen.</string>
+    <string name="btn_later">Später</string>
+    <string name="title_share">Aktie!</string>
+    <string name="change_language_succes">Die Sprache wurde erfolgreich geändert</string>
 </resources>
