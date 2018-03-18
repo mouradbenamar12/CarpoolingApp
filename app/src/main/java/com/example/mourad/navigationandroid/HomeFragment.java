@@ -54,14 +54,10 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        try {
-        MyContext= getActivity();
 
+        MyContext= getActivity();
         return inflater.inflate(R.layout.fragment_home, container, false);
-        }catch (Exception e){
-            e.getMessage();
-        }
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -311,8 +307,9 @@ public class HomeFragment extends Fragment {
         try {
             if (progress != null) {
                 if (show) {
-                    progress.setTitle("loading ... ");
-                    progress.setMessage("Syncing ...");
+
+                    progress.setTitle(R.string.loading);
+                    progress.setMessage("Syncing …");
                     progress.setCancelable(false);
                     progress.show();
                     new Handler().postDelayed(new Runnable() {
