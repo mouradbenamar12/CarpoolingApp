@@ -55,4 +55,8 @@
     <string name="btn_later">Später</string>
     <string name="title_share">Aktie!</string>
     <string name="change_language_succes">Die Sprache wurde erfolgreich geändert</string>
+    <string name="my_way_title">Mein Weg</string>
+    <string name="my_favorites_title">Meine Favoriten</string>
+    <string name="no_way_found">Kein Weg gefunden</string>
+    <string name="no_favorites_found">Keine Favoriten gefunden</string>
 </resources>

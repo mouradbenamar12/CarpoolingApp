@@ -55,4 +55,8 @@
     <string name="btn_later">لاحقا</string>
     <string name="title_share">شارك!</string>
     <string name="change_language_succes">تم تغيير اللغة بنجاح</string>
+    <string name="my_way_title">طريقى</string>
+    <string name="my_favorites_title">مفضلتي</string>
+    <string name="no_way_found">لا توجد طريق</string>
+    <string name="no_favorites_found">لم يتم العثور على المفضلة</string>
 </resources>

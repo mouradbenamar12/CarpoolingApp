@@ -2,22 +2,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="3"
     android:orientation="vertical"
-    android:background="?attr/backgroundcolor">
+    android:weightSum="3"
     tools:context="com.example.mourad.navigationandroid.WaysFragment">
+
+    <TextView
+        android:id="@+id/my_way_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/my_way_title"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="676dp"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1">
+        android:layout_height="510dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:isScrollContainer="false"
+        android:scrollbars="none">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_current"
             android:layout_width="match_parent"
-            android:background="?attr/backgroundcolor"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#b3d6b1"
+            android:scrollbars="none"
             android:visibility="gone" />
 
         <TextView
@@ -25,37 +37,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:visibility="visible"
-            android:text="No Way Found"
-            tools:ignore="HardcodedText" />
+            android:scrollbars="none"
+            android:text="@string/no_way_found"
+            android:visibility="visible" />
+
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/my_favorite_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/my_favorites_title"
+        android:textColor="@android:color/black"
+        android:textSize="25sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="510dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_favorites"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#b3d6b1"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/empty_favotites"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:visibility="visible"
-            android:text="No Favorites Found"
-            tools:ignore="HardcodedText" />
+            android:text="@string/no_favorites_found"
+            android:visibility="visible" />
 
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        tools:ignore="UselessLeaf">
-
+        android:layout_height="330dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1">
     </FrameLayout>
+
 </LinearLayout>

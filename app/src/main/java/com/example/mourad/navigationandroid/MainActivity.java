@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity
         mFirebasedata = FirebaseDatabase.getInstance();
         myref = mFirebasedata.getReference();
         FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+        assert mFirebaseUser != null;
         UID = mFirebaseUser.getUid();
         myref.addValueEventListener(new ValueEventListener() {
             @Override

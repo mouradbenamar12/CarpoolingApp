@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -66,5 +67,6 @@ dependencies {
     compile 'com.akexorcist:localizationactivity:1.2.2'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     compile 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+    compile 'com.romainpiel.shimmer:library:1.4.0@aar'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -73,4 +73,8 @@
     ]]></string>
     <string name="syncing">Syncing …</string>
     <string name="title_share">Share!</string>
+    <string name="my_way_title">My Way</string>
+    <string name="my_favorites_title">My Favorites</string>
+    <string name="no_way_found">No Way Found</string>
+    <string name="no_favorites_found">No Favorites Found</string>
 </resources>

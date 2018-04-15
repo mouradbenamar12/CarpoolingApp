@@ -14,7 +14,6 @@ public class Language extends LocalizationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
     }
-
     public void fr_img(View view){
         setLanguage("fr");
         Toast.makeText(this, R.string.change_language_succes, Toast.LENGTH_SHORT).show();

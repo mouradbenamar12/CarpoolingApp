@@ -55,4 +55,8 @@
     <string name="btn_later">Plus tard</string>
     <string name="title_share">Partager!</string>
     <string name="change_language_succes">la langue est modifiée avec succès</string>
+    <string name="my_way_title">Mon Trajet</string>
+    <string name="my_favorites_title">Mes favoris</string>
+    <string name="no_way_found">Aucun trajet trouvé</string>
+    <string name="no_favorites_found">Aucun favori trouvé</string>
 </resources>
