@@ -19,7 +19,7 @@
                 android:paddingLeft="10dp"
                 android:layout_marginLeft="1dp"
                 android:paddingStart="10dp"
-                tools:ignore="RtlSymmetry"
+                tools:ignore="RtlHardcoded,RtlSymmetry"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginBottom="50dp"
@@ -37,7 +37,7 @@
                 android:background="@drawable/searchback"
                 android:gravity="center"
                 android:layout_marginLeft="1dp"
-                />
+                tools:ignore="RtlHardcoded" />
 
 
 
@@ -54,7 +54,7 @@
                 android:paddingLeft="10dp"
                 android:paddingStart="10dp"
                 android:layout_marginLeft="1dp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
         </FrameLayout>
         <FrameLayout

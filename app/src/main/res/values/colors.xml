@@ -5,4 +5,8 @@
     <color name="colorAccent">#ff4081</color>
     <color name="colorBlack">#000000</color>
     <color name="appcolor">#009688</color>
+
+    <color name="graylight">#DFDFDF</color>
+    <color name="startblue">#09c6df</color>
+    <color name="endblue">#0bcce6</color>
 </resources>

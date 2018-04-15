@@ -103,7 +103,7 @@
         android:id="@+id/log_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
@@ -171,7 +171,10 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
 
         <ProgressBar
             android:id="@+id/progressbar"
