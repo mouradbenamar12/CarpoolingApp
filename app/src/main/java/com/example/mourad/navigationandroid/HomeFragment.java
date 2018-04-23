@@ -20,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
@@ -49,6 +51,8 @@ public class HomeFragment extends Fragment {
     Button Propose,Search;
     String src;
     String des;
+
+    private TextView travel_quotes;
 
 
     @Nullable
@@ -81,6 +85,9 @@ public class HomeFragment extends Fragment {
 
         Propose = getView().findViewById(R.id.propose);
         Search = getView().findViewById(R.id.search);
+
+        travel_quotes = getView().findViewById(R.id.travel_quotes);
+        travel_quotes.setSelected(true);
 
         Propose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +144,7 @@ public class HomeFragment extends Fragment {
         //ImageView searchSrc = (ImageView)((LinearLayout)autocompleteFragmentSource.getView()).getChildAt(0);
         //  searchSrc.setImageDrawable(getResources().getDrawable(R.drawable.source));
 
-        autocompleteFragmentSource.setHint(" Source ...");
+        autocompleteFragmentSource.setHint("Source ...");
         autocompleteFragmentSource.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
@@ -159,7 +166,7 @@ public class HomeFragment extends Fragment {
         //ImageView searchDest = (ImageView)((LinearLayout)autocompleteFragmentDestination.getView()).getChildAt(0);
         //searchDest.setImageDrawable(getResources().getDrawable(R.drawable.clara1));
 
-        autocompleteFragmentDestination.setHint(" Destination ... ");
+        autocompleteFragmentDestination.setHint("Destination ...");
         autocompleteFragmentDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
@@ -184,9 +191,9 @@ public class HomeFragment extends Fragment {
     public void updateNotification() {
         Notification notification = new NotificationCompat.Builder(MyContext)
                 //Title of the notification
-                .setContentTitle("hello")
+                .setContentTitle("Pip Yalla")
                 //Content of the notification once opened
-                .setContentText("hhhhh")
+                .setContentText("New Way Posted")
                 //This bit will show up in the notification area in devices that support that
                 .setTicker("gggggg")
                 //Icon that shows up in the notification area

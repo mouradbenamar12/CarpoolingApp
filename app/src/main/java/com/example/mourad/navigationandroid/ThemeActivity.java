@@ -14,6 +14,7 @@ public class ThemeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         sharedpref = new SharedPref(this);
 
         if(sharedpref.loadNightModeState()) {

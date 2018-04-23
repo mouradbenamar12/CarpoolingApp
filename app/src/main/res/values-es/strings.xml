@@ -42,13 +42,20 @@
     <string name="mode_dark">Modo oscuro</string>
     <string name="enable_mode_night">Habilitar modo oscuro</string>
     <string name="dismiss">despedir</string>
-    <string name="about_body"><![CDATA[
-        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
-        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
-        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
-        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
-        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    <string name="about_body" tools:ignore="Typos"><![CDATA[
+<b> App Pip Yalla </ b>: es gratuito, ofrece un servicio de conexión entre el conductor (que tiene un vehículo) y el pasajero (que busca un medio de transporte) para: <br/>
+
+- Compartir los costos de viaje. <br/>
+- Asegurar una mejor flexibilidad temporal y geográfica. <br/>
+- Viajando más cómodamente. <br/>
+- Elige con quién salir a la carretera con <br/>
+- Aliviar el tráfico. <br/>
+- Minimiza las emisiones de CO2. <br/>
+- Accede a áreas remotas. <br/>
+- Comparte la experiencia de viaje con nuevas personas. <br/>
+        <a href=\'https://twitter.com/Mouradgb05\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/108643049984834335032\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/mouradbenamar12\'>GitHub</a>&nbsp;&nbsp;
     ]]></string>
     <string name="syncing">Sincronizando …</string>
     <string name="Share_txt">Si encuentra que nuestra aplicación es útil para usted, puede compartir esta aplicación gratuita desde aquí con sus amigos.</string>
@@ -59,4 +66,5 @@
     <string name="my_favorites_title">Mis favoritos</string>
     <string name="no_way_found">No se encontró ninguna forma</string>
     <string name="no_favorites_found">No se encontraron favoritos</string>
+    <string name="travel_quotes">Si tiene un automóvil y necesita acompañantes o desea viajar a lugares que no ha visitado antes, ¿qué está esperando? ¡Estás en el lugar correcto! Prepárate y vete.</string>
 </resources>

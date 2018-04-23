@@ -63,13 +63,20 @@
     <string name="btn_later">Later</string>
     <string name="change_language_succes">the Language is successfully Changed</string>
     <string name="dismiss">dismiss</string>
-    <string name="about_body"><![CDATA[
-        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
-        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
-        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
-        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
-        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    <string name="about_body" tools:ignore="Typos"><![CDATA[
+<b> App Pip Yalla </ b>: it is free, it offers a service of connection between driver (having a vehicle) and passenger (looking for a means of transport) in order to: <br/>
+
+- Share travel costs. <br/>
+- Ensure better temporal and geographical flexibility. <br/>
+- Traveling more comfortably. <br/>
+- Choose who to hit the road. <br/>
+- Alleviate the traffic. <br/>
+- Minimize CO2 emissions. <br/>
+- Access remote areas. <br/>
+- Share the travel experience with new people. <br/>
+        <a href=\'https://twitter.com/Mouradgb05\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/108643049984834335032\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/mouradbenamar12\'>GitHub</a>&nbsp;&nbsp;
     ]]></string>
     <string name="syncing">Syncing …</string>
     <string name="title_share">Share!</string>
@@ -77,4 +84,6 @@
     <string name="my_favorites_title">My Favorites</string>
     <string name="no_way_found">No Way Found</string>
     <string name="no_favorites_found">No Favorites Found</string>
+    <string name="send_verification">Send Verification</string>
+    <string name="travel_quotes">If you have a car and you need companions or you want to travel to places you have not visited before, what are you waiting for ?! You\'re in the right place ! Get ready and go .</string>
 </resources>

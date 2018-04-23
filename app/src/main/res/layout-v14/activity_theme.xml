@@ -13,14 +13,14 @@
     <Switch
         android:id="@+id/modeDark"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
         android:text="@string/mode_dark"
-        android:textColor="?attr/textcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp"
+        android:textColor="?attr/textcolor"
         tools:ignore="MissingPrefix,RtlHardcoded,Suspicious0dp" />
 
 

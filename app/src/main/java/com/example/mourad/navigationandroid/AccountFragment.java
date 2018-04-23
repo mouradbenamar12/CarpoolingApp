@@ -187,6 +187,8 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 //showProgressDialog();
                 confirme_Signup(fullName.getText().toString(),Phone.getText().toString(),birthday.getText().toString(),spinner.getSelectedItem().toString());
+
+
             }
         });
 
@@ -269,17 +271,17 @@ public class AccountFragment extends Fragment {
     public void confirme_Signup(String fullname_string, String phone_string, String Birthday_string, String gender){
 
         if (fullname_string.isEmpty()) {
-            fullName.setError("Email is required");
+            fullName.setError("Full Name is required");
             fullName.requestFocus();
             return;
         }
         if (phone_string.isEmpty()) {
-            Phone.setError("Email is required");
+            Phone.setError("Phone is required");
             Phone.requestFocus();
             return;
         }
         if (Birthday_string.isEmpty()) {
-            birthday.setError("Email is required");
+            birthday.setError("Birthday is required");
             birthday.requestFocus();
             return;
         }
@@ -301,6 +303,27 @@ public class AccountFragment extends Fragment {
             String Gender=spinner.getSelectedItem().toString();
             String Email= user.getEmail();
             String Id =user.getId();
+
+            if (Name.isEmpty()) {
+                fullName.setError("Full Name is required");
+                fullName.requestFocus();
+                return;
+            }
+            if (PHone.isEmpty()) {
+                Phone.setError("Phone is required");
+                Phone.requestFocus();
+                return;
+            }
+            if (BIrthday.isEmpty()) {
+                birthday.setError("Birthday is required");
+                birthday.requestFocus();
+                return;
+            }
+            if (Gender.isEmpty()||spinner.getSelectedItem().toString().equals("Gender")) {
+                spinner.requestFocus();
+                return;
+            }
+
             user = new User(Id,Name,Email,PHone,BIrthday,Gender, user.getPhotoUrl());
 
             Users.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
@@ -357,7 +380,7 @@ public class AccountFragment extends Fragment {
                                     .child("Information").setValue(user, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                    Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
+                                  //  Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                 }
                             });
 

@@ -1,26 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="com.example.mourad.navigationandroid.AccountFragment"
+    android:background="?attr/bg_my_account"
     android:orientation="vertical"
-    tools:context="com.example.mourad.navigationandroid.ProposeFragment">
+    >
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/source_info"
+            tools:ignore="ContentDescription" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:layout_marginStart="10dp"
             android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
             />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:paddingTop="3dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/destination_info"
+            tools:ignore="ContentDescription" />
 
         <fragment
             android:id="@+id/place_autocomplete_fragment2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:layout_marginStart="10dp"
             android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
             />
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/date_info"
+            tools:ignore="ContentDescription" />
 
 
         <EditText
@@ -28,65 +83,110 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:paddingStart="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
             android:focusable="false"
             android:hint="@string/date_propose"
             tools:ignore="TextFields" />
 
 
-    <FrameLayout
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/time_info"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/et_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="20dp"
             android:ems="10"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
             android:focusable="false"
             android:hint="@string/time_propose"
-             />
-    </FrameLayout>
+            />
+    </LinearLayout>
 
-    <FrameLayout
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/phone_info"
+            tools:ignore="ContentDescription" />
+
 
         <EditText
             android:id="@+id/et_Number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_marginStart="10dp"
+            android:paddingStart="20dp"
+            android:layout_gravity="center_vertical"
             android:hint="@string/phone_propose"
             android:inputType="phone" />
-    </FrameLayout>
+    </LinearLayout>
 
-    <FrameLayout
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/car_info"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/et_carID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:layout_gravity="center_vertical"
             android:ems="10"
+            android:layout_marginStart="10dp"
             android:hint="@string/carid_propose"
             android:inputType="textPersonName"
             tools:ignore="TextFields"/>
-    </FrameLayout>
+
+    </LinearLayout>
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btn_post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/post_propose" />
-    </FrameLayout>
-
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="#B89D48"
+        android:text="@string/post_propose"
+        android:textColor="#fff"
+        android:textSize="18sp" />
 
 
 </LinearLayout>
-

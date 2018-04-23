@@ -54,9 +54,11 @@ public class ProposeFragment extends Fragment {
         carid = getView().findViewById(R.id.et_carID);
         post = getView().findViewById(R.id.btn_post);
 
+
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 User user = new User();
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
@@ -72,6 +74,27 @@ public class ProposeFragment extends Fragment {
                 String latlngSrc = LatlngSrc;
                 String latlngDes = LatlngDes;
                 String UID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                if (date.isEmpty()) {
+                    ProposeFragment.this.date.setError("Date is required");
+                    ProposeFragment.this.date.requestFocus();
+                    return;
+                }
+                if (time.isEmpty()) {
+                    ProposeFragment.this.time.setError("Time is required");
+                    ProposeFragment.this.time.requestFocus();
+                    return;
+                }
+                if (numero.isEmpty()) {
+                    number.setError("Phone is required");
+                    number.requestFocus();
+                    return;
+                }
+                if (carID.isEmpty()) {
+                    carid.setError("CarID is required");
+                    carid.requestFocus();
+                    return;
+                }
 
                 Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID,latlngSrc,latlngDes,UID);
                 Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))

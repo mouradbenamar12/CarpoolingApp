@@ -12,32 +12,23 @@
 
             <fragment
                 android:id="@+id/place_autocomplete_fragment_source"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/searchback"
                 android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
-                android:paddingLeft="10dp"
-                android:layout_marginLeft="1dp"
-                android:paddingStart="10dp"
-                tools:ignore="RtlHardcoded,RtlSymmetry"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:layout_marginEnd="1dp"
                 android:layout_marginBottom="50dp"
-                android:layout_marginStart="1dp"
                 />
 
             <fragment
                 android:id="@+id/place_autocomplete_fragment_destination"
-                android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
+                android:name="com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment"
                 android:layout_gravity="center"
-                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/searchback"
-                android:gravity="center"
-                android:layout_marginLeft="1dp"
-                tools:ignore="RtlHardcoded" />
+                 />
 
 
 
@@ -56,6 +47,31 @@
                 android:layout_marginLeft="1dp"
                 tools:ignore="RtlHardcoded,RtlSymmetry" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/travel_quotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/travel_quotes"
+                android:textSize="18sp"
+
+                android:scrollHorizontally="true"
+                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:marqueeRepeatLimit="marquee_forever"
+
+                android:background="#11d8ce"
+                android:textColor="#574e7a"
+                android:paddingLeft="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="16dp"
+                tools:ignore="EllipsizeMaxLines" />
+            </RelativeLayout>
+
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"
@@ -65,7 +81,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:background="#b3d6b1"
+                android:background="?attr/bg_nav_header"
                 android:layout_height="match_parent" />
         </FrameLayout>
 

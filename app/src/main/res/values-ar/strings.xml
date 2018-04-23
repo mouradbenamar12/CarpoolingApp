@@ -42,21 +42,30 @@
     <string name="mode_dark">وضع الليل</string>
     <string name="enable_mode_night">تشغيل وضع الليل</string>
     <string name="dismiss">رفض</string>
-    <string name="about_body"><![CDATA[
-        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
-        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
-        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
-        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
-        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    <string name="about_body" tools:ignore="Typos"><![CDATA[
+        <b>تطبيق Pip Yalla</b>: مجاني ، يقدم خدمة الاتصال بين السائق (الذي يمتلك  وسيلة نقل ) والراكب (يبحث عن وسيلة نقل) من أجل: <br/>
+
+- مشاركة تكاليف السفر.<br/>
+- ضمان مرونة زمنية وجغرافية أفضل.<br/>
+- السفر بكل ارتياح .<br/>
+- اختيار الشخص المناسب لمرافقته في الطريق.<br/>
+- تخفيف حركة المرور في الطريق.<br/>
+- تقليل انبعاثات ثاني أكسيد الكربون.<br/>
+- الوصول إلى المناطق النائية.<br/>
+- مشاركة تجربة السفر الخاصة بك مع أشخاص جدد.<br/>
+- الخ . ..<br/>
+        <a href=\'https://twitter.com/Mouradgb05\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/108643049984834335032\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/mouradbenamar12\'>GitHub</a>&nbsp;&nbsp;
     ]]></string>
     <string name="syncing">تزامن …</string>
     <string name="Share_txt">إذا وجدت أن تطبيقنا مفيد لك ، يمكنك مشاركة هذا التطبيق المجاني من هنا مع أصدقائك.</string>
     <string name="btn_later">لاحقا</string>
     <string name="title_share">شارك!</string>
     <string name="change_language_succes">تم تغيير اللغة بنجاح</string>
-    <string name="my_way_title">طريقى</string>
+    <string name="my_way_title">طريقي</string>
     <string name="my_favorites_title">مفضلتي</string>
     <string name="no_way_found">لا توجد طريق</string>
     <string name="no_favorites_found">لم يتم العثور على المفضلة</string>
+    <string name="travel_quotes" translatable="false">إذا كنت تملك سيارة وتحتاج إلى مرافقة أو تريد السفر إلى أماكن لم تقم بزيارتها من قبل ، فما الذي تنتظره ؟! أنت في المكان المناسب! استعد وانطلق.</string>
 </resources>

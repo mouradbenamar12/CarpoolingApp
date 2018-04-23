@@ -12,6 +12,13 @@
         <attr name="bg_name" format="color|reference"/>
         <attr name="bg_email" format="color|reference"/>
         <attr name="bg_NavigationView" format="color|reference"/>
+        <attr name="bg_tof_account" format="color|reference"/>
+        <attr name="bg_my_account" format="color|reference"/>
+        <attr name="bgSettings" format="color|reference"/>
+        <attr name="textcolor2" format="color|reference" />
+        <attr name="nav_header_my_ways" format="color|reference" />
+
+
 
 
     </declare-styleable>

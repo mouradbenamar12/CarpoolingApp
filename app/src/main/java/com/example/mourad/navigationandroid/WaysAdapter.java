@@ -202,13 +202,11 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
             pairs[7]=new Pair<View,String>(tvCarId,"carIdTransition");
 
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+
                 @SuppressLint({"NewApi", "LocalSuppress"})
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
                 context.startActivity(intent,options.toBundle());
-            }else {
-                context.startActivity(intent);
-            }
+
 
 
         }

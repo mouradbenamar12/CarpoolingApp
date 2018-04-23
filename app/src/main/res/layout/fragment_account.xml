@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.mourad.navigationandroid.AccountFragment"
-    android:background="@color/graylight"
+    android:background="?attr/bg_my_account"
     android:orientation="vertical">
 
 
@@ -12,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="@drawable/gradientbackground"
+        android:background="?attr/bg_tof_account"
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -45,7 +46,7 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_person_black_24dp"
+                app:srcCompat="@drawable/ic_person_black_24dp"
                 tools:ignore="ContentDescription" />
             <EditText
                 android:id="@+id/et_fullName_acc"
@@ -69,7 +70,7 @@
                 android:paddingTop="3dp"
                 android:layout_width="36dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_contact_phone_black_24dp"
+                app:srcCompat="@drawable/ic_contact_phone_black_24dp"
                 tools:ignore="ContentDescription" />
 
             <EditText
@@ -94,7 +95,7 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_today_black_24dp"
+                app:srcCompat="@drawable/ic_today_black_24dp"
                 tools:ignore="ContentDescription" />
 
             <EditText
@@ -118,7 +119,7 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_accessibility_black_24dp"
+                app:srcCompat="@drawable/ic_accessibility_black_24dp"
                 tools:ignore="ContentDescription" />
 
             <Spinner
@@ -147,10 +148,14 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"/>
 
-    <ProgressBar
-        android:id="@+id/progressbarUP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progressbarUP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+
 
 </LinearLayout>

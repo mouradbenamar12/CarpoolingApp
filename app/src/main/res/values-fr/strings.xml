@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="home">Accueil</string>
     <string name="services">Services</string>
     <string name="my_ways">Mes Trajets</string>
@@ -42,13 +42,21 @@
     <string name="mode_dark">Mode de Nuit</string>
     <string name="enable_mode_night">Activer Mode de Nuit</string>
     <string name="dismiss">rejeter</string>
-    <string name="about_body"><![CDATA[
-        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
-        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
-        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
-        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
-        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    <string name="about_body" tools:ignore="Typos"><![CDATA[
+        <b>App Pip Yalla</b>: est gratuite,elle offre un service de mise en relation entre conducteur (ayant un véhicule) et passager (recherchant un moyen de transport) afin de :<br/>
+
+- Partager les coûts de voyage.<br/>
+- Assurer une meilleure flexibilité temporelle et géographique.<br/>
+- Voyager plus confortablement.<br/>
+- Choisir avec qui prendre la route.<br/>
+- Alléger le trafic.<br/>
+- Minimiser les émissions de CO2.<br/>
+- Accéder à des zones éloignées.<br/>
+- Partager l’expérience du voyage avec de nouvelles personnes.<br/>
+- etc.<br/>
+        <a href=\'https://twitter.com/Mouradgb05\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/108643049984834335032\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/mouradbenamar12\'>GitHub</a>&nbsp;&nbsp;
     ]]></string>
     <string name="syncing">Synchronisation …</string>
     <string name="Share_txt">Si vous trouvez notre application utile pour vous, vous pouvez partager cette application gratuite d\'ici avec vos amis.</string>
@@ -59,4 +67,5 @@
     <string name="my_favorites_title">Mes favoris</string>
     <string name="no_way_found">Aucun trajet trouvé</string>
     <string name="no_favorites_found">Aucun favori trouvé</string>
+    <string name="travel_quotes" translatable="false">Si vous avez une voiture et que vous avez besoin de compagnons ou si vous voulez vous rendre dans des endroits que vous n\'avez pas encore visités, qu\'attendez-vous? Vous êtes au bon endroit! Préparez-vous et partez.</string>
 </resources>

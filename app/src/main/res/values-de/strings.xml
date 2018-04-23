@@ -42,13 +42,20 @@
     <string name="mode_dark">Modus Dunkel</string>
     <string name="enable_mode_night">Aktivieren Sie den Modus Dunkel</string>
     <string name="dismiss">entlassen</string>
-    <string name="about_body"><![CDATA[
-        <b>App Theme Engine</b>, a library  designed by <b>Aidan Follestad</b> (along with various contributors on GitHub).<br/>
-        <a href=\'http://aidanfollestad.com\'>Website</a>&nbsp;&nbsp;
-        <a href=\'https://twitter.com/afollestad\'>Twitter</a>&nbsp;&nbsp;
-        <a href=\'https://google.com/+AidanFollestad\'>Google+</a>&nbsp;&nbsp;
-        <a href=\'https://github.com/afollestad\'>GitHub</a>&nbsp;&nbsp;
-        <a href=\'https://www.linkedin.com/in/afollestad\'>LinkedIn</a>
+    <string name="about_body" tools:ignore="Typos"><![CDATA[
+<p> App Pip Yalla </ b>: es ist kostenlos, es bietet einen Service der Verbindung zwischen Fahrer (mit einem Fahrzeug) und Passagier (auf der Suche nach einem Transportmittel), um: <br/>
+
+- Reisekosten teilen. <br/>
+- Bessere zeitliche und geografische Flexibilität. <br/>
+- Bequemer reisen. <br/>
+- Wählen Sie, wer auf die Straße geht. <br/>
+- Lindern Sie den Verkehr. <br/>
+- Minimierung der CO2-Emissionen. <br/>
+- Zugang zu abgelegenen Gebieten. <br/>
+- Teilen Sie das Reiseerlebnis mit neuen Leuten. <br/>
+        <a href=\'https://twitter.com/Mouradgb05\'>Twitter</a>&nbsp;&nbsp;
+        <a href=\'https://plus.google.com/108643049984834335032\'>Google+</a>&nbsp;&nbsp;
+        <a href=\'https://github.com/mouradbenamar12\'>GitHub</a>&nbsp;&nbsp;
     ]]></string>
     <string name="syncing">Synchronisierung …</string>
     <string name="Share_txt">Wenn Sie unsere App für Sie nützlich finden, können Sie diese kostenlose App von hier aus mit Ihren Freunden teilen.</string>
@@ -59,4 +66,5 @@
     <string name="my_favorites_title">Meine Favoriten</string>
     <string name="no_way_found">Kein Weg gefunden</string>
     <string name="no_favorites_found">Keine Favoriten gefunden</string>
+    <string name="travel_quotes">Wenn du ein Auto hast und Begleiter brauchst oder zu Orten reisen willst, die du noch nicht besucht hast, worauf wartest du? Du bist am richtigen Ort! Mach dich bereit und geh.</string>
 </resources>
