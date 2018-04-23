@@ -3,7 +3,9 @@ package com.example.mourad.navigationandroid;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.facebook.login.LoginManager;
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHolder> {
@@ -120,12 +125,7 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         holder.imageDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeAt(rider);
-                FirebaseDatabase database_user = FirebaseDatabase.getInstance();
-                DatabaseReference Ways = database_user.getReference("Ways");
-                Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .removeValue();
-                Toast.makeText(context,"Delete success",Toast.LENGTH_LONG).show();
+                alert_delete(rider);
             }
         });
 
@@ -269,5 +269,46 @@ public class WaysAdapter extends RecyclerView.Adapter<WaysAdapter.ProductViewHol
         notifyDataSetChanged();
         notifyItemRemoved(poss);
     }
+    public void alert_delete(final Rider_Ways rider)
+    {
+        AlertDialog.Builder alertDialog2 = new
+                AlertDialog.Builder(
+                context);
+
+        // Setting Dialog Title
+        alertDialog2.setTitle("Confirm Delete");
+
+        // Setting Dialog Message
+        alertDialog2.setMessage("Are you sure you want to Delete?");
+
+        // Setting Positive "Yes" Btn
+        alertDialog2.setPositiveButton("YES",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to execute after dialog;
+                        removeAt(rider);
+                        FirebaseDatabase database_user = FirebaseDatabase.getInstance();
+                        DatabaseReference Ways = database_user.getReference("Ways");
+                        Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .removeValue();
+                        Toast.makeText(context,"Delete success",Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        // Setting Negative "NO" Btn
+        alertDialog2.setNegativeButton("NO",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to execute after dialog
+                        dialog.cancel();
+                    }
+                });
+
+        // Showing Alert Dialog
+        alertDialog2.show();
+
+
+    }
+
 
 }
