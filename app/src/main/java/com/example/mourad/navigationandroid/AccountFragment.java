@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dd.CircularProgressButton;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,6 +65,7 @@ public class AccountFragment extends Fragment {
     protected StorageReference mStorageRef;
     DatabaseReference usr;
     protected ProgressBar progressBar;
+    protected CircularProgressButton cp;
 
 
 
@@ -97,6 +99,7 @@ public class AccountFragment extends Fragment {
         complet=getView().findViewById(R.id.button2_acc);
         spinner=getView().findViewById(R.id.spinner_acc);
         progressBar = getView().findViewById(R.id.progressbarUP);
+        cp=getView().findViewById(R.id.CropProgressBar);
 
         // Profile Google and Fb
 
