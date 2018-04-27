@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
@@ -22,7 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,18 +50,21 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class SignUpComplete extends BaseActivity {
     private EditText birthday,fullName,Phone;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private Uri mCropImageUri;
-    private ImageButton imageButton;
+    private CircleImageView imageButton;
     private Spinner spinner;
     protected Button complet;
     private User user;
     private Uri image;
     private String imageStorage;
     protected StorageReference mStorageRef;
+    private RelativeLayout activity_image_missed;
     //private ProgressBar progressBar;
 
 
@@ -81,6 +85,8 @@ public class SignUpComplete extends BaseActivity {
         birthday=findViewById(R.id.birthdayField);
         imageButton=findViewById(R.id.profilephoto);
         complet=findViewById(R.id.button2);
+
+        activity_image_missed = findViewById(R.id.activity_image_missed);
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.placeholder);
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(),bitmap);
@@ -272,6 +278,11 @@ public class SignUpComplete extends BaseActivity {
         }
         if (gender.isEmpty()||spinner.getSelectedItem().toString().equals("Gender")) {
             spinner.requestFocus();
+            return;
+        }
+        if (imageButton==null){
+            Snackbar snackBar = Snackbar.make(activity_image_missed,"Image Car is Required",Snackbar.LENGTH_SHORT);
+            snackBar.show();
             return;
         }
 

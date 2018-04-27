@@ -2,11 +2,11 @@ package com.example.mourad.navigationandroid;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.akexorcist.googledirection.DirectionCallback;
@@ -28,6 +28,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -38,7 +41,7 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
     protected double latSrc,longSrc;
     protected double latDes,longDes;
     protected TextView tvName,tvSource,tvDestination,tvDate,tvTime,tvPhone,tvCarid,tvDuration,tvDistance;
-    protected ImageView imageWay;
+    protected CircleImageView imageWay,carImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +69,11 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         tvCarid = findViewById(R.id.txtvCarid);
         tvDistance=findViewById(R.id.tvDistance);
         tvDuration=findViewById(R.id.tvDuration);
+        carImg=findViewById(R.id.car_photo_info);
 
         Intent intent = getIntent();
 
+        String UID=intent.getStringExtra("UID");
         String image = intent.getStringExtra("image");
         String name = intent.getStringExtra("full Name");
         String source=intent.getStringExtra("source");
@@ -92,6 +97,7 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
         longDes = Double.parseDouble(latlong2[1]);
 
 
+
         tvName.setText(name);
         tvSource.setText(source);
         tvDestination.setText(destination);
@@ -102,6 +108,14 @@ public class OffreInformation extends FragmentActivity implements OnMapReadyCall
 
         Glide.with(getApplicationContext()).load(image).into(imageWay);
 
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        storageRef.child("CarImg/"+UID).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Glide.with(getApplicationContext()).load(uri).into(carImg);
+                    }
+                });
 
 
     }

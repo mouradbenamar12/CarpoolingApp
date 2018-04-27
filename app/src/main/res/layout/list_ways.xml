@@ -47,7 +47,7 @@
                 android:layout_marginRight="5dp"
                 android:paddingEnd="5dp"
                 android:paddingRight="10dp"
-                android:src="@drawable/ic_share_black_24dp"
+                app:srcCompat="@drawable/ic_share_black_24dp"
                 tools:ignore="ContentDescription,RtlSymmetry" />
 
             <ImageView
@@ -75,6 +75,7 @@
                 android:text="@string/full_name_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
+                android:textColor="?attr/textcolor"
                 android:transitionName="nameTransition"
                 tools:ignore="UnusedAttribute" />
 
@@ -89,6 +90,7 @@
                 android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/source_ways"
+                android:textColor="?attr/textcolor"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="sourceTransition"
@@ -106,6 +108,7 @@
                 android:layout_toRightOf="@+id/imageProfile"
                 android:paddingEnd="5dp"
                 android:paddingRight="5dp"
+                android:textColor="?attr/textcolor"
                 android:text="@string/destination_ways"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
@@ -123,6 +126,7 @@
                 android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/date_ways"
+                android:textColor="?attr/textcolor"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="dateTransition"
@@ -139,6 +143,7 @@
                 android:layout_toEndOf="@id/imageProfile"
                 android:layout_toRightOf="@id/imageProfile"
                 android:text="@string/time_ways"
+                android:textColor="?attr/textcolor"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="timeTransition"
@@ -152,6 +157,7 @@
                 android:layout_alignLeft="@+id/tvTime"
                 android:layout_alignStart="@+id/tvTime"
                 android:text="@string/phone_ways"
+                android:textColor="?attr/textcolor"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="phoneTransition"
@@ -165,6 +171,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/tvTime"
                 android:text="@string/rating_ways"
+                android:textColor="?attr/textcolor"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 android:transitionName="carIdTransition"

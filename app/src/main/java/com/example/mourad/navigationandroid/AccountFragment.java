@@ -105,6 +105,8 @@ public class AccountFragment extends Fragment {
 
         //Spinner
         spinner = getView().findViewById(R.id.spinner_acc);
+        spinner.setEnabled(false);
+        spinner.setClickable(false);
         // Initializing a String Array
         String[] gender = new String[]{
                 "Gender",
@@ -242,8 +244,7 @@ public class AccountFragment extends Fragment {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == -1) {
                 image= result.getUri();
-
-                Glide.with(AccountFragment.this).load(image).into(imageButton);
+                Glide.with(AccountFragment.this).load(image).dontAnimate().into(imageButton);
 
             } else switch (resultCode) {
                 case CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE:
@@ -383,7 +384,6 @@ public class AccountFragment extends Fragment {
                                     .child("Information").setValue(user, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                  //  Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                 }
                             });
 
@@ -396,6 +396,7 @@ public class AccountFragment extends Fragment {
                                                 .setValue(user.getPhone(), new DatabaseReference.CompletionListener() {
                                                     @Override
                                                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                        Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                                     }
                                                 });
                                         Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -403,6 +404,7 @@ public class AccountFragment extends Fragment {
                                                 .setValue(user.getFullName(), new DatabaseReference.CompletionListener() {
                                                     @Override
                                                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                        Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                                     }
                                                 });
                                         Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -410,6 +412,7 @@ public class AccountFragment extends Fragment {
                                                 .setValue(user.getPhotoUrl(), new DatabaseReference.CompletionListener() {
                                                     @Override
                                                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                        Toast.makeText(getContext(),"Update Success",Toast.LENGTH_LONG).show();
                                                     }
                                                 });
                                     }

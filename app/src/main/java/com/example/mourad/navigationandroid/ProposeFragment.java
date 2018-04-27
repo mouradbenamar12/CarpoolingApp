@@ -3,26 +3,44 @@ package com.example.mourad.navigationandroid;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
+
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProposeFragment extends Fragment {
@@ -32,6 +50,12 @@ public class ProposeFragment extends Fragment {
     protected Button post;
     protected Calendar calender;
     protected String LatlngSrc,LatlngDes;
+    protected CircleImageView carImg;
+    private Uri mCropImageUri;
+    private Uri image;
+    protected ProgressBar PG_propose;
+    private StorageReference mStorageRef;
+    private RelativeLayout activity_car_missed;
 
 
     @Nullable
@@ -53,27 +77,36 @@ public class ProposeFragment extends Fragment {
         number=getView().findViewById(R.id.et_Number);
         carid = getView().findViewById(R.id.et_carID);
         post = getView().findViewById(R.id.btn_post);
+        carImg=getView().findViewById(R.id.car_photo);
+        activity_car_missed = getView().findViewById(R.id.activity_car_missed);
+        PG_propose=getView().findViewById(R.id.progressbar_propose);
 
+
+        carImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.startPickImageActivity(getContext(),ProposeFragment.this);
+            }
+        });
 
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 User user = new User();
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
-                DatabaseReference Ways = database_user.getReference("Ways");
-                String nom=user.getFullName();
-                String source = src;
-                String destination = des;
-                String date = ProposeFragment.this.date.getText().toString();
-                String time = ProposeFragment.this.time.getText().toString();
-                String numero = number.getText().toString();
-                String carID = carid.getText().toString();
-                String Image_ways = user.getPhotoUrl();
-                String latlngSrc = LatlngSrc;
-                String latlngDes = LatlngDes;
-                String UID= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                final DatabaseReference Ways = database_user.getReference("Ways");
+                final String nom=user.getFullName();
+                final String source = src;
+                final String destination = des;
+                final String date = ProposeFragment.this.date.getText().toString();
+                final String time = ProposeFragment.this.time.getText().toString();
+                final String numero = number.getText().toString();
+                final String carID = carid.getText().toString();
+                final String Image_ways = user.getPhotoUrl();
+                final String latlngSrc = LatlngSrc;
+                final String latlngDes = LatlngDes;
+                final String UID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 if (date.isEmpty()) {
                     ProposeFragment.this.date.setError("Date is required");
@@ -95,15 +128,33 @@ public class ProposeFragment extends Fragment {
                     carid.requestFocus();
                     return;
                 }
+                if (image==null){
+                    Snackbar snackBar = Snackbar.make(activity_car_missed,"Image Car is Required",Snackbar.LENGTH_SHORT);
+                    snackBar.show();
+                    return;
+                }
+                PG_propose.setVisibility(View.VISIBLE);
+                if(image!=null){
+                    mStorageRef = FirebaseStorage.getInstance().getReference();
+                    StorageReference riversRef = mStorageRef.child("CarImg/"+UID);
+                    riversRef.putFile(image)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination, date, time, numero, carID, latlngSrc, latlngDes, UID);
+                                    Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
+                                            .setValue(way, new DatabaseReference.CompletionListener() {
+                                                @Override
+                                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                    Toast.makeText(getContext(), "Posted", Toast.LENGTH_LONG).show();
+                                                    PG_propose.setVisibility(View.GONE);
+                                                    startActivity(new Intent(getContext(), MainActivity.class));
+                                                }
+                                            });
+                                }
+                            });
 
-                Rider_Ways way = new Rider_Ways(Image_ways, nom, source, destination,date,time,numero,carID,latlngSrc,latlngDes,UID);
-                Ways.child(FirebaseAuth.getInstance().getCurrentUser().getUid().replace(".", ","))
-                        .setValue(way, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                Toast.makeText(getContext(),"Posted",Toast.LENGTH_LONG).show();
-                            }
-                        });
+                }
             }
         });
 
@@ -203,6 +254,60 @@ public class ProposeFragment extends Fragment {
                     + "-" + String.valueOf(year));
         }
     };
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        carImg = getView().findViewById(R.id.car_photo);
+        super.onActivityResult(requestCode, resultCode, data);
+        // handle result of pick image chooser
+        if (requestCode == CropImage.PICK_IMAGE_CHOOSER_REQUEST_CODE && resultCode == -1) {
+            Uri imageUri = CropImage.getPickImageResultUri(getActivity(), data);
+
+            // For API >= 23 we need to check specifically that we have permissions to read external storage.
+            if (CropImage.isReadExternalStoragePermissionsRequired(getActivity(), imageUri)) {
+                // request permissions and handle the result in onRequestPermissionsResult()
+                mCropImageUri = imageUri;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE);
+                }
+            } else {
+                // no permissions required or already granted, can start crop image activity
+                startCropImageActivity(imageUri);
+            }
+        }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == -1) {
+                image= result.getUri();
+
+                Glide.with(ProposeFragment.this).load(image).dontAnimate().into(carImg);
+
+            } else switch (resultCode) {
+                case CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE:
+                    //      Exception error = result.getError();
+                    break;
+            }
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        if (requestCode == CropImage.PICK_IMAGE_PERMISSIONS_REQUEST_CODE) {
+            if (mCropImageUri != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // required permissions granted, start crop image activity
+                startCropImageActivity(mCropImageUri);
+            } else {
+                Toast.makeText(getContext(), "Cancelling, required permissions are not granted", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void startCropImageActivity(Uri imageUri) {
+        CropImage.activity(imageUri)
+                .setCropShape(CropImageView.CropShape.OVAL)
+                .setFixAspectRatio(true)
+                .setMinCropWindowSize(500,500)
+                .start(getContext(),ProposeFragment.this);
+    }
 
 
 

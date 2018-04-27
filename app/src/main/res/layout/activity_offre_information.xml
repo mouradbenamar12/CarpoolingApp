@@ -31,24 +31,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+<LinearLayout>
 
-            <ImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/ivDetails"
-                android:layout_width="100dp"
-                android:layout_height="92dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="112dp"
-                android:src="@drawable/placeholder"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:transitionName="imageTransition"
-                tools:ignore="ContentDescription,RtlHardcoded" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ivDetails"
+        android:layout_width="100dp"
+        android:layout_height="92dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="112dp"
+        android:src="@drawable/avatar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="imageTransition"
+        tools:ignore="ContentDescription,RtlHardcoded" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/car_photo_info"
+        android:layout_width="100dp"
+        android:layout_height="92dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="112dp"
+        android:src="@drawable/car_infor"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="imageTransition"
+        tools:ignore="ContentDescription,RtlHardcoded" />
 
+
+
+</LinearLayout>
 
             <ImageView
                 android:layout_width="45dp"
