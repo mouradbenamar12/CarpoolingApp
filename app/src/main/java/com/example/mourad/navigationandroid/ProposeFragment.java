@@ -38,7 +38,11 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -92,7 +96,6 @@ public class ProposeFragment extends Fragment {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 User user = new User();
                 FirebaseDatabase database_user = FirebaseDatabase.getInstance();
                 final DatabaseReference Ways = database_user.getReference("Ways");
@@ -108,9 +111,27 @@ public class ProposeFragment extends Fragment {
                 final String latlngDes = LatlngDes;
                 final String UID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+                Calendar calendar2 = Calendar.getInstance();
+                String dtnow= ""+calendar2.get(Calendar.DAY_OF_MONTH)+"-"+calendar2.get(Calendar.MONTH)+
+                        "-"+calendar2.get(Calendar.YEAR);
+                Date daate=null;
+                Date daate2=null;
+                SimpleDateFormat format = new SimpleDateFormat("d-m-yyyy", Locale.ENGLISH);
+                try {
+                    daate = format.parse(dtnow);
+                    daate2 = format.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 if (date.isEmpty()) {
                     ProposeFragment.this.date.setError("Date is required");
                     ProposeFragment.this.date.requestFocus();
+                    return;
+                }
+                if (daate2.before(daate)){
+                    Snackbar snackBar = Snackbar.make(activity_car_missed,"Enter Date Valid",Snackbar.LENGTH_SHORT);
+                    snackBar.show();
                     return;
                 }
                 if (time.isEmpty()) {
